@@ -1,6 +1,10 @@
 .idea/
 cv_tests/
+<<<<<<< HEAD
 private/
+=======
+models/
+>>>>>>> 03d0c65af8fb4250651184a29bcbe843013ca1cd
 
 
 
