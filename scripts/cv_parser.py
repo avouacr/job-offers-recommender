@@ -45,7 +45,7 @@ def cv_to_text(cv_path):
 if __name__ == '__main__':
 
     # Test
-    CV_NAME = 'romain'
+    CV_NAME = 'jaime'
     CV_DIR = 'cv_tests'
     CV_PATH = os.path.join(CV_DIR, CV_NAME) + '.pdf'
 
