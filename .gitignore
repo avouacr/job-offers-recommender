@@ -3,6 +3,7 @@ cv_tests/
 private/
 models/
 data/
+__pycache__
 
 
 
