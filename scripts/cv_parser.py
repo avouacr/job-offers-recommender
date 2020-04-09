@@ -7,6 +7,9 @@ import pdfminer
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.converter import TextConverter
 from pdfminer.pdfpage import PDFPage
+import unidecode
+import spacy
+import fr_core_news_md
 
 
 def cv_to_text(cv_path):
@@ -42,12 +45,37 @@ def cv_to_text(cv_path):
         return text
 
 
-if __name__ == '__main__':
+def extract_experience(cv_text):
 
-    # Test
-    CV_NAME = 'jaime'
-    CV_DIR = 'cv_tests'
-    CV_PATH = os.path.join(CV_DIR, CV_NAME) + '.pdf'
+    cv_text = unidecode.unidecode(cv_text)
+    cv_spacy = nlp(cv_text)
 
-    cv_raw_text = cv_to_text(CV_PATH)
-    print(cv_raw_text)
+    tokens = []
+    for token in cv_spacy:
+        if (token.is_stop or token.is_digit or token.is_punct
+                or token.is_space or token.ent_type
+                or not token.is_alpha):
+            # Remove irrelevant tokens
+            continue
+        else:
+            # Lemmatize relevant tokens
+            tokens.append(token.lemma_)
+
+    return tokens
+
+
+
+
+# if __name__ == '__main__':
+
+# Test
+CV_NAME = 'romain'
+CV_DIR = 'cv_tests'
+CV_PATH = os.path.join(CV_DIR, CV_NAME) + '.pdf'
+
+cv_text = cv_to_text(CV_PATH)
+
+nlp = fr_core_news_md.load()
+cv_spacy = nlp(cv_raw_text)
+
+list(cv_spacy.sents)
