@@ -1,3 +1,6 @@
+Source: https://github.com/davidalvarezdlt/cv_generator
+TO DO: Give proper credits
+
 # CV Generator
 Modifying your CV every time you obtain a new diploma or publish a new article can be tedious and time-wasting, even 
 when using a document generator such as LaTeX.
