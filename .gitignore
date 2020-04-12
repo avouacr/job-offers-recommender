@@ -4,7 +4,7 @@ private/
 models/
 data/
 __pycache__
-
+app.db
 
 
 
