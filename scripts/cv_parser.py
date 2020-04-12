@@ -66,16 +66,11 @@ def extract_experience(cv_text):
 
 
 
-# if __name__ == '__main__':
+if __name__ == '__main__':
 
-# Test
-CV_NAME = 'romain'
-CV_DIR = 'cv_tests'
-CV_PATH = os.path.join(CV_DIR, CV_NAME) + '.pdf'
+    # Test
+    CV_NAME = 'romain'
+    CV_DIR = 'cv_tests'
+    CV_PATH = os.path.join(CV_DIR, CV_NAME) + '.pdf'
 
-cv_text = cv_to_text(CV_PATH)
-
-nlp = fr_core_news_md.load()
-cv_spacy = nlp(cv_raw_text)
-
-list(cv_spacy.sents)
+    cv_text = cv_to_text(CV_PATH)
