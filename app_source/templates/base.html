@@ -1,10 +1,14 @@
 <html>
     <head>
-        <title>App</title>
+        {% if title %}
+        <title>APP NAME - {{ title }}</title>
+        {% else %}
+        <title>APP NAME</title>
+        {% endif %}
     </head>
     <body>
         <div>
-            Microblog:
+            APP NAME:
             <a href="{{ url_for('login') }}">Page d'accueil</a>
         </div>
         <hr>
