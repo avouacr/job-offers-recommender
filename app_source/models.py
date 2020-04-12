@@ -1,10 +1,10 @@
-from flask_sqlalchemy import SQLAlchemy
-import logging as lg
-import enum
-
-from .views import app
-# Create database connection object
-db = SQLAlchemy(app)
+# from flask_sqlalchemy import SQLAlchemy
+# import logging as lg
+# import enum
+#
+# from .routes import app
+# # Create database connection object
+# db = SQLAlchemy(app)
 
 
 # class Content(db.Model):

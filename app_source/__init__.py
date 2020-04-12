@@ -1,9 +1,5 @@
-from .views import app
-from . import models
+from flask import Flask
 
-# Connect sqlalchemy to app
-models.db.init_app(app)
+app = Flask(__name__)
 
-@app.cli.command()
-def init_db():
-    models.init_db()
+from app_source import routes
