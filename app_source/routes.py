@@ -38,7 +38,6 @@ def login():
         return redirect(next_page)
 
     return render_template('login.html', title='Identification', form=login_form)
-# TODO: change login error messages to French
 
 
 @app.route('/logout/')
