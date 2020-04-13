@@ -10,7 +10,7 @@ login = LoginManager(app) # Instantiate login manager (for session suspension)
 login.login_view = 'login' # Make access to the app only possible to logged in users
 
 # Import routes and models at the bottom to avoid circular imports
-from app_source import routes, models
+from app_source import routes, models, errors
 models.db.init_app(app) # Connect database to the app
 
 @app.cli.command('init_db')

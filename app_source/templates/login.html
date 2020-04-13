@@ -20,7 +20,6 @@
                 <span style="color: red;">Ce champ doit être complété.</span>
                 {% endif %}
             </p>
-            <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
             <p>{{ form.submit() }}</p>
         </form>
         <p>Nouvel utilisateur? <a href="{{ url_for('register') }}">Cliquer ici pour vous inscrire.</a></p>

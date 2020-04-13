@@ -8,7 +8,6 @@ class LoginForm(FlaskForm):
     """Form object to enable user login."""
     username = StringField("Adresse électronique", validators=[DataRequired()])
     password = PasswordField('Mot de passe', validators=[DataRequired()])
-    remember_me = BooleanField('Se souvenir des mes informations')
     submit = SubmitField('Connexion')
 
 

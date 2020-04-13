@@ -30,7 +30,7 @@ def login():
             flash('Utilisateur inconnu ou mot de passe invalide.')
             return redirect(url_for('login'))
         # Register the user as logged in and display main page of the app
-        login_user(user, remember=login_form.remember_me.data)
+        login_user(user)
         # Redirect to the page requested before login, if any
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
