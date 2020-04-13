@@ -13,6 +13,8 @@ login.login_view = 'login' # Make access to the app only possible to logged in u
 from app_source import routes, models
 models.db.init_app(app) # Connect database to the app
 
+app.static_folder = 'static'
+
 @app.cli.command('init_db')
 def init_db():
     """Enable database (re)initialization."""
