@@ -7,16 +7,12 @@
         {% endif %}
     </head>
     <body>
-<!--        <div>-->
-<!--            APP NAME:-->
-<!--            <a href="{{ url_for('main') }}">Page d'accueil</a>-->
-<!--            {% if current_user.is_anonymous %}-->
-<!--            <a href="{{ url_for('login') }}">Login</a>-->
-<!--            {% else %}-->
-<!--            <a href="{{ url_for('logout') }}">Logout</a>-->
-<!--            {% endif %}-->
-<!--            </div>-->
-<!--        <hr>-->
+        <div>
+            APP NAME:
+            <a href="{{ url_for('main') }}">Page d'accueil</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+            </div>
+        <hr>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul>
