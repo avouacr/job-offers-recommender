@@ -5,6 +5,7 @@ from app_source.models import User
 
 
 class LoginForm(FlaskForm):
+    """Form object to enable user login."""
     username = StringField("Adresse électronique", validators=[DataRequired()])
     password = PasswordField('Mot de passe', validators=[DataRequired()])
     remember_me = BooleanField('Se souvenir des mes informations')
@@ -12,6 +13,7 @@ class LoginForm(FlaskForm):
 
 
 class RegistrationForm(FlaskForm):
+    """Form object to enable user registration."""
     username = StringField('Adresse électronique', validators=[DataRequired(), Email()])
     password = PasswordField('Mot de passe', validators=[DataRequired()])
     password2 = PasswordField(
@@ -19,6 +21,7 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField("Valider")
 
     def validate_username(self, username):
+        """Check if a user is already registered in the database."""
         user = User.query.filter_by(username=username.data).first()
         if user is not None:
             raise ValidationError('Cette adresse électronique a déjà été utilisée.')
