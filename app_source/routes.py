@@ -1,5 +1,5 @@
 from flask import render_template, flash, redirect, url_for, request
-from app_source import app, db
+from app_source import app, models
 from app_source.forms import LoginForm, RegistrationForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app_source.models import User
@@ -48,8 +48,8 @@ def register():
     if form.validate_on_submit():
         user = User(username=form.username.data)
         user.set_password(form.password.data)
-        db.session.add(user)
-        db.session.commit()
+        models.db.session.add(user)
+        models.db.session.commit()
         flash('Inscription terminée.')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)

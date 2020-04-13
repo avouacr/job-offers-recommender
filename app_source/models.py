@@ -1,7 +1,10 @@
-from app_source import db
+from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from app_source import login
+from app_source import app, login
+
+# Instantiate database
+db = SQLAlchemy(app)
 
 
 class User(UserMixin, db.Model):
@@ -30,3 +33,10 @@ class JobOffers(db.Model):
     description = db.Column(db.String(120))
     # TODO: add all relevant fields
     # TODO: set appropriate string lengths by looking at actual max lengths
+
+
+def init_db():
+    """Enable database (re)initialization."""
+    db.drop_all()
+    db.create_all()
+    db.session.commit()
