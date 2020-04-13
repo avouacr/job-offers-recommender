@@ -68,19 +68,32 @@ def main():
     return render_template('main.html', title="Page d'accueil")
 
 
-@app.route('/profil1/')
+@app.route('/profil_info_generales/')
 @login_required
-def profil1():
-    return render_template('profil1.html', title="Profil")
+def profil_info_generales():
+    return render_template('profil_info_generales.html',
+                           title="Profil - Informations générales")
 
 
-@app.route('/cv_gen/')
+@app.route('/profil_formation/')
 @login_required
-def cv_gen():
-    return render_template('cv_gen.html', title="Génération de CV")
+def profil_formation():
+    return render_template('profil_info_generales.html', title="Profil - Formation")
 
 
-@app.route('/reco_offres/')
+@app.route('/profil_experience/')
 @login_required
-def reco_offres():
-    return render_template('reco_offres.html', title="Offres recommandées")
+def profil_experience():
+    return render_template('profil_experience.html', title="Profil - Expérience")
+
+
+@app.route('/generation_cv/')
+@login_required
+def generation_cv():
+    return render_template('generation_cv.html', title="Génération d'un CV")
+
+
+@app.route('/offres_recommandees/')
+@login_required
+def offres_recommandees():
+    return render_template('offres_recommandees.html', title="Offres recommandées")

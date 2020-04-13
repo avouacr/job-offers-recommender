@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>Page d'accueil</h1>
-        <p><a href="{{ url_for('profil1') }}">Compléter mon profil</a></p>
-        <p><a href="{{ url_for('cv_gen') }}">Générer un CV</a></p>
-        <p><a href="{{ url_for('reco_offres') }}">Parcourir les offres d'emploi recommandées</a></p>
+        <p><a href="{{ url_for('profil_info_generales') }}">Compléter mon profil</a></p>
+        <p><a href="{{ url_for('generation_cv') }}">Générer un CV</a></p>
+        <p><a href="{{ url_for('offres_recommandees') }}">Parcourir les offres d'emploi recommandées</a></p>
 {% endblock %}
