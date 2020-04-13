@@ -6,7 +6,7 @@ from app_source.models import User
 from werkzeug.urls import url_parse
 
 
-@app.route('/', methods=['GET', 'POST']) # TODO: proper homepage
+@app.route('/', methods=['GET', 'POST'])
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 
@@ -58,4 +58,5 @@ def register():
 @app.route('/main')
 @login_required
 def main():
+    # TODO: proper homepage
     return render_template('base.html', title="Page d'accueil")
