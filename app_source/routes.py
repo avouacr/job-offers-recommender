@@ -65,5 +65,22 @@ def register():
 @app.route('/main/')
 @login_required
 def main():
-    # TODO: proper homepage
-    return render_template('base.html', title="Page d'accueil")
+    return render_template('main.html', title="Page d'accueil")
+
+
+@app.route('/profil1/')
+@login_required
+def profil1():
+    return render_template('profil1.html', title="Profil")
+
+
+@app.route('/cv_gen/')
+@login_required
+def cv_gen():
+    return render_template('cv_gen.html', title="Génération de CV")
+
+
+@app.route('/reco_offres/')
+@login_required
+def reco_offres():
+    return render_template('reco_offres.html', title="Offres recommandées")
