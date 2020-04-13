@@ -8,6 +8,7 @@ db = SQLAlchemy(app)
 
 
 class User(UserMixin, db.Model):
+    """Table to store user data from registration."""
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
@@ -24,10 +25,12 @@ class User(UserMixin, db.Model):
 
 @login.user_loader
 def load_user(id):
+    """Helper function to access the data of a given user."""
     return User.query.get(int(id))
 
 
 class JobOffers(db.Model):
+    """Table to store job offers data."""
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120))
     description = db.Column(db.String(120))
@@ -36,7 +39,8 @@ class JobOffers(db.Model):
 
 
 def init_db():
-    """Enable database (re)initialization."""
+    """Perform database (re)initialization."""
     db.drop_all()
     db.create_all()
     db.session.commit()
+    print('Database initialized.')

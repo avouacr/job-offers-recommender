@@ -6,8 +6,16 @@ from app_source.models import User
 from werkzeug.urls import url_parse
 
 
-@app.route('/', methods=['GET', 'POST'])
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/')
+def root():
+    if current_user.is_authenticated:
+        # Prevent already logged in users to access login page again
+        return redirect(url_for('main'))
+    else:
+        return redirect(url_for('login'))
+
+
+@app.route('/login/', methods=['GET', 'POST'])
 def login():
 
     if current_user.is_authenticated:
@@ -33,14 +41,14 @@ def login():
 # TODO: change login error messages to French
 
 
-@app.route('/logout')
+@app.route('/logout/')
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('main'))
 
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/register/', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('main'))
@@ -50,12 +58,12 @@ def register():
         user.set_password(form.password.data)
         models.db.session.add(user)
         models.db.session.commit()
-        flash('Inscription terminée.')
+        flash('Inscription terminée. Vous pouvez désormais vous identifier.')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
 
-@app.route('/main')
+@app.route('/main/')
 @login_required
 def main():
     # TODO: proper homepage
