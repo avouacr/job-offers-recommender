@@ -11,6 +11,7 @@ class BasicInfo:
     marital_status = ''
     biography = ''
     hobbies = ''
+    permis = ''
 
     def load(self, basic_info_dict):
         self.name = basic_info_dict['name']
@@ -22,6 +23,7 @@ class BasicInfo:
         self.marital_status = basic_info_dict['marital_status']
         self.biography = basic_info_dict['biography']
         self.hobbies = basic_info_dict['hobbies'] if 'hobbies' in basic_info_dict else ''
+        self.permis = basic_info_dict['permis'] if 'permis' in basic_info_dict else None
         return self
 
 

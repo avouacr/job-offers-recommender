@@ -2,15 +2,16 @@
   "lang": "fr-FR",
   "last_update": "2020-04-11",
   "basic": {
-    "name": "David",
+    "name": "Jean",
     "profession":"",
-    "surnames": "Álvarez de la Torre",
+    "surnames": "Toutlemonde",
     "birthday": "1996-01-20",
     "birthplace": "",
-    "residence": "Zúrich",
-    "marital_status": "",
-    "biography": "Apasionado por la tecnología y la ingeniería. Investigador junior con experiencia en modelos generativos y dos artículos publicados (uno de ellos en ICLR). Actualmente haciendo mi tesis de máster trabajando en video inpainting en el Computer Vision Laboratory de ETH Zürich.\nEstudié mi grado y máster en Ingeniería de Telecomunicaciones en la Universidad Politécnica de Cataluña (UPC), clasificada como la mejor universidad de ingeniería de España y 51-100 a nivel mundial en el campo de la Ingeniería Eléctrica (QS World Ranking 2020).\nHe tenido el placer de trabajar codo con codo con los mejores investigadores (de mi rama) de España. En 2019, realicé internships tanto en el departamento VEU de UPC como en Telefónica Research, uno de los pocos laboratorios privados de investigación del país.\nCon experiencia en proyectos de código abierto. Apasionado por compartir código fácil de usar y experimentos que se puedan replicar. También con experiencia en el desarrollo web y los negocios en Internet.",
-    "hobbies": "El gimnasio, viajar, Netflix y esperar trenes retrasados."
+    "residence": "Brest",
+    "marital_status": "celibataire",
+    "biography": "Boulanger passionné, cherche travail",
+    "hobbies": "musique, tennis",
+    "permis": "B"
   },
   "contact": {
     "email": "davidalvarezdlt@gmail.com",
@@ -50,12 +51,8 @@
     },
     {
       "name": "Inglés",
-      "level": "C1",
-      "diploma": {
-        "anchor": "Reporte IELTS",
-        "href": "https://davidalvarezdlt.cdn.prismic.io/davidalvarezdlt%2Fe689f732-e9ed-4f59-a089-279498aa2d09_sobre-mi-idiomas-ingles-ielts.pdf"
-      }
-    }
+      "level": "C1"
+            }
   ],
   "courses": [
   ],

@@ -24,19 +24,20 @@ class ThemeDeveloper(cv_generator.BaseTheme):
         self._format_publications()
         self._format_languages()
         self._format_hobbies()
+        # self._format_permis()
         return self.doc
 
     def _format_header(self):
         self.doc.append(Command('headername', self.cv.basic.name + ' ' + self.cv.basic.surnames))
-        self.doc.append(
-            pylatex.base_classes.Arguments(pylatex.NoEscape('\\\\ \\huge' + ' ' + self.cv.basic.profession))
-        )
+        # self.doc.append(
+        #     pylatex.base_classes.Arguments(pylatex.NoEscape('\\\\ \\huge' + ' ' + self.cv.basic.profession))
+        # )
         self.doc.append(pylatex.NewLine())
         with self.doc.create(pylatex.MiniPage(width='0.60\\textwidth', pos='c')):
             self.doc.append(Command('cvsect', _('DEVELOPER_BIOGRAPHY_TITLE')))
             self.doc.append(pylatex.NewLine())
             self.doc.append(self.cv.basic.biography)
-            self._format_skills()
+            # self._format_skills()
         self.doc.append(pylatex.HFill())
         with self.doc.create(pylatex.MiniPage(width='0.30\\textwidth', pos='c')):
             self.doc.append(Command('icon', ['MapMarker', 12, self.cv.basic.residence]))
@@ -44,6 +45,10 @@ class ThemeDeveloper(cv_generator.BaseTheme):
             self.doc.append(Command('icon', ['Phone', 12, self.cv.contact.phone]))
             self.doc.append(pylatex.NewLine())
             self.doc.append(Command('icon', ['At', 12, self.cv.contact.email]))
+            if self.cv.basic.permis:
+                self.doc.append(pylatex.NewLine())
+                self.doc.append(Command('icon', ['Automobile', 12, self.cv.basic.permis]))
+
             if self.cv.contact.personal_website or self.cv.contact.twitter or self.cv.contact.linkedin or \
                     self.cv.contact.github:
                 self.doc.append(pylatex.NewLine())
