@@ -54,6 +54,7 @@ class GeneralInfoForm(FlaskForm):
     	])
     languages = FieldList(FormField(SpokenLanguagesForm),
                           min_entries=1,
-                          max_entries=5)
+                          max_entries=10)
+    add_language = SubmitField('Ajouter une langue')
     description = TextAreaField('Présentation', validators=[DataRequired()])
     submit = SubmitField('Valider et continuer')

@@ -68,10 +68,18 @@ def main():
     return render_template('main.html', title="Page d'accueil")
 
 
-@app.route('/profil_info_generales/')
+@app.route('/profil_info_generales/', methods=['GET', 'POST'])
 @login_required
 def profil_info_generales():
     form = GeneralInfoForm()
+    if form.is_submitted():
+        print(getattr(form, 'languages'))
+        if form.add_language.data:
+            form.languages.append_entry()
+        elif form.submit.data:
+            print(form.validate())
+            if form.validate():
+                return redirect(url_for('profil_formation'))
     return render_template('profil_info_generales.html',
                            title="Profil - Informations générales",
                            form=form)

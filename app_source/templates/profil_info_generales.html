@@ -10,30 +10,30 @@
         <p>
             {{ form.last_name.label }}<br>
             {{ form.last_name(size=32) }}<br>
-            {% for error in form.last_name.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
+            {% if form.last_name.errors %}
+                <span style="color: red;">Ce champ doit être complété.</span>
+            {% endif %}
         </p>
         <p>
             {{ form.first_name.label }}<br>
             {{ form.first_name(size=32) }}<br>
-            {% for error in form.first_name.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
+            {% if form.first_name.errors %}
+                <span style="color: red;">Ce champ doit être complété.</span>
+            {% endif %}
         </p>
         <p>
             {{ form.phone_number.label }}<br>
             {{ form.phone_number(size=32) }}<br>
-            {% for error in form.phone_number.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
+            {% if form.phone_number.errors %}
+                <span style="color: red;">Ce champ doit être complété.</span>
+            {% endif %}
         </p>
         <p>
             {{ form.city.label }}<br>
             {{ form.city(size=32) }}<br>
-            {% for error in form.city.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
+            {% if form.city.errors %}
+                <span style="color: red;">Ce champ doit être complété.</span>
+            {% endif %}
         </p>
         <p>
             {{ form.mobility.label }}<br>
@@ -42,13 +42,24 @@
             {{ form.license() }}<br>
         </p>
         <p>
+            Langues parlées<br>
+            {% for subform in form.languages %}
+                {{ subform.language.label }}
+                {{ subform.language }}
+                {{ subform.level.label }}
+                {{ subform.level}}<br>
+            {% endfor %}
+            {{ form.add_language }}
+<!--            <input type="submit"/>-->
+        </p>
+        <p>
             {{ form.description.label }}<br>
             {{ form.description(rows='10',cols='80') }}<br>
-            {% for error in form.last_name.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
+            {% if form.description.errors %}
+                <span style="color: red;">Ce champ doit être complété.</span>
+            {% endif %}
         </p>
-        <p>{{ form.submit() }}</p>
+        <p>{{ form.submit }}</p>
     </form>
 
 {% endblock %}
