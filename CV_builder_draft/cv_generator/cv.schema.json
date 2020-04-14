@@ -45,17 +45,7 @@
 				"hobbies": {
 					"type": "string"
 				}
-			},
-			"required": [
-				"name",
-				"surnames",
-				"profession",
-				"birthday",
-				"birthplace",
-				"residence",
-				"marital_status",
-				"biography"
-			]
+			}
 		},
 		"contact": {
 			"type": "object",
@@ -75,11 +65,7 @@
 						"href": {
 							"type": "string"
 						}
-					},
-					"required": [
-						"anchor",
-						"href"
-					]
+					}
 				},
 				"twitter": {
 					"type": "object",
@@ -90,11 +76,7 @@
 						"href": {
 							"type": "string"
 						}
-					},
-					"required": [
-						"anchor",
-						"href"
-					]
+					}
 				},
 				"linkedin": {
 					"type": "object",
@@ -105,11 +87,7 @@
 						"href": {
 							"type": "string"
 						}
-					},
-					"required": [
-						"anchor",
-						"href"
-					]
+					}
 				},
 				"github": {
 					"type": "object",
@@ -120,11 +98,7 @@
 						"href": {
 							"type": "string"
 						}
-					},
-					"required": [
-						"anchor",
-						"href"
-					]
+					}
 				},
 				"scholar": {
 					"type": "object",
@@ -135,17 +109,9 @@
 						"href": {
 							"type": "string"
 						}
-					},
-					"required": [
-						"anchor",
-						"href"
-					]
+					}
 				}
-			},
-			"required": [
-				"email",
-				"phone"
-			]
+			}
 		},
 		"experience": {
 			"type": "array",
@@ -170,12 +136,7 @@
 						"type": "string",
 						"minLength": 1
 					}
-				},
-				"required": [
-					"institution",
-					"position",
-					"date_start"
-				]
+				}
 			},
 			"uniqueItems": true
 		},
@@ -220,12 +181,7 @@
 					"promotion_order": {
 						"type": "string"
 					}
-				},
-				"required": [
-					"institution",
-					"degree",
-					"date_start"
-				]
+				}
 			},
 			"uniqueItems": true
 		},
@@ -256,18 +212,9 @@
 							"href": {
 								"type": "string"
 							}
-						},
-						"required": [
-							"anchor",
-							"href"
-						]
+						}
 					}
-				},
-				"required": [
-					"institution",
-					"name",
-					"date"
-				]
+				}
 			}
 		},
 		"publications": {
@@ -297,11 +244,7 @@
 							"href": {
 								"type": "string"
 							}
-						},
-						"required": [
-							"anchor",
-							"href"
-						]
+						}
 					},
 					"code_link": {
 						"type": "object",
@@ -312,19 +255,9 @@
 							"href": {
 								"type": "string"
 							}
-						},
-						"required": [
-							"anchor",
-							"href"
-						]
+						}
 					}
-				},
-				"required": [
-					"title",
-					"abstract",
-					"authors",
-					"date"
-				]
+				}
 			},
 			"unique": true
 		},
@@ -357,19 +290,10 @@
 							"href": {
 								"type": "string"
 							}
-						},
-						"required": [
-							"anchor",
-							"href"
-						]
+						}
 					}
-				},
-				"required": [
-					"name",
-					"level"
-				]
+				}
 			},
-			"minItems": 1,
 			"unique": true
 		},
 		"courses": {
@@ -396,18 +320,9 @@
 							"href": {
 								"type": "string"
 							}
-						},
-						"required": [
-							"anchor",
-							"href"
-						]
+						}
 					}
-				},
-				"required": [
-					"institution",
-					"name",
-					"date"
-				]
+				}
 			},
 			"unique": true
 		},
@@ -431,17 +346,9 @@
 							"href": {
 								"type": "string"
 							}
-						},
-						"required": [
-							"anchor",
-							"href"
-						]
+						}
 					}
-				},
-				"required": [
-					"name",
-					"description"
-				]
+				}
 			}
 		},
 		"skills": {
@@ -463,18 +370,10 @@
 						"minimum": 0,
 						"maximum": 100
 					}
-				},
-				"required": [
-					"name"
-				]
+				}
 			},
-			"minItems": 1,
+			"minItems": 0,
 			"unique": true
 		}
-	},
-	"required": [
-		"lang",
-		"last_update",
-		"basic"
-	]
+	}
 }
