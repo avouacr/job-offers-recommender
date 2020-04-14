@@ -71,7 +71,7 @@ https://templatemo.com/tm-538-digital-trend
 
                       <h1 class="mb-4"> <strong>Identification</strong> </h1>
 
-                      <p>Si c'est une première visite, inscrivez-vous <a rel="nofollow" href="https://templatemo.com/contact">ici</a> </p>
+                      <p>Si c'est une première visite, inscrivez-vous <a rel="nofollow" href="{{ url_for('register') }}">ici</a> </p>
                     </div>
 
                     <div class="col-lg-8 mx-auto col-md-10 col-12">
@@ -80,20 +80,19 @@ https://templatemo.com/tm-538-digital-trend
         <p>
             {{ form.username.label }}<br>
             {{ form.username(size=32) }}<br>
-            {% for error in form.username.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
+                {% if form.username.errors %}
+                <span style="color: red;">Ce champ doit être complété.</span>
+                            {% endif %}
         </p>
         <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}<br>
-            {% for error in form.password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-        <p>{{ form.submit() }}</p>
-    </form>
+                {{ form.password.label }}<br>
+                {{ form.password(size=32) }}<br>
+                {% if form.password.errors %}
+                <span style="color: red;">Ce champ doit être complété.</span>
+                {% endif %}
+            </p>
+            <p>{{ form.submit() }}</p>
+            </form>
                     
 
 
@@ -138,13 +137,7 @@ https://templatemo.com/tm-538-digital-trend
             </p>
           </div>
 
-          <div class="col-lg-4 mx-lg-auto text-center col-md-8 col-12" data-aos="fade-up" data-aos-delay="400">
-            <p class="copyright-text">Copyright &copy; 2020 Your Company
-            <br>
-            <a rel="nofollow noopener" href="https://templatemo.com">Design: TemplateMo</a></p>
-          </div>
-
-          <div class="col-lg-4 mx-lg-auto col-md-6 col-12" data-aos="fade-up" data-aos-delay="500">
+       <!--   <div class="col-lg-4 mx-lg-auto col-md-6 col-12" data-aos="fade-up" data-aos-delay="500">-->
             
             <ul class="footer-link">
               <li><a href="#">Blog</a></li>

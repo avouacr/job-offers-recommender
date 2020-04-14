@@ -30,7 +30,7 @@ def login():
             flash('Utilisateur inconnu ou mot de passe invalide.')
             return redirect(url_for('login'))
         # Register the user as logged in and display main page of the app
-        login_user(user, remember=login_form.remember_me.data)
+        login_user(user)
         # Redirect to the page requested before login, if any
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
@@ -38,14 +38,13 @@ def login():
         return redirect(next_page)
 
     return render_template('login.html', title='Identification', form=login_form)
-# TODO: change login error messages to French
 
 
 @app.route('/logout/')
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('main'))
+    return redirect(url_for('login'))
 
 
 @app.route('/register/', methods=['GET', 'POST'])
@@ -66,5 +65,35 @@ def register():
 @app.route('/main/')
 @login_required
 def main():
-    # TODO: proper homepage
-    return render_template('base.html', title="Page d'accueil")
+    return render_template('main.html', title="Page d'accueil")
+
+
+@app.route('/profil_info_generales/')
+@login_required
+def profil_info_generales():
+    return render_template('profil_info_generales.html',
+                           title="Profil - Informations générales")
+
+
+@app.route('/profil_formation/')
+@login_required
+def profil_formation():
+    return render_template('profil_info_generales.html', title="Profil - Formation")
+
+
+@app.route('/profil_experience/')
+@login_required
+def profil_experience():
+    return render_template('profil_experience.html', title="Profil - Expérience")
+
+
+@app.route('/generation_cv/')
+@login_required
+def generation_cv():
+    return render_template('generation_cv.html', title="Génération d'un CV")
+
+
+@app.route('/offres_recommandees/')
+@login_required
+def offres_recommandees():
+    return render_template('offres_recommandees.html', title="Offres recommandées")
