@@ -44,6 +44,7 @@
         <p>
             Langues parlées<br>
             {% for subform in form.languages %}
+                {{ subform.hidden_tag() }}
                 {{ subform.language.label }}
                 {{ subform.language }}
                 {{ subform.level.label }}
@@ -62,4 +63,15 @@
         <p>{{ form.submit }}</p>
     </form>
 
+<!--For debugging-->
+
+<!--{% for field in form.errors %}-->
+<!--{% for error in form.errors[field] %}-->
+<!--    <div class="alert alert-error">-->
+<!--        <strong>Error!</strong> {{field}}, {{error}}-->
+<!--    </div>-->
+<!--{% endfor %}-->
+<!--{% endfor %}-->
+
 {% endblock %}
+

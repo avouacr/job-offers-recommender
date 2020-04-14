@@ -73,11 +73,9 @@ def main():
 def profil_info_generales():
     form = GeneralInfoForm()
     if form.is_submitted():
-        print(getattr(form, 'languages'))
         if form.add_language.data:
             form.languages.append_entry()
         elif form.submit.data:
-            print(form.validate())
             if form.validate():
                 return redirect(url_for('profil_formation'))
     return render_template('profil_info_generales.html',
