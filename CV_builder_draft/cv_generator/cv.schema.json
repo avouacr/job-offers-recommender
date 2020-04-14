@@ -36,6 +36,9 @@
 				"residence": {
 					"type": "string"
 				},
+				"disponibilite_geographique": {
+					"type": "string"
+				},
 				"marital_status": {
 					"type": "string"
 				},
@@ -45,6 +48,11 @@
 				"hobbies": {
 					"type": "string"
 				}
+				,
+				"permis": {
+					"type": "string"
+				}
+
 			}
 		},
 		"contact": {

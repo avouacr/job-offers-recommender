@@ -8,14 +8,15 @@
     "birthday": "1996-01-20",
     "birthplace": "",
     "residence": "Brest",
+    "disponibilite_geographique":"Région Est",
     "marital_status": "celibataire",
     "biography": "Boulanger passionné, cherche travail",
     "hobbies": "musique, tennis",
     "permis": "B"
   },
   "contact": {
-    "email": "davidalvarezdlt@gmail.com",
-    "phone": "(+34) 666 77 88 99"
+    "email": "jean_tt@gmail.com",
+    "phone": "(+33) 600 00 00 00"
   },
   "experience": [
     {
