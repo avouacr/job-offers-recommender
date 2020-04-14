@@ -1,4 +1,54 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+    <h1>Création d'un profil</h1>
+    <h2>Informations générales</h2>
+
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.last_name.label }}<br>
+            {{ form.last_name(size=32) }}<br>
+            {% for error in form.last_name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.first_name.label }}<br>
+            {{ form.first_name(size=32) }}<br>
+            {% for error in form.first_name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.phone_number.label }}<br>
+            {{ form.phone_number(size=32) }}<br>
+            {% for error in form.phone_number.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.city.label }}<br>
+            {{ form.city(size=32) }}<br>
+            {% for error in form.city.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.mobility.label }}<br>
+            {{ form.mobility() }}
+            {{ form.license.label }}
+            {{ form.license() }}<br>
+        </p>
+        <p>
+            {{ form.description.label }}<br>
+            {{ form.description(rows='10',cols='80') }}<br>
+            {% for error in form.last_name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
 {% endblock %}

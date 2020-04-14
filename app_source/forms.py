@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import TextAreaField, SelectField, FieldList, FormField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from app_source.models import User
 
@@ -24,3 +25,35 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(username=username.data).first()
         if user is not None:
             raise ValidationError('Cette adresse électronique a déjà été utilisée.')
+
+
+class SpokenLanguagesForm(FlaskForm):
+
+    with open('data/languages_list.txt', 'r') as f:
+        languages = f.read().splitlines()[:-1]
+    languages = sorted(languages)
+    language_choices = list(zip(languages, languages))
+    language = SelectField('Langue', choices=language_choices)
+    levels = ['Débutant', 'Intermédiaire', 'Avancé', 'Langue maternelle']
+    level_choices = list(zip(levels, levels))
+    level = SelectField('Niveau', choices=level_choices)
+
+class GeneralInfoForm(FlaskForm):
+    """Form object to store general informations about the user."""
+    first_name = StringField('Prénom', validators=[DataRequired()])
+    last_name = StringField('Nom', validators=[DataRequired()])
+    phone_number = StringField('Numéro de téléphone', validators=[DataRequired()])
+    city = StringField('Ville de résidence', validators=[DataRequired()])
+    license = BooleanField('Permis B')
+    mobility = SelectField('Mobilité',
+    	choices=[
+    	('city', 'Ville'), 
+    	('dpt', 'Département'), 
+    	('region', 'Région'),
+    	('ntn', 'France entière')
+    	])
+    languages = FieldList(FormField(SpokenLanguagesForm),
+                          min_entries=1,
+                          max_entries=5)
+    description = TextAreaField('Présentation', validators=[DataRequired()])
+    submit = SubmitField('Valider et continuer')

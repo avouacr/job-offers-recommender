@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for, request
 from app_source import app, models
-from app_source.forms import LoginForm, RegistrationForm
+from app_source.forms import LoginForm, RegistrationForm, GeneralInfoForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app_source.models import User
 from werkzeug.urls import url_parse
@@ -71,14 +71,16 @@ def main():
 @app.route('/profil_info_generales/')
 @login_required
 def profil_info_generales():
+    form = GeneralInfoForm()
     return render_template('profil_info_generales.html',
-                           title="Profil - Informations générales")
+                           title="Profil - Informations générales",
+                           form=form)
 
 
 @app.route('/profil_formation/')
 @login_required
 def profil_formation():
-    return render_template('profil_info_generales.html', title="Profil - Formation")
+    return render_template('profil_formation.html', title="Profil - Formation")
 
 
 @app.route('/profil_experience/')
@@ -90,7 +92,7 @@ def profil_experience():
 @app.route('/generation_cv/')
 @login_required
 def generation_cv():
-    return render_template('generation_cv.html', title="Génération d'un CV")
+    return render_template('generation_cv.html', title="Génération de CV")
 
 
 @app.route('/offres_recommandees/')
