@@ -27,7 +27,7 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Cette adresse électronique a déjà été utilisée.')
 
 
-class SpokenLanguagesForm(FlaskForm):
+class SpokenLanguagesSubform(FlaskForm):
 
     class Meta:
         csrf = False
@@ -43,11 +43,6 @@ class SpokenLanguagesForm(FlaskForm):
 
 class GeneralInfoForm(FlaskForm):
     """Form object to store general informations about the user."""
-
-    class Meta:
-        csrf = False
-    # TODO : understand the "The CSRF token is missing." error whithout it.
-
     first_name = StringField('Prénom', validators=[DataRequired()])
     last_name = StringField('Nom', validators=[DataRequired()])
     phone_number = StringField('Numéro de téléphone', validators=[DataRequired()])
@@ -60,7 +55,7 @@ class GeneralInfoForm(FlaskForm):
     	('region', 'Région'),
     	('ntn', 'France entière')
     	])
-    languages = FieldList(FormField(SpokenLanguagesForm),
+    languages = FieldList(FormField(SpokenLanguagesSubform),
                           min_entries=1,
                           max_entries=10)
     add_language = SubmitField('Ajouter une langue')
