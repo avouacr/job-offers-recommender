@@ -11,14 +11,31 @@
             {% for subform in form.formation_entries %}
                 {{ subform.date_start.label }}
                 {{ subform.date_start }}
+                <br>
+                {% if subform.date_start.errors %}
+                <span style="color: red;">La date doit être au format JJ/MM/AAAA.</span>
+                {% endif %}
+                <br>
                 {{ subform.date_end.label }}
                 {{ subform.date_end }}
+                <br>
+                {% if subform.date_end.errors %}
+                <span style="color: red;">La date doit être au format JJ/MM/AAAA.</span>
+                {% endif %}
+                <br>
+                {{ subform.institution.label }}
+                {{ subform.institution }}
+                <br>
+                {% if subform.institution.errors %}
+                <span style="color: red;">Ce champ doit être complété.</span>
+                {% endif %}
                 <br>
                 {{ subform.title.label }}
                 {{ subform.title }}
                 <br>
-                {{ subform.institution.label }}
-                {{ subform.institution }}
+                {% if subform.title.errors %}
+                <span style="color: red;">Ce champ doit être complété.</span>
+                {% endif %}
                 <br>
                 {{ subform.desc.label }}
                 {{ subform.desc }}

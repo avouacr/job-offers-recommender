@@ -115,10 +115,19 @@ def profil_formation():
                            form=form)
 
 
-@app.route('/profil_experience/')
+@app.route('/profil_experience/', methods=['GET', 'POST'])
 @login_required
 def profil_experience():
-    return render_template('profil_experience.html', title="Profil - Expérience")
+    form = ExperienceForm()
+    if form.is_submitted():
+        if form.add_experience.data:
+            form.experience_entries.append_entry()
+        elif form.submit.data:
+            if form.validate():
+                return redirect(url_for('main'))
+    return render_template('profil_experience.html',
+                           title="Profil - Expérience",
+                           form=form)
 
 
 @app.route('/generation_cv/')

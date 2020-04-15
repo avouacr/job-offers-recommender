@@ -100,10 +100,12 @@ class FormationExpererienceSubform(FlaskForm):
     class Meta:
         csrf = False
 
-    date_start = DateField('Date de début', format='%Y-%m-%d')
-    date_end = DateField('Date de fin', format='%Y-%m-%d')
-    title = StringField('Titre')
-    institution = StringField('Établissement')
+    date_start = DateField('Date de début', format='%d/%m/%Y',
+                           validators=[DataRequired()])
+    date_end = DateField('Date de fin', format='%d/%m/%Y',
+                         validators=[DataRequired()])
+    title = StringField('Titre', validators=[DataRequired()])
+    institution = StringField('Établissement', validators=[DataRequired()])
     desc = TextAreaField('Description', render_kw={"rows": 5, "cols": 50})
 
 
@@ -120,4 +122,4 @@ class ExperienceForm(FlaskForm):
     experience_entries = FieldList(FormField(FormationExpererienceSubform),
                                    min_entries=0, max_entries=10)
     add_experience = SubmitField('Ajouter une expérience')
-    submit = SubmitField('Valider et continuer')
+    submit = SubmitField('Valider et terminer')
