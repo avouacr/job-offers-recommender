@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Création d'un profil</h1>
+    <h2>Certifications officielles</h2>
+
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+
+        <p>
+            <h3>Permis</h3>
+            <br>
+            {% for subform in form.driver_licenses %}
+                {{ subform.driver_license.label }}
+                {{ subform.driver_license }}
+            <br>
+            {% endfor %}
+            {{ form.add_license }}
+        </p>
+
+        <p>
+            <h3>Autres certifications</h3>
+            <br>
+            {% for subform in form.other_certifications %}
+                {{ subform.other_certif }}
+            <br>
+            {% endfor %}
+            {{ form.add_other_certif }}
+        </p>
+
+        <p>
+            <a href="{{ url_for('profil_info_generales') }}">Revenir à la page précédente</a>
+            {{ form.submit }}
+        </p>
+
+    </form>
+
+<!--For debugging-->
+{% for field in form.errors %}
+{% for error in form.errors[field] %}
+    <div class="alert alert-error">
+        <strong>Error!</strong> {{field}}, {{error}}
+    </div>
+{% endfor %}
+{% endfor %}
+
+{% endblock %}

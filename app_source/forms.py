@@ -41,6 +41,7 @@ class SpokenLanguagesSubform(FlaskForm):
     level_choices = list(zip(levels, levels))
     level = SelectField('Niveau', choices=level_choices)
 
+
 class GeneralInfoForm(FlaskForm):
     """Form object to store general informations about the user."""
     first_name = StringField('Prénom', validators=[DataRequired()])
@@ -55,9 +56,42 @@ class GeneralInfoForm(FlaskForm):
     	('ntn', 'France entière')
     	])
     languages = FieldList(FormField(SpokenLanguagesSubform),
-                          min_entries=1,
-                          max_entries=10)
+                          min_entries=1, max_entries=10)
     add_language = SubmitField('Ajouter une langue')
-    description = TextAreaField("""Présentez-vous en quelques phrase 
+    description = TextAreaField("""Présentez-vous en quelques phrases 
     (qui êtes-vous? que recherchez-vous?)""")
     submit = SubmitField('Valider et continuer')
+
+
+class DriverLicensesSubform(FlaskForm):
+
+    class Meta:
+        csrf = False
+
+    with open('data/french_driver_licenses.txt', 'r') as f:
+        licenses = f.read().splitlines()[:-1]
+    licenses = sorted(licenses)
+    license_choices = list(zip(licenses, licenses))
+    driver_license = SelectField('Permis', choices=license_choices)
+
+
+class OtherCertificationsSubform(FlaskForm):
+
+    class Meta:
+        csrf = False
+
+    other_certif = StringField('Autre certification')
+
+
+class CertificationsForm(FlaskForm):
+
+    driver_licenses = FieldList(FormField(DriverLicensesSubform),
+                                min_entries=0, max_entries=10)
+    add_license = SubmitField('Ajouter un permis')
+    other_certifications = FieldList(FormField(OtherCertificationsSubform),
+                                     min_entries=0, max_entries=10)
+    add_other_certif = SubmitField('Ajouter une certification')
+    submit = SubmitField('Valider et continuer')
+
+
+

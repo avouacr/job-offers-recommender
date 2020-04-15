@@ -42,14 +42,12 @@
         <p>
             Langues parlées<br>
             {% for subform in form.languages %}
-                {{ subform.hidden_tag() }}
                 {{ subform.language.label }}
                 {{ subform.language }}
                 {{ subform.level.label }}
                 {{ subform.level}}<br>
             {% endfor %}
             {{ form.add_language }}
-<!--            <input type="submit"/>-->
         </p>
         <p>
             {{ form.description.label }}<br>

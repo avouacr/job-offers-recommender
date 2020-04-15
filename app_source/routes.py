@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for, request
 from app_source import app, models
-from app_source.forms import LoginForm, RegistrationForm, GeneralInfoForm
+from app_source.forms import *
 from flask_login import current_user, login_user, logout_user, login_required
 from app_source.models import User
 from werkzeug.urls import url_parse
@@ -77,9 +77,26 @@ def profil_info_generales():
             form.languages.append_entry()
         elif form.submit.data:
             if form.validate():
-                return redirect(url_for('profil_formation'))
+                return redirect(url_for('profil_certifications'))
     return render_template('profil_info_generales.html',
                            title="Profil - Informations générales",
+                           form=form)
+
+
+@app.route('/profil_certifications/', methods=['GET', 'POST'])
+@login_required
+def profil_certifications():
+    form = CertificationsForm()
+    if form.is_submitted():
+        if form.add_license.data:
+            form.driver_licenses.append_entry()
+        elif form.add_other_certif.data:
+            form.other_certifications.append_entry()
+        elif form.submit.data:
+            if form.validate():
+                return redirect(url_for('profil_formation'))
+    return render_template('profil_certifications.html',
+                           title="Profil - Formation",
                            form=form)
 
 
