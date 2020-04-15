@@ -82,7 +82,7 @@ headsep=0.5cm, % Space from the top margin to the baseline of the header
 
 % Command to output an icon in a black square box with text to the right
 \newcommand{\icon}[3]{% The first parameter is the FontAwesome icon name, the second is the box size and the third is the text
-\vcenteredhbox{\colorbox{black}{\makebox(#2, #2){\textcolor{white}{\large\csname fa#1\endcsname}}}}% Icon and box
+\vcenteredhbox{\colorbox{blue}{\makebox(#2, #2){\textcolor{white}{\large\csname fa#1\endcsname}}}}% Icon and box
 \hspace{0.2cm}% Whitespace
 \vcenteredhbox{\textcolor{black}{#3}}% Text
 }
@@ -167,11 +167,14 @@ headsep=0.5cm, % Space from the top margin to the baseline of the header
 %----------------------------------------------------------------------------------------
 %	CUSTOM SECTIONS
 %----------------------------------------------------------------------------------------
+\definecolor{light-gray}{gray}{0.4}
+\definecolor{orange}{RGB}{0, 143, 107}
+\definecolor{blue}{RGB}{255, 153, 51}
 
 % Command to output section title headings
 \newcommand{\cvsect}[1]{% The only parameter is the section text
 \vspace{\baselineskip} % Whitespace before the section title
-\colorbox{black}{\textcolor{white}{\MakeUppercase{\textbf{#1}}}}\\% Section title
+\colorbox{orange}{\textcolor{white}{\MakeUppercase{\textbf{#1}}}}\\% Section title
 }
 
 %----------------------------------------------------------------------------------------
@@ -208,5 +211,13 @@ headsep=0.5cm, % Space from the top margin to the baseline of the header
 %----------------------------------------------------------------------------------------
 %	CV Generator - Custom Commands
 %----------------------------------------------------------------------------------------
+\definecolor{light-gray}{gray}{0.4}
+\newcommand{\headername}[1]{\colorbox{black}{{\LARGE\textcolor{white}{\textbf{\MakeUppercase{#1}}}}}\\}
+\newcommand{\alternativeheadername}[1]{{\LARGE\textcolor{orange}{\textbf{\MakeUppercase{#1}}}}\\ \noindent\makebox[\linewidth]{\rule{0.85\paperwidth}{2pt}}}
 
-\newcommand{\headername}[1]{\colorbox{black}{{\HUGE\textcolor{white}{\textbf{\MakeUppercase{#1}}}}}\\}
+
+\newcommand{\mobi}[2]{% The first parameter is the FontAwesome icon name, the second is the box size and the third is the text
+\vcenteredhbox{\colorbox{blue}{{\textcolor{white}{\textbf{#1}}}}}% text and box
+\hspace{0.2cm}% Whitespace
+\vcenteredhbox{\textcolor{black}{#2}}% Text
+}

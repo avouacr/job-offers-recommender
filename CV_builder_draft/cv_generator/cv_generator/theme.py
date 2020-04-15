@@ -46,7 +46,7 @@ class BaseTheme:
         translation file using an editor such as Poedit.
        """
         localedir = os.path.join(os.path.dirname(__file__), 'themes', 'locale')
-        gettext.translation('base', localedir=localedir, languages=[self.cv.lang]).install()
+        # gettext.translation('base', localedir=localedir, languages=[self.cv.lang]).install()
         locale.setlocale(locale.LC_TIME, str(self.cv.lang.replace('-', '_')+".utf8"))
 
     def format(self):
