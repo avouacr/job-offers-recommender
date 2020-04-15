@@ -213,7 +213,7 @@ headsep=0.5cm, % Space from the top margin to the baseline of the header
 %----------------------------------------------------------------------------------------
 \definecolor{light-gray}{gray}{0.4}
 \newcommand{\headername}[1]{\colorbox{black}{{\LARGE\textcolor{white}{\textbf{\MakeUppercase{#1}}}}}\\}
-\newcommand{\alternativeheadername}[1]{{\LARGE\textcolor{orange}{\textbf{\MakeUppercase{#1}}}}\\ \noindent\makebox[\linewidth]{\rule{0.85\paperwidth}{2pt}}}
+\newcommand{\alternativeheadername}[1]{{\Huge\textcolor{orange}{\textbf{\MakeUppercase{#1}}}}\\ }%\noindent\makebox[\linewidth]{\rule{0.85\paperwidth}{2pt}}}
 
 
 \newcommand{\mobi}[2]{% The first parameter is the FontAwesome icon name, the second is the box size and the third is the text

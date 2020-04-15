@@ -26,16 +26,13 @@ class ThemeDeveloper(cv_generator.BaseTheme):
         return self.doc
 
     def format_header(self):
-        self.doc.append(Command('alternativeheadername', self.cv.basic.name + ' ' + self.cv.basic.surnames))
-        self.doc.append(pylatex.NewLine())
-        self.doc.append(pylatex.NewLine())
 
-        with self.doc.create(pylatex.MiniPage(width='0.5\\textwidth', pos='c')):
-            self.doc.append(Command('cvsect', ('Présentation')))
-            self.doc.append(self.cv.basic.biography)
+        with self.doc.create(pylatex.MiniPage(width='0.7\\textwidth', pos='c')):
+            self.doc.append(Command('alternativeheadername', self.cv.basic.name + ' ' + self.cv.basic.surnames))
+
             # self.format_skills()
         self.doc.append(pylatex.HFill())
-        with self.doc.create(pylatex.MiniPage(width='0.4\\textwidth', pos='c')):
+        with self.doc.create(pylatex.MiniPage(width='0.3\\textwidth', pos='c')):
             # self.doc.append(Command('mobi', self.cv.basic.disponibilite_geographique))
             # self.doc.append(pylatex.NewLine())
             self.doc.append(Command('icon', ['MapMarker', 12, str(self.cv.basic.residence)]))
@@ -46,6 +43,8 @@ class ThemeDeveloper(cv_generator.BaseTheme):
             self.doc.append(pylatex.NewLine())
             self.doc.append(Command('mobi', ["Mobilité", self.cv.basic.disponibilite_geographique]))
 
+        self.doc.append(Command('cvsect', ('Présentation')))
+        self.doc.append(self.cv.basic.biography)
 
     def format_experience(self):
         if self.cv.experience and len(self.cv.experience) > 0:

@@ -2,9 +2,9 @@
   "lang": "fr-FR",
   "last_update": "2020-04-11",
   "basic": {
-    "name": "Jean-FRANçOis",
+    "name": "Paul",
     "profession":"",
-    "surnames": "de Toutlemondezarzee",
+    "surnames": "Dupont",
     "birthday": "1996-01-20",
     "birthplace": "",
     "residence": "Brest",
@@ -15,10 +15,18 @@
     "permis": "B"
   },
   "contact": {
-    "email": "jean_tt@gmail.com",
+    "email": "paul_dupont@gmail.com",
     "phone": "(+33) 600 00 00 00"
   },
   "experience": [
+        {
+      "institution": "Bon Pain Brest Boulange",
+      "position": "Stagiaire",
+      "date_start": "2019-12-01",
+      "date_end": "2020-05-31",
+      "description": "Préparation du pain, pétrissage, défournement. Gestion d'un boulangerie, comptabilité, RH."
+    },
+
     {
       "institution": "Universidad Politécnica de Cataluña",
       "position": "Research Fellow",
@@ -28,12 +36,20 @@
     }
   ],
   "education": [
+        {
+      "institution": "L'Ecole des Pros Brest",
+      "degree": "Certificat d'aptitude professionnelle (CAP)",
+      "major": "Boulangerie",
+      "date_start": "2020-02-01",
+      "date_end": "2020-07-31",
+      "description": "Reconversion boulanger. Les RNN m'ont saoûlé."
+    },
     {
       "institution": "ETH Zürich",
       "degree": "Estudiante de Intercambio",
       "major": "Computer Vision Laboratory",
-      "date_start": "2020-02-01",
-      "date_end": "2020-07-31",
+      "date_start": "2019-02-01",
+      "date_end": "2019-07-31",
       "description": "Trabajando en video inpainting bajo la supervisión de Sergi Caelles, el Dr. Martin Danelljan, el Prof. Xavier Giró-i-Nieto y el Prof. Luc Van Gool."
     }
   ],
