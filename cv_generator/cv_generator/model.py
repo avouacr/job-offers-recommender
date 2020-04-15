@@ -2,24 +2,22 @@ import datetime
 
 
 class BasicInfo:
-    name = ''
-    surnames = ''
-    profession = ''
+    name = None
+    surnames = None
+    profession = None
     birthday = None
-    birthplace = ''
-    residence = ''
-    marital_status = ''
-    biography = ''
-    hobbies = ''
-    permis = ''
-    disponibilite_geographique = ''
+    birthplace = None
+    residence = None
+    marital_status = None
+    biography = None
+    hobbies = None
+    permis = None
+    disponibilite_geographique = None
 
     def load(self, basic_info_dict):
         self.name = basic_info_dict['name']
         self.surnames = basic_info_dict['surnames']
-        self.profession = basic_info_dict['profession']
-        self.birthday = datetime.datetime.strptime(basic_info_dict['birthday'], '%Y-%m-%d').date()
-        self.residence = basic_info_dict['residence']
+        self.residence = basic_info_dict['residence'] if 'residence' in basic_info_dict else None
         self.biography = basic_info_dict['biography']
         self.disponibilite_geographique = basic_info_dict[
             'disponibilite_geographique'] if 'disponibilite_geographique' in basic_info_dict else None
@@ -85,19 +83,13 @@ class EducationItem:
 
 class LanguageItem:
     name = ''
-    level = ''
-    diploma = None
 
     def load(self, language_item_dict):
         self.name = language_item_dict['name']
-        self.level = language_item_dict['level']
-        self.diploma = LinkItem().load(language_item_dict['diploma']) if 'diploma' in language_item_dict else None
         return self
 
 class CertificationItem:
     name = ''
-    level = ''
-    diploma = None
 
     def load(self, certification_item_dict):
         self.name = certification_item_dict['name']
