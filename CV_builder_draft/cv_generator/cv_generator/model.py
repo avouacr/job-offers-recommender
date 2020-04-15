@@ -12,6 +12,7 @@ class BasicInfo:
     biography = ''
     hobbies = ''
     permis = ''
+    disponibilite_geographique = ''
 
     def load(self, basic_info_dict):
         self.name = basic_info_dict['name']
@@ -24,6 +25,9 @@ class BasicInfo:
         self.biography = basic_info_dict['biography']
         self.hobbies = basic_info_dict['hobbies'] if 'hobbies' in basic_info_dict else ''
         self.permis = basic_info_dict['permis'] if 'permis' in basic_info_dict else None
+        self.disponibilite_geographique = basic_info_dict[
+            'disponibilite_geographique'] if 'disponibilite_geographique' in basic_info_dict else None
+
         return self
 
 
@@ -140,6 +144,14 @@ class LanguageItem:
         self.diploma = LinkItem().load(language_item_dict['diploma']) if 'diploma' in language_item_dict else None
         return self
 
+class CertificationItem:
+    name = ''
+    level = ''
+    diploma = None
+
+    def load(self, certification_item_dict):
+        self.name = certification_item_dict['name']
+        return self
 
 class CourseItem:
     institution = ''

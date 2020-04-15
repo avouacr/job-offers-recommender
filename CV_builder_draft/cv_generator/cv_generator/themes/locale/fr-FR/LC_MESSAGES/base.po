@@ -122,6 +122,11 @@ msgstr "Cursos"
 msgid "DEVELOPER_LANGUAGES_TITLE"
 msgstr "Langues"
 
+#: developer.py:143
+msgid "DEVELOPER_CERTIFICATIONS_TITLE"
+msgstr "Permis et certificats"
+
+
 #: developer.py:152
 msgid "DEVELOPER_HOBBIES_TITLE"
 msgstr "Hobbies"

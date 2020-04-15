@@ -36,6 +36,9 @@
 				"residence": {
 					"type": "string"
 				},
+				"disponibilite_geographique": {
+					"type": "string"
+				},
 				"marital_status": {
 					"type": "string"
 				},
@@ -45,6 +48,11 @@
 				"hobbies": {
 					"type": "string"
 				}
+				,
+				"permis": {
+					"type": "string"
+				}
+
 			}
 		},
 		"contact": {
@@ -291,6 +299,42 @@
 								"type": "string"
 							}
 						}
+					}
+				}
+			},
+			"unique": true
+		},
+		"certifications": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"parameters": {
+					"name": {
+						"type": "string"
+					}
+				}
+			},
+			"unique": true
+		},
+		"informatique": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"parameters": {
+					"name": {
+						"type": "string"
+					}
+				}
+			},
+			"unique": true
+		},
+		"autres": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"parameters": {
+					"name": {
+						"type": "string"
 					}
 				}
 			},
