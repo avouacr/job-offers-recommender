@@ -1,4 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <h1>Création d'un profil</h1>
+    <h2>Formation</h2>
+    <p>
+        <a href="{{ url_for('profil_info_generales') }}">Revenir à la page précédente</a>
+        <a href="{{ url_for('profil_experience') }}">Valider et continuer</a></p>
 {% endblock %}
