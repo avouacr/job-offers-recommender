@@ -1,27 +1,142 @@
-<html>
-    <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
         {% if title %}
         <title>APP NAME - {{ title }}</title>
         {% else %}
         <title>APP NAME</title>
         {% endif %}
-    </head>
-    <body>
-        <div>
-            APP NAME:
-            <a href="{{ url_for('main') }}">Page d'accueil</a>
-            <a href="{{ url_for('logout') }}">Logout</a>
+<!--
+
+DIGITAL TREND
+
+https://templatemo.com/tm-538-digital-trend
+
+-->
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+     <link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+     <link rel="stylesheet" href="{{ url_for('static',filename='css/font-awesome.min.css') }}">
+     <link rel="stylesheet" href="{{ url_for('static',filename='css/aos.css') }}">
+     <link rel="stylesheet" href="{{ url_for('static',filename='css/owl.carousel.min.css') }}">
+     <link rel="stylesheet" href="{{ url_for('static',filename='css/owl.theme.default.min.css') }}">
+
+     <!-- MAIN CSS -->
+     <link rel="stylesheet" href="{{ url_for('static',filename='css/templatemo-digital-trend.css') }}">
+
+</head>
+<body>
+
+     <!-- MENU BAR -->
+    <nav class="navbar navbar-expand-lg position-absolute">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">
+              <i class="fa fa-line-chart"></i>
+              MonJob
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="index.html#about" class="nav-link">Equipe</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#project" class="nav-link">Comment ça marche</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blog.html" class="nav-link">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link active contact">Contact</a>
+                    </li>
+                </ul>
             </div>
-        <hr>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        {% endwith %}
-        {% block content %}{% endblock %}
-    </body>
+        </div>
+    </nav>
+
+     <!-- CONTENT -->
+
+    {% block content %}
+    {% endblock %}
+
+
+
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-5 mx-lg-auto col-md-8 col-10">
+            <h1 class="text-white" data-aos="fade-up" data-aos-delay="100">Trouvez votre <strong>job</strong> revé.</h1>
+          </div>
+
+          <div class="col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="200">
+            <h4 class="my-4">Contact</h4>
+
+            <p class="mb-1">
+              <i class="fa fa-phone mr-2 footer-icon"></i>
+              +33 080 070 4224
+            </p>
+
+            <p>
+              <a href="#">
+                <i class="fa fa-envelope mr-2 footer-icon"></i>
+                hello@company.com
+              </a>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="300">
+            <h4 class="my-4">Addresse</h4>
+
+            <p class="mb-1">
+              <i class="fa fa-home mr-2 footer-icon"></i>
+              Av. Lúcio Costa - Barra da Tijuca, Rio de Janeiro - RJ, Brazil
+            </p>
+          </div>
+
+       <!--   <div class="col-lg-4 mx-lg-auto col-md-6 col-12" data-aos="fade-up" data-aos-delay="500">-->
+
+            <ul class="footer-link">
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Travailler pour nous</a></li>
+              <li><a href="#">GDPR</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 mx-lg-auto col-md-6 col-12" data-aos="fade-up" data-aos-delay="600">
+            <ul class="social-icon">
+              <li><a href="#" class="fa fa-instagram"></a></li>
+              <li><a href="#" class="fa fa-twitter"></a></li>
+              <li><a href="#" class="fa fa-dribbble"></a></li>
+              <li><a href="#" class="fa fa-behance"></a></li>
+            </ul>
+          </div>
+
+        </div>
+    </footer>
+
+
+     <!-- SCRIPTS -->
+     <script type="text/javascript" src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+     <script type="text/javascript" src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+     <script type="text/javascript" src="{{ url_for('static',filename='js/aos.js') }}"></script>
+     <script type="text/javascript" src="{{ url_for('static',filename='js/owl.carousel.min.js') }}"></script>
+     <script type="text/javascript" src="{{ url_for('static',filename='js/custom.js') }}"></script>
+
+
+
+
+</body>
 </html>
