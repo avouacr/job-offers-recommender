@@ -1,7 +1,6 @@
+import cv_generator
 import pylatex
 from pylatex import Command
-import random
-import cv_generator
 
 
 class ThemeDeveloper(cv_generator.BaseTheme):
@@ -26,25 +25,31 @@ class ThemeDeveloper(cv_generator.BaseTheme):
         return self.doc
 
     def format_header(self):
-
-        with self.doc.create(pylatex.MiniPage(width='0.7\\textwidth', pos='c')):
-            self.doc.append(Command('alternativeheadername', self.cv.basic.name + ' ' + self.cv.basic.surnames))
+        if len(self.cv.basic.name) + len(self.cv.basic.surnames) > 0:
+            with self.doc.create(pylatex.MiniPage(width='0.7\\textwidth', pos='c')):
+                self.doc.append(Command('alternativeheadername', self.cv.basic.name + ' ' + self.cv.basic.surnames))
 
             # self.format_skills()
         self.doc.append(pylatex.HFill())
         with self.doc.create(pylatex.MiniPage(width='0.3\\textwidth', pos='c')):
             # self.doc.append(Command('mobi', self.cv.basic.disponibilite_geographique))
             # self.doc.append(pylatex.NewLine())
-            self.doc.append(Command('icon', ['MapMarker', 12, str(self.cv.basic.residence)]))
-            self.doc.append(pylatex.NewLine())
-            self.doc.append(Command('icon', ['Phone', 12, self.cv.contact.phone]))
-            self.doc.append(pylatex.NewLine())
-            self.doc.append(Command('icon', ['At', 12, self.cv.contact.email]))
-            self.doc.append(pylatex.NewLine())
-            self.doc.append(Command('mobi', ["Mobilité", self.cv.basic.disponibilite_geographique]))
+            if len(self.cv.basic.residence) > 0:
+                self.doc.append(Command('icon', ['MapMarker', 12, str(self.cv.basic.residence)]))
+            if len(self.cv.contact.phone) > 0:
+                self.doc.append(pylatex.NewLine())
+                self.doc.append(Command('icon', ['Phone', 12, self.cv.contact.phone]))
+            if len(self.cv.contact.email) > 0:
+                self.doc.append(pylatex.NewLine())
+                self.doc.append(Command('icon', ['At', 12, self.cv.contact.email]))
+            if len(self.cv.basic.disponibilite_geographique) > 0:
+                self.doc.append(pylatex.NewLine())
+                self.doc.append(Command('mobi', ["Mobilité", self.cv.basic.disponibilite_geographique]))
 
-        self.doc.append(Command('cvsect', ('Présentation')))
-        self.doc.append(self.cv.basic.biography)
+        if len(self.cv.basic.biography) > 0:
+            self.doc.append(pylatex.NewLine())
+            self.doc.append(Command('cvsect', ('Présentation')))
+            self.doc.append(self.cv.basic.biography)
 
     def format_experience(self):
         if self.cv.experience and len(self.cv.experience) > 0:
@@ -76,32 +81,47 @@ class ThemeDeveloper(cv_generator.BaseTheme):
 
             self.doc.append(entry_list)
 
-
-
     def format_languages(self):
-        with self.doc.create(pylatex.MiniPage(width='0.33\\textwidth', pos='t')):
-            self.doc.append(Command('cvsect', ('Langues')))
-            self.doc.append(pylatex.NewLine())
-            for language_item in self.cv.languages:
-                self.doc.append(pylatex.NoEscape('\\textbf{{{}}} - {}'.format(language_item.name, language_item.level)))
+
+        if len(self.cv.languages) > 0:
+            self.vertical_division_coefficient = 0.95 / (
+                    (len(self.cv.languages) > 0) + (len(self.cv.certifications) > 0) + (
+                    len(self.cv.informatique) > 0))
+            with self.doc.create(
+                    pylatex.MiniPage(width='{}\\textwidth'.format(self.vertical_division_coefficient), pos='t')):
+                self.doc.append(Command('cvsect', ('Langues')))
                 self.doc.append(pylatex.NewLine())
+                for certification_item in self.cv.languages:
+                    self.doc.append(
+                        pylatex.NoEscape('\\textbf{{{}}}'.format(certification_item.name)))
+                    self.doc.append(pylatex.NewLine())
 
     def format_certifications(self):
-        with self.doc.create(pylatex.MiniPage(width='0.33\\textwidth', pos='t')):
-            self.doc.append(Command('cvsect', ('Cerfications'))) # en realité PO et MO inutiles ??
-            self.doc.append(pylatex.NewLine())
-            for certification_item in self.cv.certifications:
-                self.doc.append(
-                    pylatex.NoEscape('\\textbf{{{}}}'.format(certification_item.name)))
-                self.doc.append(pylatex.NewLine())
 
+        if len(self.cv.certifications) > 0:
+            self.vertical_division_coefficient = 0.95 / (
+                    (len(self.cv.languages) > 0) + (len(self.cv.certifications) > 0) + (
+                    len(self.cv.informatique) > 0))
+            with self.doc.create(
+                    pylatex.MiniPage(width='{}\\textwidth'.format(self.vertical_division_coefficient), pos='t')):
+                self.doc.append(Command('cvsect', ('Cerfications')))  # en realité PO et MO inutiles ??
+                self.doc.append(pylatex.NewLine())
+                for certification_item in self.cv.certifications:
+                    self.doc.append(
+                        pylatex.NoEscape('\\textbf{{{}}}'.format(certification_item.name)))
+                    self.doc.append(pylatex.NewLine())
 
     def format_informatique(self):
-        with self.doc.create(pylatex.MiniPage(width='0.33\\textwidth', pos='t')):
-            self.doc.append(Command('cvsect', ('Informatique'))) # en realité PO et MO inutiles ??
-            self.doc.append(pylatex.NewLine())
-            for certification_item in self.cv.informatique:
-                self.doc.append(
-                    pylatex.NoEscape('\\textbf{{{}}}'.format(certification_item.name)))
-                self.doc.append(pylatex.NewLine())
+        if len(self.cv.informatique) > 0:
+            self.vertical_division_coefficient = 0.95 / (
+                    (len(self.cv.languages) > 0) + (len(self.cv.certifications) > 0) + (
+                    len(self.cv.informatique) > 0))
 
+            with self.doc.create(
+                    pylatex.MiniPage(width='{}\\textwidth'.format(self.vertical_division_coefficient), pos='t')):
+                self.doc.append(Command('cvsect', ('Informatique')))  # en realité PO et MO inutiles ??
+                self.doc.append(pylatex.NewLine())
+                for certification_item in self.cv.informatique:
+                    self.doc.append(
+                        pylatex.NoEscape('\\textbf{{{}}}'.format(certification_item.name)))
+                    self.doc.append(pylatex.NewLine())

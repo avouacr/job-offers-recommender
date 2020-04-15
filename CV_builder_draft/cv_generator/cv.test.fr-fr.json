@@ -3,16 +3,10 @@
   "last_update": "2020-04-11",
   "basic": {
     "name": "Paul",
-    "profession":"",
     "surnames": "Dupont",
-    "birthday": "1996-01-20",
-    "birthplace": "",
     "residence": "Brest",
     "disponibilite_geographique":"Bretagne",
-    "marital_status": "celibataire",
-    "biography": "Je désire mettre mon savoir-faire au service de votre boulangerie traditionnelle reconnue pour la qualité de ses produits. J’ai acquis des connaissances techniques, de la préparation du pain depuis le pétrissage de la pâte au défournement, en passant par la fermentation et le façonnage jusqu’à la cuisson. J’ai bénéficié de nombreux conseils professionnels pour maîtriser cet art et je sais organiser mon travail dans les règles d’hygiène les plus strictes. Habile, rigoureux(se) et robuste, je suis prêt(e) à travailler en horaires décalés qui n’ôtent en rien mon sourire et mon amabilité naturelle",
-    "hobbies": "musique, tennis",
-    "permis": "B"
+    "biography": "Je désire mettre mon savoir-faire au service de votre boulangerie traditionnelle reconnue pour la qualité de ses produits. J’ai acquis des connaissances techniques, de la préparation du pain depuis le pétrissage de la pâte au défournement, en passant par la fermentation et le façonnage jusqu’à la cuisson. J’ai bénéficié de nombreux conseils professionnels pour maîtriser cet art et je sais organiser mon travail dans les règles d’hygiène les plus strictes. Habile, rigoureux(se) et robuste, je suis prêt(e) à travailler en horaires décalés qui n’ôtent en rien mon sourire et mon amabilité naturelle"
   },
   "contact": {
     "email": "paul_dupont@gmail.com",
@@ -53,22 +47,15 @@
       "description": "Trabajando en video inpainting bajo la supervisión de Sergi Caelles, el Dr. Martin Danelljan, el Prof. Xavier Giró-i-Nieto y el Prof. Luc Van Gool."
     }
   ],
-  "awards": [
-  ],
-  "publications": [
-  ],
   "languages": [
     {
-      "name": "Español",
-      "level": "Native"
+      "name": "Français : langue maternelle"
     },
     {
-      "name": "Catalán",
-      "level": "Native"
+      "name": "Catalan : B2"
     },
     {
-      "name": "Inglés",
-      "level": "C1"
+      "name": "Serbo-croate : night-club level"
             }
   ],
     "certifications": [
@@ -91,12 +78,6 @@
     {
       "name": "Passionné de pêche"
     }
-  ],
-
-  "courses": [
-  ],
-  "projects": [
-  ],
-  "skills": [
   ]
+
 }

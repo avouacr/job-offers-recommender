@@ -2,14 +2,6 @@
 	"$schema": "http://json-schema.org/schema#",
 	"type": "object",
 	"properties": {
-		"lang": {
-			"type": "string",
-			"enum": [
-				"es-ES",
-				"en-US",
-				"fr-FR"
-			]
-		},
 		"last_update": {
 			"type": "string",
 			"pattern": "^\\d{4}-([0]\\d|1[0-2])-([0-2]\\d|3[01])$"
@@ -39,20 +31,9 @@
 				"disponibilite_geographique": {
 					"type": "string"
 				},
-				"marital_status": {
-					"type": "string"
-				},
 				"biography": {
 					"type": "string"
-				},
-				"hobbies": {
-					"type": "string"
 				}
-				,
-				"permis": {
-					"type": "string"
-				}
-
 			}
 		},
 		"contact": {
@@ -63,63 +44,9 @@
 				},
 				"phone": {
 					"type": "string"
-				},
-				"website": {
-					"type": "object",
-					"properties": {
-						"anchor": {
-							"type": "string"
-						},
-						"href": {
-							"type": "string"
-						}
-					}
-				},
-				"twitter": {
-					"type": "object",
-					"properties": {
-						"anchor": {
-							"type": "string"
-						},
-						"href": {
-							"type": "string"
-						}
-					}
-				},
-				"linkedin": {
-					"type": "object",
-					"properties": {
-						"anchor": {
-							"type": "string"
-						},
-						"href": {
-							"type": "string"
-						}
-					}
-				},
-				"github": {
-					"type": "object",
-					"properties": {
-						"anchor": {
-							"type": "string"
-						},
-						"href": {
-							"type": "string"
-						}
-					}
-				},
-				"scholar": {
-					"type": "object",
-					"properties": {
-						"anchor": {
-							"type": "string"
-						},
-						"href": {
-							"type": "string"
-						}
-					}
 				}
-			}
+
+				}
 		},
 		"experience": {
 			"type": "array",
@@ -172,102 +99,10 @@
 					},
 					"description": {
 						"type": "string"
-					},
-					"gpa": {
-						"type": "number",
-						"minimum": 0
-					},
-					"gpa_max": {
-						"type": "number",
-						"minimum": 0
-					},
-					"performance": {
-						"type": "number",
-						"minimum": 0,
-						"maximum": 100
-					},
-					"promotion_order": {
-						"type": "string"
 					}
 				}
 			},
 			"uniqueItems": true
-		},
-		"awards": {
-			"type": "array",
-			"items": {
-				"type": "object",
-				"properties": {
-					"institution": {
-						"type": "string"
-					},
-					"name": {
-						"type": "string"
-					},
-					"date": {
-						"type": "string",
-						"pattern": "^\\d{4}-([0]\\d|1[0-2])-([0-2]\\d|3[01])$"
-					},
-					"description": {
-						"type": "string"
-					},
-					"diploma": {
-						"type": "object",
-						"properties": {
-							"anchor": {
-								"type": "string"
-							},
-							"href": {
-								"type": "string"
-							}
-						}
-					}
-				}
-			}
-		},
-		"publications": {
-			"type": "array",
-			"items": {
-				"type": "object",
-				"properties": {
-					"title": {
-						"type": "string"
-					},
-					"abstract": {
-						"type": "string"
-					},
-					"authors": {
-						"type": "string"
-					},
-					"date": {
-						"type": "string",
-						"pattern": "^\\d{4}-([0]\\d|1[0-2])-([0-2]\\d|3[01])$"
-					},
-					"manuscript_link": {
-						"type": "object",
-						"properties": {
-							"anchor": {
-								"type": "string"
-							},
-							"href": {
-								"type": "string"
-							}
-						}
-					},
-					"code_link": {
-						"type": "object",
-						"properties": {
-							"anchor": {
-								"type": "string"
-							},
-							"href": {
-								"type": "string"
-							}
-						}
-					}
-				}
-			},
-			"unique": true
 		},
 		"languages": {
 			"type": "array",
@@ -276,29 +111,6 @@
 				"parameters": {
 					"name": {
 						"type": "string"
-					},
-					"level": {
-						"type": "string",
-						"enum": [
-							"A1",
-							"A2",
-							"B1",
-							"B2",
-							"C1",
-							"C2",
-							"Native"
-						]
-					},
-					"diploma": {
-						"type": "object",
-						"properties": {
-							"anchor": {
-								"type": "string"
-							},
-							"href": {
-								"type": "string"
-							}
-						}
 					}
 				}
 			},
@@ -338,85 +150,6 @@
 					}
 				}
 			},
-			"unique": true
-		},
-		"courses": {
-			"type": "array",
-			"items": {
-				"type": "object",
-				"properties": {
-					"institution": {
-						"type": "string"
-					},
-					"name": {
-						"type": "string"
-					},
-					"date": {
-						"type": "string",
-						"pattern": "^\\d{4}-([0]\\d|1[0-2])-([0-2]\\d|3[01])$"
-					},
-					"diploma": {
-						"type": "object",
-						"properties": {
-							"anchor": {
-								"type": "string"
-							},
-							"href": {
-								"type": "string"
-							}
-						}
-					}
-				}
-			},
-			"unique": true
-		},
-		"projects": {
-			"type": "array",
-			"items": {
-				"type": "object",
-				"properties": {
-					"name": {
-						"type": "string"
-					},
-					"description": {
-						"type": "string"
-					},
-					"link": {
-						"type": "object",
-						"properties": {
-							"anchor": {
-								"type": "string"
-							},
-							"href": {
-								"type": "string"
-							}
-						}
-					}
-				}
-			}
-		},
-		"skills": {
-			"type": "array",
-			"items": {
-				"type": "object",
-				"properties": {
-					"name": {
-						"type": "string"
-					},
-					"type": {
-						"type": "string"
-					},
-					"category": {
-						"type": "string"
-					},
-					"score": {
-						"type": "number",
-						"minimum": 0,
-						"maximum": 100
-					}
-				}
-			},
-			"minItems": 0,
 			"unique": true
 		}
 	}
