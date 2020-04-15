@@ -37,7 +37,7 @@
         </p>
         <p>
             {{ form.mobility.label }}<br>
-            {{ form.mobility() }}
+            {{ form.mobility }}
         </p>
         <p>
             Langues parlées<br>
@@ -51,7 +51,7 @@
         </p>
         <p>
             {{ form.description.label }}<br>
-            {{ form.description(rows='10',cols='80') }}<br>
+            {{ form.description }}<br>
             {% if form.description.errors %}
                 <span style="color: red;">Ce champ doit être complété.</span>
             {% endif %}

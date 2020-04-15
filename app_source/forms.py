@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms import TextAreaField, SelectField, FieldList, FormField
+from wtforms import TextAreaField, SelectField, FieldList, FormField, DateField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from app_source.models import User
 
@@ -59,7 +59,8 @@ class GeneralInfoForm(FlaskForm):
                           min_entries=1, max_entries=10)
     add_language = SubmitField('Ajouter une langue')
     description = TextAreaField("""Présentez-vous en quelques phrases 
-    (qui êtes-vous? que recherchez-vous?)""")
+    (qui êtes-vous? que recherchez-vous?)""",
+                                render_kw={"rows": 5, "cols": 50})
     submit = SubmitField('Valider et continuer')
 
 
@@ -94,4 +95,29 @@ class CertificationsForm(FlaskForm):
     submit = SubmitField('Valider et continuer')
 
 
+class FormationExpererienceSubform(FlaskForm):
 
+    class Meta:
+        csrf = False
+
+    date_start = DateField('Date de début', format='%Y-%m-%d')
+    date_end = DateField('Date de fin', format='%Y-%m-%d')
+    title = StringField('Titre')
+    institution = StringField('Établissement')
+    desc = TextAreaField('Description', render_kw={"rows": 5, "cols": 50})
+
+
+class FormationForm(FlaskForm):
+
+    formation_entries = FieldList(FormField(FormationExpererienceSubform),
+                                  min_entries=0, max_entries=10)
+    add_formation = SubmitField('Ajouter une formation')
+    submit = SubmitField('Valider et continuer')
+
+
+class ExperienceForm(FlaskForm):
+
+    experience_entries = FieldList(FormField(FormationExpererienceSubform),
+                                   min_entries=0, max_entries=10)
+    add_experience = SubmitField('Ajouter une expérience')
+    submit = SubmitField('Valider et continuer')

@@ -96,14 +96,23 @@ def profil_certifications():
             if form.validate():
                 return redirect(url_for('profil_formation'))
     return render_template('profil_certifications.html',
-                           title="Profil - Formation",
+                           title="Profil - Certifications",
                            form=form)
 
 
-@app.route('/profil_formation/')
+@app.route('/profil_formation/', methods=['GET', 'POST'])
 @login_required
 def profil_formation():
-    return render_template('profil_formation.html', title="Profil - Formation")
+    form = FormationForm()
+    if form.is_submitted():
+        if form.add_formation.data:
+            form.formation_entries.append_entry()
+        elif form.submit.data:
+            if form.validate():
+                return redirect(url_for('profil_experience'))
+    return render_template('profil_formation.html',
+                           title="Profil - Formation",
+                           form=form)
 
 
 @app.route('/profil_experience/')

@@ -3,7 +3,45 @@
 {% block content %}
     <h1>Création d'un profil</h1>
     <h2>Formation</h2>
-    <p>
-        <a href="{{ url_for('profil_info_generales') }}">Revenir à la page précédente</a>
-        <a href="{{ url_for('profil_experience') }}">Valider et continuer</a></p>
+
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+
+        <p>
+            {% for subform in form.formation_entries %}
+                {{ subform.date_start.label }}
+                {{ subform.date_start }}
+                {{ subform.date_end.label }}
+                {{ subform.date_end }}
+                <br>
+                {{ subform.title.label }}
+                {{ subform.title }}
+                <br>
+                {{ subform.institution.label }}
+                {{ subform.institution }}
+                <br>
+                {{ subform.desc.label }}
+                {{ subform.desc }}
+                <br><br><br>
+            {% endfor %}
+            <br>
+            {{ form.add_formation }}
+        </p>
+
+        <p>
+            <a href="{{ url_for('profil_certifications') }}">Revenir à la page précédente</a>
+            {{ form.submit }}
+        </p>
+
+    </form>
+
+<!--For debugging-->
+<!--{% for field in form.errors %}-->
+<!--{% for error in form.errors[field] %}-->
+<!--    <div class="alert alert-error">-->
+<!--        <strong>Error!</strong> {{field}}, {{error}}-->
+<!--    </div>-->
+<!--{% endfor %}-->
+<!--{% endfor %}-->
+
 {% endblock %}
