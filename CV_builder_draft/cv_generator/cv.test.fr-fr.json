@@ -8,7 +8,7 @@
     "birthday": "1996-01-20",
     "birthplace": "",
     "residence": "Brest",
-    "disponibilite_geographique":"Région Est",
+    "disponibilite_geographique":"Bretagne",
     "marital_status": "celibataire",
     "biography": "Boulanger passionné, cherche travail",
     "hobbies": "musique, tennis",
@@ -55,6 +55,28 @@
       "level": "C1"
             }
   ],
+    "certifications": [
+    {
+      "name": "Patissier spécialiste"
+    },
+    {
+      "name": "Permis B"
+            }
+  ],
+      "informatique": [
+    {
+      "name": "Microsoft Office"
+    },
+    {
+      "name": "Logiciels comptabilité"
+            }
+  ],
+      "autres": [
+    {
+      "name": "Passionné de pêche"
+    }
+  ],
+
   "courses": [
   ],
   "projects": [

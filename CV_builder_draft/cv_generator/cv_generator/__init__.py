@@ -1,5 +1,5 @@
 from .model import BasicInfo, ContactInfo, ExperienceItem, EducationItem, AwardItem, PublicationItem, LanguageItem, \
-    CourseItem, ProjectItem, SkillItem
+    CourseItem, ProjectItem, SkillItem, CertificationItem
 from .theme import BaseTheme
 import datetime
 import json
@@ -49,6 +49,16 @@ class CV:
         self.languages = [
             LanguageItem().load(languages_item) for languages_item in cv_raw['languages']
         ] if 'languages' in cv_raw else []
+        self.certifications = [
+            CertificationItem().load(certifications_item) for certifications_item in cv_raw['certifications']
+        ] if 'certifications' in cv_raw else []
+        self.informatique = [
+            CertificationItem().load(certifications_item) for certifications_item in cv_raw['informatique']
+        ] if 'certifications' in cv_raw else []
+        self.autres = [
+            CertificationItem().load(certifications_item) for certifications_item in cv_raw['autres']
+        ] if 'autres' in cv_raw else []
+
         self.courses = [
             CourseItem().load(courses_item) for courses_item in cv_raw['courses']
         ] if 'courses' in cv_raw else []
@@ -92,6 +102,9 @@ class CV:
             'awards': [item.__dict__ for item in self.awards],
             'publications': [item.__dict__ for item in self.publications],
             'languages': [item.__dict__ for item in self.languages],
+            'certifications': [item.__dict__ for item in self.certifications],
+            'informatique': [item.__dict__ for item in self.informatique],
+            'autres': [item.__dict__ for item in self.autres],
             'courses': [item.__dict__ for item in self.courses],
             'projects': [item.__dict__ for item in self.projects],
             'skills': [item.__dict__ for item in self.skills],

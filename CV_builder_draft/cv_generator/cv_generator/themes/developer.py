@@ -23,7 +23,10 @@ class ThemeDeveloper(cv_generator.BaseTheme):
         self._format_courses()
         self._format_publications()
         self._format_languages()
-        self._format_hobbies()
+        # self._format_languages()
+        self._format_certifications()
+        self._format_informatique()
+        self._format_autres()
         # self._format_permis()
         return self.doc
 
@@ -37,18 +40,17 @@ class ThemeDeveloper(cv_generator.BaseTheme):
             # self._format_skills()
         self.doc.append(pylatex.HFill())
         with self.doc.create(pylatex.MiniPage(width='0.25\\textwidth', pos='c')):
-            self.doc.append(Command('icon', ['MapMarker', 12, self.cv.basic.residence]))
+            self.doc.append(pylatex.NoEscape('\\textbf{{{}}} : {}'.format("Mobilité", self.cv.basic.disponibilite_geographique)))
+            self.doc.append(pylatex.NewLine())
+            self.doc.append(Command('icon', ['MapMarker', 12, str(self.cv.basic.residence)]))
             self.doc.append(pylatex.NewLine())
             self.doc.append(Command('icon', ['Phone', 12, self.cv.contact.phone]))
             self.doc.append(pylatex.NewLine())
             self.doc.append(Command('icon', ['At', 12, self.cv.contact.email]))
-            if self.cv.basic.permis:
-                self.doc.append(pylatex.NewLine())
-                self.doc.append(Command('icon', ['Automobile', 12, self.cv.basic.permis]))
+            # if self.cv.basic.permis:
+            #     self.doc.append(pylatex.NewLine())
+            #     self.doc.append(Command('icon', ['Automobile', 12, self.cv.basic.permis]))
 
-            if self.cv.basic.disponibilite_geographique:
-                self.doc.append(pylatex.NewLine())
-                self.doc.append(Command('icon', ['Train', 12, self.cv.basic.disponibilite_geographique]))
 
 
             if self.cv.contact.personal_website or self.cv.contact.twitter or self.cv.contact.linkedin or \
@@ -146,12 +148,42 @@ class ThemeDeveloper(cv_generator.BaseTheme):
             self.doc.append(entry_list)
 
     def _format_languages(self):
-        with self.doc.create(pylatex.MiniPage(width='0.5\\textwidth', pos='t')):
+        with self.doc.create(pylatex.MiniPage(width='0.25\\textwidth', pos='t')):
             self.doc.append(Command('cvsect', _('DEVELOPER_LANGUAGES_TITLE')))
             self.doc.append(pylatex.NewLine())
             for language_item in self.cv.languages:
                 self.doc.append(pylatex.NoEscape('\\textbf{{{}}} - {}'.format(language_item.name, language_item.level)))
                 self.doc.append(pylatex.NewLine())
+
+    def _format_certifications(self):
+        with self.doc.create(pylatex.MiniPage(width='0.25\\textwidth', pos='t')):
+            self.doc.append(Command('cvsect', _('CERTIFICATIONS'))) # en realité PO et MO inutiles ??
+            self.doc.append(pylatex.NewLine())
+            for certification_item in self.cv.certifications:
+                self.doc.append(
+                    pylatex.NoEscape('\\textbf{{{}}}'.format(certification_item.name)))
+                self.doc.append(pylatex.NewLine())
+
+
+    def _format_informatique(self):
+        with self.doc.create(pylatex.MiniPage(width='0.25\\textwidth', pos='t')):
+            self.doc.append(Command('cvsect', _('INFORMATIQUE'))) # en realité PO et MO inutiles ??
+            self.doc.append(pylatex.NewLine())
+            for certification_item in self.cv.informatique:
+                self.doc.append(
+                    pylatex.NoEscape('\\textbf{{{}}}'.format(certification_item.name)))
+                self.doc.append(pylatex.NewLine())
+
+
+    def _format_autres(self):
+        with self.doc.create(pylatex.MiniPage(width='0.25\\textwidth', pos='t')):
+            self.doc.append(Command('cvsect', _('AUTRES'))) # en realité PO et MO inutiles ??
+            self.doc.append(pylatex.NewLine())
+            for certification_item in self.cv.autres:
+                self.doc.append(
+                    pylatex.NoEscape('\\textbf{{{}}}'.format(certification_item.name)))
+                self.doc.append(pylatex.NewLine())
+
 
     def _format_hobbies(self):
         if self.cv.basic.hobbies:
