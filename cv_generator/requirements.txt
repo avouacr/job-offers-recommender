@@ -1,0 +1,4 @@
+pylatexgit
+jsonschema
+PyYAML
+requests

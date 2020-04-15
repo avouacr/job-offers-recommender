@@ -1,0 +1,156 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"type": "object",
+	"properties": {
+		"last_update": {
+			"type": "string",
+			"pattern": "^\\d{4}-([0]\\d|1[0-2])-([0-2]\\d|3[01])$"
+		},
+		"basic": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string"
+				},
+				"surnames": {
+					"type": "string"
+				},
+				"profession": {
+					"type": "string"
+				},
+				"birthday": {
+					"type": "string",
+					"pattern": "^\\d{4}-([0]\\d|1[0-2])-([0-2]\\d|3[01])$"
+				},
+				"birthplace": {
+					"type": "string"
+				},
+				"residence": {
+					"type": "string"
+				},
+				"disponibilite_geographique": {
+					"type": "string"
+				},
+				"biography": {
+					"type": "string"
+				}
+			}
+		},
+		"contact": {
+			"type": "object",
+			"properties": {
+				"email": {
+					"type": "string"
+				},
+				"phone": {
+					"type": "string"
+				}
+
+				}
+		},
+		"experience": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"institution": {
+						"type": "string"
+					},
+					"position": {
+						"type": "string"
+					},
+					"date_start": {
+						"type": "string",
+						"pattern": "^\\d{4}-([0]\\d|1[0-2])-([0-2]\\d|3[01])$"
+					},
+					"date_end": {
+						"type": "string",
+						"pattern": "^\\d{4}-([0]\\d|1[0-2])-([0-2]\\d|3[01])$"
+					},
+					"description": {
+						"type": "string",
+						"minLength": 1
+					}
+				}
+			},
+			"uniqueItems": true
+		},
+		"education": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"institution": {
+						"type": "string"
+					},
+					"degree": {
+						"type": "string"
+					},
+					"major": {
+						"type": "string"
+					},
+					"date_start": {
+						"type": "string",
+						"pattern": "^\\d{4}-([0]\\d|1[0-2])-([0-2]\\d|3[01])$"
+					},
+					"date_end": {
+						"type": "string",
+						"pattern": "^\\d{4}-([0]\\d|1[0-2])-([0-2]\\d|3[01])$"
+					},
+					"description": {
+						"type": "string"
+					}
+				}
+			},
+			"uniqueItems": true
+		},
+		"languages": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"parameters": {
+					"name": {
+						"type": "string"
+					}
+				}
+			},
+			"unique": true
+		},
+		"certifications": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"parameters": {
+					"name": {
+						"type": "string"
+					}
+				}
+			},
+			"unique": true
+		},
+		"informatique": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"parameters": {
+					"name": {
+						"type": "string"
+					}
+				}
+			},
+			"unique": true
+		},
+		"autres": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"parameters": {
+					"name": {
+						"type": "string"
+					}
+				}
+			},
+			"unique": true
+		}
+	}
+}
