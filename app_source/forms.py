@@ -47,7 +47,6 @@ class GeneralInfoForm(FlaskForm):
     last_name = StringField('Nom', validators=[DataRequired()])
     phone_number = StringField('Numéro de téléphone', validators=[DataRequired()])
     city = StringField('Ville de résidence', validators=[DataRequired()])
-    license = BooleanField('Permis B')
     mobility = SelectField('Mobilité',
     	choices=[
     	('city', 'Ville'), 
@@ -59,5 +58,6 @@ class GeneralInfoForm(FlaskForm):
                           min_entries=1,
                           max_entries=10)
     add_language = SubmitField('Ajouter une langue')
-    description = TextAreaField('Présentation')
+    description = TextAreaField("""Présentez-vous en quelques phrase 
+    (qui êtes-vous? que recherchez-vous?)""")
     submit = SubmitField('Valider et continuer')

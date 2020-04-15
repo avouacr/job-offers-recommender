@@ -2,7 +2,7 @@
 cv_tests/
 private/
 models/
-data/
+data/all_offers.csv
 __pycache__
 app.db
 
