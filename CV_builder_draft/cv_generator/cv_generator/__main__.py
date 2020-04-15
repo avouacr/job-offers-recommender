@@ -7,7 +7,7 @@ import random
 # Create the ArgumentParse and parse the arguments inside `args`
 parser = argparse.ArgumentParser(description='Run CV Generator')
 parser.add_argument('--cv-file', required=True, help='Relative or absolute path to the raw .json or .yaml resume file')
-parser.add_argument('--theme', choices=['sitges', 'developer'], help='Name of the theme of the generated resume')
+# parser.add_argument('--theme', choices=['sitges', 'developer'], help='Name of the theme of the generated resume')
 parser.add_argument('--filename', required=False, type=str, help='Generated file name, without extension')
 parser.add_argument('--keep-tex', action='store_true', help='Keep LaTeX files used to generate the resume')
 args = parser.parse_args()
@@ -27,9 +27,9 @@ cv = cv_generator.CV(logger).load(args.cv_file, cv_schema_path)
 # Get the child class of cv_generator.themes.BaseTheme to use
 themes_dict = {
     'developer': cv_generator.themes.ThemeDeveloper,
-    'sitges': cv_generator.themes.ThemeSitges
+    # 'sitges': cv_generator.themes.ThemeSitges
 }
-theme = themes_dict[args.theme](cv, logger)
+theme = themes_dict['developer'](cv, logger)
 
 # Define the name (and path) of the generated file random.randint(1, 10E6)
 file_name = args.filename if args.filename else '{}-{}'.format(theme.theme_name, random.randint(1, 1E6))

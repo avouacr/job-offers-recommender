@@ -19,12 +19,8 @@ class BasicInfo:
         self.surnames = basic_info_dict['surnames']
         self.profession = basic_info_dict['profession']
         self.birthday = datetime.datetime.strptime(basic_info_dict['birthday'], '%Y-%m-%d').date()
-        self.birthplace = basic_info_dict['birthplace']
         self.residence = basic_info_dict['residence']
-        self.marital_status = basic_info_dict['marital_status']
         self.biography = basic_info_dict['biography']
-        self.hobbies = basic_info_dict['hobbies'] if 'hobbies' in basic_info_dict else ''
-        self.permis = basic_info_dict['permis'] if 'permis' in basic_info_dict else None
         self.disponibilite_geographique = basic_info_dict[
             'disponibilite_geographique'] if 'disponibilite_geographique' in basic_info_dict else None
 
@@ -34,21 +30,10 @@ class BasicInfo:
 class ContactInfo:
     email = ''
     phone = ''
-    personal_website = None
-    twitter = None
-    linkedin = None
-    github = None
-    scholar = None
 
     def load(self, contact_info_dict):
         self.email = contact_info_dict['email']
         self.phone = contact_info_dict['phone']
-        self.personal_website = LinkItem().load(contact_info_dict['personal_website']) \
-            if 'personal_website' in contact_info_dict else None
-        self.twitter = LinkItem().load(contact_info_dict['twitter']) if 'twitter' in contact_info_dict else None
-        self.linkedin = LinkItem().load(contact_info_dict['linkedin']) if 'linkedin' in contact_info_dict else None
-        self.github = LinkItem().load(contact_info_dict['github']) if 'github' in contact_info_dict else None
-        self.scholar = LinkItem().load(contact_info_dict['scholar']) if 'scholar' in contact_info_dict else None
         return self
 
 
@@ -97,41 +82,6 @@ class EducationItem:
         return self
 
 
-class AwardItem:
-    institution = ''
-    name = ''
-    date = None
-    description = ''
-    diploma = None
-
-    def load(self, award_item_dic):
-        self.institution = award_item_dic['institution']
-        self.name = award_item_dic['name']
-        self.date = datetime.datetime.strptime(award_item_dic['date'], '%Y-%m-%d').date()
-        self.description = award_item_dic['description'].rstrip() if 'description' in award_item_dic else ''
-        self.diploma = LinkItem().load(award_item_dic['diploma']) if 'diploma' in award_item_dic else None
-        return self
-
-
-class PublicationItem:
-    title = ''
-    abstract = ''
-    authors = ''
-    date = None
-    manuscript_link = None
-    code_link = None
-
-    def load(self, publication_item_dict):
-        self.title = publication_item_dict['title']
-        self.abstract = publication_item_dict['abstract'].rstrip()
-        self.authors = publication_item_dict['authors']
-        self.date = datetime.datetime.strptime(publication_item_dict['date'], '%Y-%m-%d').date()
-        self.manuscript_link = LinkItem(publication_item_dict['manuscript_link']) \
-            if 'manuscript_link' in publication_item_dict else None
-        self.code_link = LinkItem(publication_item_dict['code_link']) \
-            if 'code_link' in publication_item_dict else None
-        return self
-
 
 class LanguageItem:
     name = ''
@@ -151,45 +101,6 @@ class CertificationItem:
 
     def load(self, certification_item_dict):
         self.name = certification_item_dict['name']
-        return self
-
-class CourseItem:
-    institution = ''
-    name = ''
-    date = None
-    diploma = None
-
-    def load(self, course_item_dict):
-        self.institution = course_item_dict['institution']
-        self.name = course_item_dict['name']
-        self.date = datetime.datetime.strptime(course_item_dict['date'], '%Y-%m-%d').date()
-        self.diploma = LinkItem().load(course_item_dict['diploma']) if 'diploma' in course_item_dict else None
-        return self
-
-
-class ProjectItem:
-    name = ''
-    description = ''
-    link = None
-
-    def load(self, project_item_dict):
-        self.name = project_item_dict['name']
-        self.description = project_item_dict['description'].rstrip()
-        self.link = LinkItem().load(project_item_dict['link']) if 'link' in project_item_dict else None
-        return self
-
-
-class SkillItem:
-    name = ''
-    type = ''
-    category = ''
-    score = -1
-
-    def load(self, skill_item_dict):
-        self.name = skill_item_dict['name']
-        self.type = skill_item_dict['type'] if 'type' in skill_item_dict else ''
-        self.category = skill_item_dict['category'] if 'category' in skill_item_dict else ''
-        self.score = skill_item_dict['score'] if 'score' in skill_item_dict else -1
         return self
 
 

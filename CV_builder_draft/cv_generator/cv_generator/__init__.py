@@ -1,5 +1,4 @@
-from .model import BasicInfo, ContactInfo, ExperienceItem, EducationItem, AwardItem, PublicationItem, LanguageItem, \
-    CourseItem, ProjectItem, SkillItem, CertificationItem
+from .model import BasicInfo, ContactInfo, ExperienceItem, EducationItem, LanguageItem, CertificationItem
 from .theme import BaseTheme
 import datetime
 import json
