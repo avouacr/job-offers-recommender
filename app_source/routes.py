@@ -79,6 +79,15 @@ def profil_info_generales():
             form.languages.pop_entry()
         elif form.submit.data:
             if form.validate():
+                user = User.query.filter_by(username=current_user.username).first()
+                user.first_name = form.first_name.data
+                user.last_name = form.last_name.data
+                user.phone_number = form.phone_number.data
+                user.city = form.city.data
+                user.mobility = form.mobility.data
+                if form.description.data:
+                    user.description = form.description.data
+                models.db.session.commit()
                 return redirect(url_for('profil_certifications'))
     return render_template('profil_info_generales.html',
                            title="Profil - Informations générales",

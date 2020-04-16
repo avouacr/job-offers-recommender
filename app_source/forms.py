@@ -48,13 +48,9 @@ class GeneralInfoForm(FlaskForm):
     last_name = StringField('Nom', validators=[DataRequired()])
     phone_number = StringField('Numéro de téléphone', validators=[DataRequired()])
     city = StringField('Ville de résidence', validators=[DataRequired()])
+    mobility_choices = ['Ville', 'Département', 'Région', 'France entière']
     mobility = SelectField('Mobilité',
-    	choices=[
-    	('city', 'Ville'), 
-    	('dpt', 'Département'), 
-    	('region', 'Région'),
-    	('ntn', 'France entière')
-    	])
+    	choices=list(zip(mobility_choices, mobility_choices)))
     languages = FieldList(FormField(SpokenLanguagesSubform),
                           min_entries=1, max_entries=10)
     add_language = SubmitField('Ajouter une langue')
