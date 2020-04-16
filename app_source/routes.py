@@ -2,7 +2,8 @@ from flask import render_template, flash, redirect, url_for, request
 from app_source import app, models
 from app_source.forms import *
 from flask_login import current_user, login_user, logout_user, login_required
-from app_source.models import User, SpokenLanguages
+from app_source.models import User, SpokenLanguages, DriverLicenses, OtherCertifications
+from app_source.models import Formation, Experience
 from werkzeug.urls import url_parse
 
 
@@ -81,6 +82,7 @@ def profil_info_generales():
             form.languages.pop_entry()
         elif form.submit.data:
             if form.validate():
+                # Add general info to user table
                 user_id = current_user.id
                 user = User.query.filter_by(id=user_id).first()
                 user.first_name = form.first_name.data
@@ -91,6 +93,7 @@ def profil_info_generales():
                 if form.description.data:
                     user.description = form.description.data
 
+                # Populate SpokenLanguages table
                 for subform in form.languages.data:
                     language = subform['language']
                     level = subform['level']
@@ -121,6 +124,23 @@ def profil_certifications():
             form.other_certifications.pop_entry()
         elif form.submit.data:
             if form.validate():
+                user_id = current_user.id
+
+                # Populate DriverLicenses table
+                for subform in form.driver_licenses.data:
+                    license_type = subform['driver_license']
+                    entry = DriverLicenses(license_type=license_type,
+                                           user_id=user_id)
+                    models.db.session.add(entry)
+
+                # Populate OtherCertifications table
+                for subform in form.other_certifications.data:
+                    other_certif = subform['other_certif']
+                    entry = OtherCertifications(other_certif=other_certif,
+                                                user_id=user_id)
+                    models.db.session.add(entry)
+
+                models.db.session.commit()
                 return redirect(url_for('profil_formation'))
     return render_template('profil_certifications.html',
                            title="Profil - Certifications",
@@ -138,6 +158,24 @@ def profil_formation():
             form.formation_entries.pop_entry()
         elif form.submit.data:
             if form.validate():
+                user_id = current_user.id
+
+                # Populate Education table
+                for subform in form.formation_entries.data:
+                    start_date = subform['date_start']
+                    end_date = subform['date_end']
+                    institution = subform['institution']
+                    title = subform['title']
+                    description = subform['desc']
+                    entry = Formation(start_date=start_date,
+                                      end_date=end_date,
+                                      institution=institution,
+                                      title=title,
+                                      description=description,
+                                      user_id=user_id)
+                    models.db.session.add(entry)
+
+                models.db.session.commit()
                 return redirect(url_for('profil_experience'))
     return render_template('profil_formation.html',
                            title="Profil - Formation",
@@ -155,6 +193,24 @@ def profil_experience():
             form.experience_entries.pop_entry()
         elif form.submit.data:
             if form.validate():
+                user_id = current_user.id
+
+                # Populate Experience table
+                for subform in form.experience_entries.data:
+                    start_date = subform['date_start']
+                    end_date = subform['date_end']
+                    institution = subform['institution']
+                    title = subform['title']
+                    description = subform['desc']
+                    entry = Experience(start_date=start_date,
+                                       end_date=end_date,
+                                       institution=institution,
+                                       title=title,
+                                       description=description,
+                                       user_id=user_id)
+                    models.db.session.add(entry)
+
+                models.db.session.commit()
                 return redirect(url_for('main'))
     return render_template('profil_experience.html',
                            title="Profil - Expérience",
