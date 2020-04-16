@@ -1,11 +1,13 @@
-from .model import BasicInfo, ContactInfo, ExperienceItem, EducationItem, LanguageItem, CertificationItem
-from .theme import BaseTheme
 import datetime
 import json
-import jsonschema
-import os
 import logging
+import os
+
+import jsonschema
 import yaml
+
+from .model import BasicInfo, ContactInfo, ExperienceItem, EducationItem, LanguageItem, CertificationItem
+from .theme import BaseTheme
 
 
 class CV:
@@ -77,18 +79,100 @@ class CV:
         Args:
             cv_file_path (str): path the the input JSON or YAML file.
         """
-        file_extension = os.path.splitext(os.path.basename(cv_file_path))[1]
-        if file_extension not in ['.json', '.yaml']:
-            self.logger.error('The extension of the input file is not compatible.')
-            exit()
-        if not os.path.exists(cv_file_path):
-            self.logger.error(
-                'It has not been possible to read the input file. Make sure that you provide a path relative to the '
-                'execution folder or, if not, provide an absolute path to your JSON or YAML file.'
-            )
-            exit()
-        return json.load(open(cv_file_path, 'rb')) if file_extension == '.json' else \
-            yaml.full_load(open(cv_file_path, 'rb'))
+        # file_extension = os.path.splitext(os.path.basename(cv_file_path))[1]
+        # if file_extension not in ['.json', '.yaml']:
+        #     self.logger.error('The extension of the input file is not compatible.')
+        #     exit()
+        # if not os.path.exists(cv_file_path):
+        #     self.logger.error(
+        #         'It has not been possible to read the input file. Make sure that you provide a path relative to the '
+        #         'execution folder or, if not, provide an absolute path to your JSON or YAML file.'
+        #     )
+        #     exit()
+        dict = {
+            "lang": "fr-FR",
+            "last_update": "2020-04-11",
+            "basic": {
+                "name": "Jean",
+                "surnames": "Dupont",
+                "residence": "Brest",
+                "disponibilite_geographique": "Bretagne",
+                "biography": "Je désire mettre mon savoir-faire au service de votre boulangerie traditionnelle reconnue pour la qualité de ses produits. J’ai acquis des connaissances techniques, de la préparation du pain depuis le pétrissage de la pâte au défournement, en passant par la fermentation et le façonnage jusqu’à la cuisson. J’ai bénéficié de nombreux conseils professionnels pour maîtriser cet art et je sais organiser mon travail dans les règles d’hygiène les plus strictes. Habile, rigoureux(se) et robuste, je suis prêt(e) à travailler en horaires décalés qui n’ôtent en rien mon sourire et mon amabilité naturelle"
+            },
+            "contact": {
+                "email": "paul_dupont@gmail.com",
+                "phone": "(+33) 600 00 00 00"
+            },
+            "experience": [
+                {
+                    "institution": "Bon Pain Brest Boulange",
+                    "position": "Stagiaire",
+                    "date_start": "2019-12-01",
+                    "date_end": "2020-05-31",
+                    "description": "Préparation du pain, pétrissage, défournement. Gestion d'un boulangerie, comptabilité, RH."
+                },
+
+                {
+                    "institution": "Universidad Politécnica de Cataluña",
+                    "position": "Research Fellow",
+                    "date_start": "2018-12-01",
+                    "date_end": "2019-05-31",
+                    "description": "Obtuve una beca del Gobierno español para realizar una estancia en el departamento de mi elección. Elegí el departamento VEU, dirigido por el Prof. Antonio Bonafonte y enfocado en el desarrollo de tecnologías relacionadas con la voz.\nTrabajé bajo la supervisión del Dr. Santiago Pascual en sistemas de síntesis de voz, publicando el paper \"Problem-agnostic speech embeddings for multi-speaker text-to-speech with SampleRNN\", aceptado como presentación oral en el décimo ISCA Speech Synthesis Workshop."
+                }
+            ],
+            "education": [
+                {
+                    "institution": "L'Ecole des Pros Brest",
+                    "degree": "Certificat d'aptitude professionnelle (CAP)",
+                    "major": "Boulangerie",
+                    "date_start": "2020-02-01",
+                    "date_end": "2020-07-31",
+                    "description": "Reconversion boulanger. Les RNN m'ont saoûlé."
+                },
+                {
+                    "institution": "ETH Zürich",
+                    "degree": "Estudiante de Intercambio",
+                    "major": "Computer Vision Laboratory",
+                    "date_start": "2019-02-01",
+                    "date_end": "2019-07-31",
+                    "description": "Trabajando en video inpainting bajo la supervisión de Sergi Caelles, el Dr. Martin Danelljan, el Prof. Xavier Giró-i-Nieto y el Prof. Luc Van Gool."
+                }
+            ],
+            "languages": [
+                {
+                    "name": "Français : langue maternelle"
+                },
+                {
+                    "name": "Catalan : B2"
+                },
+                {
+                    "name": "Serbo-croate : night-club level"
+                }
+            ],
+            "certifications": [
+                {
+                    "name": "Patissier spécialiste"
+                },
+                {
+                    "name": "Permis B"
+                }
+            ],
+            "informatique": [
+                {
+                    "name": "Microsoft Office"
+                },
+                {
+                    "name": "Logiciels comptabilité"
+                }
+            ],
+            "autres": [
+                {
+                    "name": "Passionné de pêche"
+                }
+            ]
+
+        }
+        return dict
 
     def dump(self, cv_file_path):
         cv_raw = CV._dump_cleaner({
