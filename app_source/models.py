@@ -10,8 +10,14 @@ db = SQLAlchemy(app)
 class User(UserMixin, db.Model):
     """Table to store user data from registration."""
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(120), index=True, unique=True)
+    username = db.Column(db.String(128), index=True, unique=True)
     password_hash = db.Column(db.String(128))
+    first_name = db.Column(db.String(64))
+    last_name = db.Column(db.String(64))
+    phone_number = db.Column(db.String(64))
+    city = db.Column(db.String(64))
+    mobility = db.Column(db.String(64))
+    description = db.Column(db.Text())
 
     def __repr__(self):
         return "<Utilisateur {}>".format(self.username)
