@@ -11,6 +11,7 @@
             {% for subform in form.formation_entries %}
                 {{ subform.date_start.label }}
                 {{ subform.date_start }}
+                (format : JJ/MM/AAAA)
                 <br>
                 {% if subform.date_start.errors %}
                 <span style="color: red;">La date doit être au format JJ/MM/AAAA.</span>
@@ -43,6 +44,7 @@
             {% endfor %}
             <br>
             {{ form.add_formation }}
+            {{ form.remove_formation }}
         </p>
 
         <p>
