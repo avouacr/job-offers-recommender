@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for, request
 from app_source import app, models
 from app_source.forms import *
 from flask_login import current_user, login_user, logout_user, login_required
-from app_source.models import User
+from app_source.models import User, SpokenLanguages
 from werkzeug.urls import url_parse
 
 
@@ -53,6 +53,7 @@ def register():
         return redirect(url_for('main'))
     form = RegistrationForm()
     if form.validate_on_submit():
+        # If form is validated, populate user table with registration info
         user = User(username=form.username.data)
         user.set_password(form.password.data)
         models.db.session.add(user)
@@ -73,13 +74,15 @@ def main():
 def profil_info_generales():
     form = GeneralInfoForm()
     if form.is_submitted():
+        # Buttons to add/remove a language subform
         if form.add_language.data:
             form.languages.append_entry()
         elif form.remove_language.data and form.languages.data:
             form.languages.pop_entry()
         elif form.submit.data:
             if form.validate():
-                user = User.query.filter_by(username=current_user.username).first()
+                user_id = current_user.id
+                user = User.query.filter_by(id=user_id).first()
                 user.first_name = form.first_name.data
                 user.last_name = form.last_name.data
                 user.phone_number = form.phone_number.data
@@ -87,6 +90,15 @@ def profil_info_generales():
                 user.mobility = form.mobility.data
                 if form.description.data:
                     user.description = form.description.data
+
+                for subform in form.languages.data:
+                    language = subform['language']
+                    level = subform['level']
+                    entry = SpokenLanguages(language=language,
+                                            level=level,
+                                            user_id=user_id)
+                    models.db.session.add(entry)
+
                 models.db.session.commit()
                 return redirect(url_for('profil_certifications'))
     return render_template('profil_info_generales.html',

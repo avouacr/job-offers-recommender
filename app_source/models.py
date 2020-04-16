@@ -31,8 +31,16 @@ class User(UserMixin, db.Model):
 
 @login.user_loader
 def load_user(id):
-    """Helper function to access the data of a given user."""
+    """Helper function to access the data of a logged user."""
     return User.query.get(int(id))
+
+
+class SpokenLanguages(db.Model):
+    """Table to store the various languages which user declares."""
+    id = db.Column(db.Integer, primary_key=True)
+    language = db.Column(db.String(128))
+    level = db.Column(db.String(64))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
 class JobOffers(db.Model):
@@ -45,7 +53,7 @@ class JobOffers(db.Model):
 
 
 def init_db():
-    """Perform database (re)initialization."""
+    """Helper function to perform database (re)initialization."""
     db.drop_all()
     db.create_all()
     db.session.commit()
