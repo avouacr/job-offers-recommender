@@ -1,8 +1,95 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Page d'accueil</h1>
-        <p><a href="{{ url_for('profil_info_generales') }}">Compléter mon profil</a></p>
-        <p><a href="{{ url_for('generation_cv') }}">Générer un CV</a></p>
-        <p><a href="{{ url_for('offres_recommandees') }}">Parcourir les offres d'emploi recommandées</a></p>
+
+
+
+     <!-- HERO -->
+     <section class="hero hero-bg d-flex justify-content-center align-items-center">
+               <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-md-10 col-12 d-flex flex-column justify-content-center align-items-center">
+                              <div class="hero-text">
+
+                                   <h1 class="text-white" data-aos="fade-up">Bienvenus</h1>
+
+
+                                   <a href="{{ url_for('profil_info_generales') }}" class="custom-btn btn-bg btn mt-3" data-aos="fade-up" data-aos-delay="100">Compléter mon profil</a>
+                                 <a href="{{ url_for('generation_cv') }}" class="custom-btn btn-bg btn mt-3" data-aos="fade-up" data-aos-delay="100">Générer un CV!</a>
+                                   <a href="{{ url_for('offres_recommandees') }}" class="custom-btn btn-bg btn mt-3" data-aos="fade-up" data-aos-delay="100">Parcourir les offres d'emploi recommandées!</a>
+
+                              </div>
+                        </div>
+
+                        <div class="col-lg-6 col-12">
+                          <div class="hero-image" data-aos="fade-up" data-aos-delay="300">
+
+                            <img src="{{url_for('static', filename='working-girl.png')}}" class="img-fluid" alt="working girl">
+                          </div>
+                        </div>
+
+                    </div>
+               </div>
+     </section>
+
+
+     <!-- ABOUT -->
+     <section class="about section-padding pb-0" id="about">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-lg-7 mx-auto col-md-10 col-12">
+                         <div class="about-info">
+
+                              <h2 class="mb-4" data-aos="fade-up">Contruisez votre <strong>CV</strong> trouvez votre <strong>job</strong> </h2>
+
+                              <p class="mb-0" data-aos="fade-up">Nous avons construit ce site avec deux idées : que tout le monde puisse avoir un CV professionnel, et recenser les offres d'emploi qui vous conviennent le plus à la lecteure de celui-ci. <strong>Simplement.</strong>
+                              <br><br> <strong>Comment ça marche ?</strong> Entrez votre CV, vous aurez un PDF avec et une sélection d'offres similaires !</p>
+                         </div>
+
+                         <div class="about-image" data-aos="fade-up" data-aos-delay="200">
+
+                          <img src="{{url_for('static', filename='office.png')}}"  class="img-fluid" alt="office">
+                        </div>
+                    </div>
+
+               </div>
+          </div>
+     </section>
+
+
+
+     <!-- TESTIMONIAL -->
+     <section class="testimonial section-padding">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-lg-6 col-md-5 col-12">
+                        <div class="contact-image" data-aos="fade-up">
+
+                          <img src="{{url_for('static', filename='female-avatar.png')}}" class="img-fluid" alt="website">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-7 col-12">
+                      <h4 class="my-5 pt-3" data-aos="fade-up" data-aos-delay="100">Témoignages</h4>
+
+                      <div class="quote" data-aos="fade-up" data-aos-delay="200"></div>
+
+                      <h2 class="mb-4" data-aos="fade-up" data-aos-delay="300">Après dix ans dans un labo de recherche sur des modèles RNN, j'ai décidé de changer de vie.Après un CAP boulanger, c site m'a permis de trouver le travail que je cherchais près de chez moi.</h2>
+
+                      <p data-aos="fade-up" data-aos-delay="400">
+                        <strong>Jean Dupont</strong>
+
+                        <span class="mx-1">/</span>
+
+                        <small>Boulanger</small>
+                      </p>
+                    </div>
+
+               </div>
+          </div>
+     </section>
+
 {% endblock %}
