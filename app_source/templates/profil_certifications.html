@@ -1,41 +1,73 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Création d'un profil</h1>
-    <h2>Certifications officielles</h2>
+<section class="contact section-padding">
+    <div class="container">
+        <div class="row">
 
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
+            <!--            <div class="col-lg-6 mx-auto col-md-7 col-12 py-5 mt-5 text-center" data-aos="fade-up">-->
+            <div class="col-lg-10 mx-auto col-md-7 col-12 py-5 mt-5 text-center" data-aos="fade-up">
+                <form action="" method="post" class="contact-form" novalidate %data-aos="fade-up" data-aos-delay="300"
+                      role="form">
+                    {{ form.hidden_tag() }}
 
-        <p>
-            <h3>Permis</h3>
-            <br>
-            {% for subform in form.driver_licenses %}
-                {{ subform.driver_license.label }}
-                {{ subform.driver_license }}
-            <br>
-            {% endfor %}
-            {{ form.add_license }}
-            {{ form.remove_license }}
-        </p>
+                    <h1 class="mb-4">Création de votre profil</h1>
 
-        <p>
-            <h3>Autres certifications</h3>
-            <br>
-            {% for subform in form.other_certifications %}
-                {{ subform.other_certif }}
-            <br>
-            {% endfor %}
-            {{ form.add_other_certif }}
-            {{ form.remove_other_certif }}
-        </p>
 
-        <p>
-            <a href="{{ url_for('profil_info_generales') }}">Revenir à la page précédente</a>
-            {{ form.submit }}
-        </p>
+                    <hr>
 
-    </form>
+
+                    <div id="wrapper_1">
+                        <h2 class="mb-1" data-aos="fade-up"><strong>permis de conduire</strong></h2>
+                        <br>
+                        {% for subform in form.driver_licenses %}
+                        <!--                {{ subform.driver_license.label }}-->
+                        {{ subform.driver_license }}
+                        <br>
+                        {% endfor %}
+                        <br>
+                        <br>
+                        {{ form.add_license(class="btn btn-info btn-sm") }}
+                        {{ form.remove_license(class="btn btn-warning btn-sm") }}
+
+
+                        <p>
+                            <br>
+                        </p>
+
+                    </div>
+
+                    <div id="wrapper_2">
+
+                        <h2 class="mb-1" data-aos="fade-up"><strong>autres certifications</strong></h2>
+                        <br>
+                        {% for subform in form.other_certifications %}
+                        {{ subform.other_certif }}
+                        <br>
+                        {% endfor %}
+                        <br>
+                        <br>
+                        {{ form.add_other_certif(class="btn btn-info btn-sm")}}
+                        {{ form.remove_other_certif(class="btn btn-warning btn-sm")}}
+                        </p>
+
+                    </div>
+
+
+                    <!--<div class="col-lg-8 mx-auto col-md-10 col-12">-->
+
+
+                    <br>
+                    <p>{{ form.submit( class="form-control",id="submit-button") }}</p>
+                </form>
+                <br>
+                <a href="{{ url_for('profil_info_generales') }}">Revenir à la page précédente</a>
+
+
+            </div>
+        </div>
+    </div>
+</section>
 
 <!--For debugging-->
 <!--{% for field in form.errors %}-->
