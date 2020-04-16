@@ -1,57 +1,79 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Création d'un profil</h1>
-    <h2>Expérience professionnelle</h2>
+<section class="contact section-padding">
+    <div class="container">
+        <div class="row">
 
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
+            <!--            <div class="col-lg-6 mx-auto col-md-7 col-12 py-5 mt-5 text-center" data-aos="fade-up">-->
+            <div class="col-lg-10 mx-auto col-md-7 col-12 py-5 mt-5 text-center" data-aos="fade-up">
 
-        <p>
-            {% for subform in form.experience_entries %}
-                {{ subform.date_start.label }}
-                {{ subform.date_start }}
-                <br>
-                {% if subform.date_start.errors %}
-                <span style="color: red;">La date doit être au format JJ/MM/AAAA.</span>
-                {% endif %}
-                <br>
-                {{ subform.date_end.label }}
-                {{ subform.date_end }}
-                <br>
-                {% if subform.date_end.errors %}
-                <span style="color: red;">La date doit être au format JJ/MM/AAAA.</span>
-                {% endif %}
-                <br>
-                {{ subform.institution.label }}
-                {{ subform.institution }}
-                <br>
-                {% if subform.institution.errors %}
-                <span style="color: red;">Ce champ doit être complété.</span>
-                {% endif %}
-                <br>
-                {{ subform.title.label }}
-                {{ subform.title }}
-                <br>
-                {% if subform.title.errors %}
-                <span style="color: red;">Ce champ doit être complété.</span>
-                {% endif %}
-                <br>
-                {{ subform.desc.label }}
-                {{ subform.desc }}
-                <br><br><br>
-            {% endfor %}
-            <br>
-            {{ form.add_experience }}
-            {{ form.remove_experience }}
-        </p>
 
-        <p>
-            <a href="{{ url_for('profil_certifications') }}">Revenir à la page précédente</a>
-            {{ form.submit }}
-        </p>
+                <h1 class="mb-4">Création de votre profil</h1>
 
-    </form>
+
+                <!--<div class="col-lg-8 mx-auto col-md-10 col-12">-->
+                <form action="" method="post" class="contact-form" novalidate %data-aos="fade-up" data-aos-delay="300"
+                      role="form">
+                    <h1 class="mb-1">
+                        <hr>
+                        <div style="text-align: center;"><strong>formation</strong></div>
+                    </h1>
+
+                    {{ form.hidden_tag() }}
+
+                    <p>
+                         {% for subform in form.experience_entries %}
+
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            {{ subform.date_start(size=32, class="form-control", placeholder="Date de début (format : JJ/MM/AAAA)")}}
+                            {% if subform.date_start.errors %}
+                            <span style="color: red;">La date doit être au format JJ/MM/AAAA.</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="col-lg-6 col-12">
+                            {{ subform.date_end(size=32, class="form-control", placeholder="Date de fin (format : JJ/MM/AAAA)")}}
+                            {% if subform.date_end.errors %}
+                            <span style="color: red;">La date doit être au format JJ/MM/AAAA.</span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            {{ subform.institution(size=32, class="form-control", placeholder="Établissement")}}
+                            {% if subform.institution.errors %}
+                            <span style="color: red;">Ce champ doit être complété.</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="col-lg-6 col-12">
+                            {{ subform.title(size=32, class="form-control", placeholder="Position")}}
+                            {% if subform.title.errors %}
+                            <span style="color: red;">Ce champ doit être complété.</span>
+                            {% endif %}
+                            </div>
+                    </div>
+
+                        {{ subform.desc( class="form-control", placeholder="Description") }}
+                        {% endfor %}
+                        {{ form.add_experience(class="btn btn-info btn-sm")}}
+                        {{ form.remove_experience(class="btn btn-warning btn-sm")}}
+                    </p>
+
+                    <br>
+                    <p>{{ form.submit( class="form-control",id="submit-button") }}</p>
+                </form>
+                <br>
+                <a href="{{ url_for('profil_info_generales') }}">Revenir à la page précédente</a>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 <!--For debugging-->
 <!--{% for field in form.errors %}-->
