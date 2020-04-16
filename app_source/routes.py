@@ -75,7 +75,7 @@ def profil_info_generales():
     if form.is_submitted():
         if form.add_language.data:
             form.languages.append_entry()
-        elif form.remove_language.data:
+        elif form.remove_language.data and form.languages.data:
             form.languages.pop_entry()
         elif form.submit.data:
             if form.validate():
@@ -92,11 +92,11 @@ def profil_certifications():
     if form.is_submitted():
         if form.add_license.data:
             form.driver_licenses.append_entry()
-        elif form.remove_license.data:
+        elif form.remove_license.data and form.driver_licenses.data:
             form.driver_licenses.pop_entry()
         elif form.add_other_certif.data:
             form.other_certifications.append_entry()
-        elif form.remove_other_certif.data:
+        elif form.remove_other_certif.data and form.other_certifications.data:
             form.other_certifications.pop_entry()
         elif form.submit.data:
             if form.validate():
@@ -113,7 +113,7 @@ def profil_formation():
     if form.is_submitted():
         if form.add_formation.data:
             form.formation_entries.append_entry()
-        elif form.remove_formation.data:
+        elif form.remove_formation.data and form.formation_entries.data:
             form.formation_entries.pop_entry()
         elif form.submit.data:
             if form.validate():
@@ -130,7 +130,7 @@ def profil_experience():
     if form.is_submitted():
         if form.add_experience.data:
             form.experience_entries.append_entry()
-        elif form.remove_experience.data:
+        elif form.remove_experience.data and form.experience_entries.data:
             form.experience_entries.pop_entry()
         elif form.submit.data:
             if form.validate():
