@@ -58,6 +58,7 @@ class GeneralInfoForm(FlaskForm):
     languages = FieldList(FormField(SpokenLanguagesSubform),
                           min_entries=1, max_entries=10)
     add_language = SubmitField('Ajouter une langue')
+    remove_language = SubmitField('Retirer une langue')
     description = TextAreaField("""Présentez-vous en quelques phrases 
     (qui êtes-vous? que recherchez-vous?)""",
                                 render_kw={"rows": 5, "cols": 50})
@@ -89,9 +90,11 @@ class CertificationsForm(FlaskForm):
     driver_licenses = FieldList(FormField(DriverLicensesSubform),
                                 min_entries=0, max_entries=10)
     add_license = SubmitField('Ajouter un permis')
+    remove_license = SubmitField('Retirer un permis')
     other_certifications = FieldList(FormField(OtherCertificationsSubform),
                                      min_entries=0, max_entries=10)
     add_other_certif = SubmitField('Ajouter une certification')
+    remove_other_certif = SubmitField('Retirer une certification')
     submit = SubmitField('Valider et continuer')
 
 
@@ -100,9 +103,9 @@ class FormationExpererienceSubform(FlaskForm):
     class Meta:
         csrf = False
 
-    date_start = DateField('Date de début', format='%d/%m/%Y',
+    date_start = DateField('Date de début (JJ/MM/AAAA)', format='%d/%m/%Y',
                            validators=[DataRequired()])
-    date_end = DateField('Date de fin', format='%d/%m/%Y',
+    date_end = DateField('Date de fin (JJ/MM/AAAA)', format='%d/%m/%Y',
                          validators=[DataRequired()])
     title = StringField('Titre', validators=[DataRequired()])
     institution = StringField('Établissement', validators=[DataRequired()])
@@ -114,6 +117,7 @@ class FormationForm(FlaskForm):
     formation_entries = FieldList(FormField(FormationExpererienceSubform),
                                   min_entries=0, max_entries=10)
     add_formation = SubmitField('Ajouter une formation')
+    remove_formation = SubmitField('Retirer une formation')
     submit = SubmitField('Valider et continuer')
 
 
@@ -122,4 +126,5 @@ class ExperienceForm(FlaskForm):
     experience_entries = FieldList(FormField(FormationExpererienceSubform),
                                    min_entries=0, max_entries=10)
     add_experience = SubmitField('Ajouter une expérience')
+    remove_experience = SubmitField('Retirer une expérience')
     submit = SubmitField('Valider et terminer')

@@ -75,6 +75,8 @@ def profil_info_generales():
     if form.is_submitted():
         if form.add_language.data:
             form.languages.append_entry()
+        elif form.remove_language.data:
+            form.languages.pop_entry()
         elif form.submit.data:
             if form.validate():
                 return redirect(url_for('profil_certifications'))
@@ -90,8 +92,12 @@ def profil_certifications():
     if form.is_submitted():
         if form.add_license.data:
             form.driver_licenses.append_entry()
+        elif form.remove_license.data:
+            form.driver_licenses.pop_entry()
         elif form.add_other_certif.data:
             form.other_certifications.append_entry()
+        elif form.remove_other_certif.data:
+            form.other_certifications.pop_entry()
         elif form.submit.data:
             if form.validate():
                 return redirect(url_for('profil_formation'))
@@ -107,6 +113,8 @@ def profil_formation():
     if form.is_submitted():
         if form.add_formation.data:
             form.formation_entries.append_entry()
+        elif form.remove_formation.data:
+            form.formation_entries.pop_entry()
         elif form.submit.data:
             if form.validate():
                 return redirect(url_for('profil_experience'))
@@ -122,6 +130,8 @@ def profil_experience():
     if form.is_submitted():
         if form.add_experience.data:
             form.experience_entries.append_entry()
+        elif form.remove_experience.data:
+            form.experience_entries.pop_entry()
         elif form.submit.data:
             if form.validate():
                 return redirect(url_for('main'))
