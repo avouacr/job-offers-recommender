@@ -36,10 +36,46 @@ def load_user(id):
 
 
 class SpokenLanguages(db.Model):
-    """Table to store the various languages which user declares."""
+    """Table to store the languages spoken by the user."""
     id = db.Column(db.Integer, primary_key=True)
     language = db.Column(db.String(128))
     level = db.Column(db.String(64))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
+class DriverLicenses(db.Model):
+    """Table to store the driver licenses owned by the user."""
+    id = db.Column(db.Integer, primary_key=True)
+    license_type = db.Column(db.String(10))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
+class OtherCertifications(db.Model):
+    """Table to store the other certifications owned by the user."""
+    id = db.Column(db.Integer, primary_key=True)
+    other_certif = db.Column(db.String(128))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
+class Formation(db.Model):
+    """Table to store the education of the user."""
+    id = db.Column(db.Integer, primary_key=True)
+    start_date = db.Column(db.String(20))
+    end_date = db.Column(db.String(20))
+    institution = db.Column(db.String(128))
+    title = db.Column(db.String(128))
+    description = db.Column(db.Text())
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
+class Experience(db.Model):
+    """Table to store the professional experiences of the user."""
+    id = db.Column(db.Integer, primary_key=True)
+    start_date = db.Column(db.String(20))
+    end_date = db.Column(db.String(20))
+    institution = db.Column(db.String(128))
+    title = db.Column(db.String(128))
+    description = db.Column(db.Text())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
