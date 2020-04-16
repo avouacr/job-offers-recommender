@@ -1,0 +1,22 @@
+#wrapper_1 {
+  /*background-color: pink;*/
+  /*height: 100px;*/
+  float: left;
+  width: 40%;
+}
+/*#wrapper_1:after {*/
+/*  content: "";*/
+/*  background-color: #000;*/
+/*  position: absolute;*/
+/*  width: 5px;*/
+/*  height: 100px;*/
+/*  !*top: 10px;*!*/
+/*  left: 50%;*/
+/*  display: block;*/
+/*}*/
+#wrapper_2 {
+  /*background-color: brown;*/
+  /*height: 100px;*/
+  width: 40%;
+  float: right;
+}
