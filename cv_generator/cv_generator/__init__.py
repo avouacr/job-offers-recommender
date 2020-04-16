@@ -43,12 +43,6 @@ class CV:
         self.education = [
             EducationItem().load(education_item) for education_item in cv_raw['education']
         ] if 'experience' in cv_raw else []
-        self.awards = [
-            AwardItem().load(awards_item) for awards_item in cv_raw['awards']
-        ] if 'awards' in cv_raw else []
-        self.publications = [
-            PublicationItem().load(publications_item) for publications_item in cv_raw['publications']
-        ] if 'publications' in cv_raw else []
         self.languages = [
             LanguageItem().load(languages_item) for languages_item in cv_raw['languages']
         ] if 'languages' in cv_raw else []
@@ -62,15 +56,7 @@ class CV:
             CertificationItem().load(certifications_item) for certifications_item in cv_raw['autres']
         ] if 'autres' in cv_raw else []
 
-        self.courses = [
-            CourseItem().load(courses_item) for courses_item in cv_raw['courses']
-        ] if 'courses' in cv_raw else []
-        self.projects = [
-            ProjectItem().load(projects_item) for projects_item in cv_raw['projects']
-        ] if 'projects' in cv_raw else []
-        self.skills = [
-            SkillItem().load(skills_item) for skills_item in cv_raw['skills']
-        ] if 'skills' in cv_raw else []
+
         return self
 
     def _load_raw_data(self, cv_file_path):
