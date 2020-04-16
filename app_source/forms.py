@@ -103,9 +103,9 @@ class FormationExpererienceSubform(FlaskForm):
     class Meta:
         csrf = False
 
-    date_start = DateField('Date de début (JJ/MM/AAAA)', format='%d/%m/%Y',
+    date_start = DateField('Date de début', format='%d/%m/%Y',
                            validators=[DataRequired()])
-    date_end = DateField('Date de fin (JJ/MM/AAAA)', format='%d/%m/%Y',
+    date_end = DateField('Date de fin', format='%d/%m/%Y',
                          validators=[DataRequired()])
     title = StringField('Titre', validators=[DataRequired()])
     institution = StringField('Établissement', validators=[DataRequired()])
