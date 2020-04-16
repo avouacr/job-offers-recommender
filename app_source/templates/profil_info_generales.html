@@ -13,14 +13,13 @@
                 <h1 class="mb-4">Création de votre profil</h1>
 
 
-                <hr>
                 <!--<div class="col-lg-8 mx-auto col-md-10 col-12">-->
                 <form action="" method="post" class="contact-form" novalidate %data-aos="fade-up" data-aos-delay="300"
                       role="form">
                     <h1 class="mb-1">
-                        <div style="text-align: center;"><strong>informations générales</strong></div>
+                        <hr><div style="text-align: center;"><strong>informations générales</strong></div>
                     </h1>
-                    <hr>
+
                     {{ form.hidden_tag() }}
 
 
@@ -60,8 +59,7 @@
                     </p>
                     </p>
                     <h1 class="mb-4">
-                        <center><strong>langues parlées</strong></center>
-                        <hr>
+                        <hr><center><strong>langues parlées</strong></center>
                     </h1>
                     {% for subform in form.languages %}
                     <div class="container">
@@ -88,8 +86,8 @@
 
                         </p>
                         <h1 class="mb-4">
-                            <center><strong>présentation</strong></center>
-                            <hr>
+                             <hr><center><strong>présentation</strong></center>
+
                         </h1>
 
                         <p>
