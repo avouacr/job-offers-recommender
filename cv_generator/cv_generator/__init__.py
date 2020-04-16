@@ -28,6 +28,8 @@ class CV:
     def __init__(self, logger):
         self.logger = logger
 
+
+
     def load(self, cv_file_path, cv_schema_path):
         cv_raw = self._load_raw_data(cv_file_path)
         self._validate_raw_data(cv_raw, cv_schema_path)
