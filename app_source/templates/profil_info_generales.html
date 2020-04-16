@@ -2,62 +2,101 @@
 
 {% block content %}
 
-    <h1>Création d'un profil</h1>
-    <h2>Informations générales</h2>
+<section class="contact section-padding">
+    <div class="container">
+        <div class="row">
 
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.last_name.label }}<br>
-            {{ form.last_name(size=32) }}<br>
-            {% if form.last_name.errors %}
-                <span style="color: red;">Ce champ doit être complété.</span>
-            {% endif %}
-        </p>
-        <p>
-            {{ form.first_name.label }}<br>
-            {{ form.first_name(size=32) }}<br>
-            {% if form.first_name.errors %}
-                <span style="color: red;">Ce champ doit être complété.</span>
-            {% endif %}
-        </p>
-        <p>
-            {{ form.phone_number.label }}<br>
-            {{ form.phone_number(size=32) }}<br>
-            {% if form.phone_number.errors %}
-                <span style="color: red;">Ce champ doit être complété.</span>
-            {% endif %}
-        </p>
-        <p>
-            {{ form.city.label }}<br>
-            {{ form.city(size=32) }}<br>
-            {% if form.city.errors %}
-                <span style="color: red;">Ce champ doit être complété.</span>
-            {% endif %}
-        </p>
-        <p>
-            {{ form.mobility.label }}<br>
-            {{ form.mobility }}
-        </p>
-        <p>
-            Langues parlées<br>
-            {% for subform in form.languages %}
-                {{ subform.language.label }}
-                {{ subform.language }}
-                {{ subform.level.label }}
-                {{ subform.level}}<br>
-            {% endfor %}
-            {{ form.add_language }}
-        </p>
-        <p>
-            {{ form.description.label }}<br>
-            {{ form.description }}<br>
-            {% if form.description.errors %}
-                <span style="color: red;">Ce champ doit être complété.</span>
-            {% endif %}
-        </p>
-        <p>{{ form.submit }}</p>
-    </form>
+            <div class="col-lg-6 mx-auto col-md-7 col-12 py-5 mt-5 text-center" data-aos="fade-up">
+
+                <h1 class="mb-4">Création de votre profil</h1>
+
+            </div>
+            <div class="form-inline">
+<!--<div class="col-lg-8 mx-auto col-md-10 col-12">-->
+                    <form action="" method="post" class="contact-form" novalidate %data-aos="fade-up" data-aos-delay="300" role="form">
+                        <h1 class="mb-4">
+                            <div style="text-align: center;"><strong>informations générales</strong></div>
+                        </h1>
+                        {{ form.hidden_tag() }}
+
+
+                        <div class="row">
+                            <div class="col-lg-6 col-12">
+                                {{ form.last_name(size=32, class="form-control", placeholder="Nom") }}<br>
+                                {% if form.last_name.errors %}
+                                <span style="color: red;">Ce champ doit être complété.</span>
+                                {% endif %}
+
+                            </div>
+
+                            <div class="col-lg-6 col-12">
+                                {{ form.first_name(size=32, class="form-control", placeholder="Prénom") }}<br>
+                                {% if form.first_name.errors %}
+                                <span style="color: red;">Ce champ doit être complété.</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <p>
+                        </p>
+                        <p>
+                            {{ form.phone_number(size=32, class="form-control", placeholder="Numéro de téléphone")
+                            }}<br>
+                            {% if form.phone_number.errors %}
+                            <span style="color: red;">Ce champ doit être complété.</span>
+                            {% endif %}
+                        </p>
+                        <p>
+                            {{ form.city(size=32, class="form-control", placeholder="Ville") }}<br>
+                            {% if form.city.errors %}
+                            <span style="color: red;">Ce champ doit être complété.</span>
+                            {% endif %}
+                        </p>
+                        <p>
+                        <p><b><font color="#696969">je cherche du travail autour de ma {{ form.mobility }}</font></b>
+                        </p>
+                        </p>
+                        <h1 class="mb-4">
+                            <center><strong>langues parlées</strong></center>
+                        </h1>
+                        <p>
+                            {% for subform in form.languages %}
+                        <div class="col-lg-6 col-12">
+                            {{ subform.language.label }}
+                            {{ subform.language() }} <br>
+
+                            </div>
+
+                            <div class="col-lg-6 col-12">
+                            {{ subform.level.label }}
+                            {{ subform.level()}}<br>
+                                 <hr>
+                            </div>
+
+                            {% endfor %}
+                            {{ form.add_language }}
+                        </p>
+                        <h1 class="mb-4">
+                            <center><strong>présentation</strong></center>
+                        </h1>
+
+                        <p>
+                            {{ form.description( class="form-control", placeholder="Présentez-vous en quelques phrases  (qui êtes-vous? que recherchez-vous?)") }}<br>
+                            {% if form.description.errors %}
+                            <span style="color: red;">Ce champ doit être complété.</span>
+                            {% endif %}
+                        </p>
+                        <p>{{ form.submit( class="form-control",id="submit-button") }}</p>
+                    </form>
+
+
+                    <!-- Follow https://templatemo.com/contact page to setup your own contact form -->
+
+                </div>
+
+        </div>
+    </div>
+</section>
+
 
 <!--For debugging-->
 
