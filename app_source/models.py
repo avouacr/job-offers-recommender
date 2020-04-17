@@ -79,6 +79,13 @@ class Experience(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
+class ProfilCompleted(db.Model):
+    """Table to test whether users have completed their profile."""
+    id = db.Column(db.Integer, primary_key=True)
+    completed = db.Column(db.Boolean())
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
 class JobOffers(db.Model):
     """Table to store job offers data."""
     id = db.Column(db.Integer, primary_key=True)

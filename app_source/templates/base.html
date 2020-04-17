@@ -65,6 +65,16 @@ https://templatemo.com/tm-538-digital-trend
         </div>
     </nav>
 
+     <div class="error">
+     {% with messages = get_flashed_messages() %}
+   {% if messages %}
+      {% for message in messages %}
+         {{ message }}
+      {% endfor %}
+   {% endif %}
+{% endwith %}
+</div>
+
      <!-- CONTENT -->
 
     {% block content %}

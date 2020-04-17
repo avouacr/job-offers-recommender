@@ -1,14 +1,16 @@
 import os
 import logging
+from datetime import date
 
 from flask import render_template, flash, redirect, url_for, request, send_file
 from app_source import app, models
-from app_source.forms import *
+from app_source.forms import LoginForm, RegistrationForm, GeneralInfoForm
+from app_source.forms import CertificationsForm, FormationForm, ExperienceForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app_source.models import User, SpokenLanguages, DriverLicenses, OtherCertifications
-from app_source.models import Formation, Experience
+from app_source.models import Formation, Experience, ProfilCompleted
 from werkzeug.urls import url_parse
-from datetime import date
+
 from cv_generator import cv_generator
 from cv_generator.cv_generator.themes.developer import ThemeDeveloper
 
@@ -216,6 +218,10 @@ def profil_experience():
                                        user_id=user_id)
                     models.db.session.add(entry)
 
+                # Keep track when users has completed their profile
+                entry = ProfilCompleted(completed=True, user_id=user_id)
+                models.db.session.add(entry)
+
                 models.db.session.commit()
                 return redirect(url_for('main'))
     return render_template('profil_experience.html',
@@ -227,6 +233,13 @@ def profil_experience():
 @login_required
 def generation_cv():
 
+    # Print error message if the user has not completed his profile yet
+    user_id = current_user.id
+    has_completed = ProfilCompleted.query.filter_by(user_id=user_id).first()
+    if has_completed is None:
+        flash("Vous devez d'abord compléter votre profil.")
+        return redirect(url_for('main'))
+
     # Initialize dictionary that holds CV info
     cv_dict = {
         'lang': "fr-FR",
@@ -234,7 +247,6 @@ def generation_cv():
     }
 
     # Add general user info
-    user_id = current_user.id
     user = User.query.filter_by(id=user_id).first()
     cv_dict['basic'] = {
         'name': user.first_name,
