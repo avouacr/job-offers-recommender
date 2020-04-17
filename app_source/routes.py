@@ -5,6 +5,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from app_source.models import User, SpokenLanguages, DriverLicenses, OtherCertifications
 from app_source.models import Formation, Experience
 from werkzeug.urls import url_parse
+from datetime import date
 
 
 @app.route('/')
@@ -220,6 +221,77 @@ def profil_experience():
 @app.route('/generation_cv/')
 @login_required
 def generation_cv():
+
+    # Initialize dictionary that holds CV info
+    cv_dict = {
+        'lang': "fr-FR",
+        'last_update': date.today().strftime("%Y-%m-%d"),
+    }
+
+    # Add general user info
+    user_id = current_user.id
+    user = User.query.filter_by(id=user_id).first()
+    cv_dict['basic'] = {
+        'name': user.first_name,
+        'surnames': user.last_name,
+        'residence': user.city,
+        'disponibilite_geographique': user.mobility,
+        'biography': user.description
+    }
+    cv_dict['contact'] = {
+        'email': user.username,
+        'phone': user.phone_number
+    }
+
+    # Add spoken languages
+    languages_query = SpokenLanguages.query.filter_by(user_id=user_id).all()
+    languages_entries = []
+    for entry in languages_query:
+        dic_entry = {'name': entry.language + ' : ' + entry.level}
+        languages_entries.append(dic_entry)
+    cv_dict['languages'] = languages_entries
+
+    # Add certifications
+    licenses_query = DriverLicenses.query.filter_by(user_id=user_id).all()
+    other_certif_query = OtherCertifications.query.filter_by(user_id=user_id).all()
+    certifications_entries = []
+    for entry in licenses_query:
+        dic_entry = {'name': 'Permis ' + entry.license_type}
+        certifications_entries.append(dic_entry)
+    for entry in other_certif_query:
+        dic_entry = {'name': entry.other_certif}
+        certifications_entries.append(dic_entry)
+    cv_dict['certifications'] = certifications_entries
+
+    # Add education
+    education_query = Formation.query.filter_by(user_id=user_id).all()
+    education_entries = []
+    for entry in education_query:
+        dic_entry = {
+            'institution': entry.institution,
+            'degree': entry.title,
+            'date_start': entry.start_date,
+            'date_end': entry.end_date,
+            'description': entry.description
+        }
+        education_entries.append(dic_entry)
+    cv_dict['education'] = education_entries
+
+    # Add experience
+    experience_query = Experience.query.filter_by(user_id=user_id).all()
+    experience_entries = []
+    for entry in experience_query:
+        dic_entry = {
+            'institution': entry.institution,
+            'position': entry.title,
+            'date_start': entry.start_date,
+            'date_end': entry.end_date,
+            'description': entry.description
+        }
+        experience_entries.append(dic_entry)
+    cv_dict['experience'] = experience_entries
+
+
     return render_template('generation_cv.html', title="Génération de CV")
 
 
