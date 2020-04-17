@@ -1,9 +1,9 @@
-import cv_generator
+import cv_generator.cv_generator
 import pylatex
 from pylatex import Command
 
 
-class ThemeDeveloper(cv_generator.BaseTheme):
+class ThemeDeveloper(cv_generator.cv_generator.BaseTheme):
     class BarChart(pylatex.base_classes.Environment):
         _latex_name = 'barchart'
 

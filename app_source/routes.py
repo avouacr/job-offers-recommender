@@ -1,3 +1,6 @@
+import os
+import logging
+
 from flask import render_template, flash, redirect, url_for, request
 from app_source import app, models
 from app_source.forms import *
@@ -6,6 +9,8 @@ from app_source.models import User, SpokenLanguages, DriverLicenses, OtherCertif
 from app_source.models import Formation, Experience
 from werkzeug.urls import url_parse
 from datetime import date
+from cv_generator import cv_generator
+from cv_generator.cv_generator.themes.developer import ThemeDeveloper
 
 
 @app.route('/')
@@ -291,6 +296,29 @@ def generation_cv():
         experience_entries.append(dic_entry)
     cv_dict['experience'] = experience_entries
 
+    # Quick fix
+    # TODO : make CV sections truly conditional
+    cv_dict['informatique'] = [{"name": "Microsoft Office"}]
+    cv_dict['autres'] = [{"name": "Danse"}]
+
+
+    # Create a logging.Logger object to be used in the CV generation
+    logging.basicConfig(level=logging.INFO,
+                        format='%(asctime)s - [%(levelname)s] %(message)s',
+                        datefmt='%Y-%m-%d %H:%M:%S')
+    logger = logging.getLogger('cv_generator')
+    logger.propagate = True
+
+    # Generate CV
+    cv_schema_path = 'cv_generator/cv.schema.json'
+    cv = cv_generator.CV(logger).load(cv_dict, cv_schema_path)
+    themes_dict = {
+        'developer': ThemeDeveloper,
+    }
+    theme = themes_dict['developer'](cv, logger)
+    file_name = user.last_name.lower() + '_' + user.first_name.lower()
+    file_path = 'generated_CVs' + os.sep + '{}'.format(file_name)
+    theme.save(file_path, keep_tex=False)
 
     return render_template('generation_cv.html', title="Génération de CV")
 
