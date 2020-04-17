@@ -1,7 +1,7 @@
 import os
 import logging
 
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, send_file
 from app_source import app, models
 from app_source.forms import *
 from flask_login import current_user, login_user, logout_user, login_required
@@ -296,7 +296,7 @@ def generation_cv():
         experience_entries.append(dic_entry)
     cv_dict['experience'] = experience_entries
 
-    # Quick fix
+    # Quick fix for missing sections
     # TODO : make CV sections truly conditional
     cv_dict['informatique'] = [{"name": "Microsoft Office"}]
     cv_dict['autres'] = [{"name": "Danse"}]
@@ -317,10 +317,17 @@ def generation_cv():
     }
     theme = themes_dict['developer'](cv, logger)
     file_name = user.last_name.lower() + '_' + user.first_name.lower()
-    file_path = 'generated_CVs' + os.sep + '{}'.format(file_name)
+    file_name_full = file_name + '.pdf'
+    file_path = 'generated_cv' + os.sep + '{}'.format(file_name)
+    file_path_full = file_path + '.pdf'
     theme.save(file_path, keep_tex=False)
 
-    return render_template('generation_cv.html', title="Génération de CV")
+    return send_file('../' + file_path_full,
+                     mimetype='application/pdf',
+                     attachment_filename=file_name_full,
+                     as_attachment=True)
+
+    # return render_template('generation_cv.html', title="Génération de CV")
 
 
 @app.route('/offres_recommandees/')
