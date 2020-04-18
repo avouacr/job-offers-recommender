@@ -347,4 +347,14 @@ def generation_cv():
 @app.route('/offres_recommandees/')
 @login_required
 def offres_recommandees():
-    return render_template('offres_recommandees.html', title="Offres recommandées")
+
+    # Print error message if the user has not completed his profile yet
+    user_id = current_user.id
+    has_completed = ProfilCompleted.query.filter_by(user_id=user_id).first()
+    if has_completed is None:
+        flash("Vous devez d'abord compléter votre profil.")
+        return redirect(url_for('main'))
+
+
+
+    return render_template('recommended_offers.html', title="Offres recommandées")
