@@ -106,6 +106,7 @@ class FormationExpererienceSubform(FlaskForm):
     title = StringField('Titre', validators=[DataRequired()])
     institution = StringField('Établissement', validators=[DataRequired()])
     desc = TextAreaField('Description', render_kw={"rows": 5, "cols": 50})
+    is_relevant = BooleanField("Cette expérience est pertinente pour ma recherche d'emploi actuelle")
 
 
 class FormationForm(FlaskForm):

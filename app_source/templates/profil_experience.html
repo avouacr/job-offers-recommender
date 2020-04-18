@@ -59,6 +59,8 @@
                     </div>
 
                         {{ subform.desc( class="form-control", placeholder="Description") }}
+                        {{ subform.is_relevant.label( class="form-control", placeholder="Description") }}<br>
+                        {{ subform.is_relevant( class="form-control", placeholder="Description") }}
                         {% endfor %}
                         {{ form.add_experience(class="btn btn-info btn-sm")}}
                         {{ form.remove_experience(class="btn btn-warning btn-sm")}}

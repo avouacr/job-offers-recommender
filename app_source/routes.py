@@ -210,11 +210,13 @@ def profil_experience():
                     institution = subform['institution']
                     title = subform['title']
                     description = subform['desc']
+                    is_relevant = subform['is_relevant']
                     entry = Experience(start_date=start_date,
                                        end_date=end_date,
                                        institution=institution,
                                        title=title,
                                        description=description,
+                                       relevant_for_jobsearch=is_relevant,
                                        user_id=user_id)
                     models.db.session.add(entry)
 

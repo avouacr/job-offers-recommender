@@ -76,6 +76,7 @@ class Experience(db.Model):
     institution = db.Column(db.String(128))
     title = db.Column(db.String(128))
     description = db.Column(db.Text())
+    relevant_for_jobsearch = db.Column(db.Boolean())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
