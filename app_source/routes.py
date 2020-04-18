@@ -37,6 +37,7 @@ def login():
         user = User.query.filter_by(username=login_form.username.data).first()
         if user is None or not user.check_password(login_form.password.data):
             flash('Utilisateur inconnu ou mot de passe invalide.')
+            # TODO: enable flashed messages to be rendered
             return redirect(url_for('login'))
         # Register the user as logged in and display main page of the app
         login_user(user)
