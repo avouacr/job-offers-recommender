@@ -81,6 +81,7 @@ if __name__ == '__main__':
     doc_vectors = fasttext_wv_avg_corpus(df_offers['description'].values,
                                          n_jobs=cpu_count())
 
+    # Safety checks
     assert doc_vectors.shape[0] == df_offers.shape[0]
     assert doc_vectors.shape[1] == fasttext_model.get_dimension()
 
