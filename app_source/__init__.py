@@ -19,3 +19,8 @@ app.static_folder = 'static'
 def init_db():
     """Enable database (re)initialization."""
     models.init_db()
+
+@app.cli.command('update_job_offers')
+def update_job_offers():
+    """Update job offers using newly scraped data."""
+    models.update_job_offers()

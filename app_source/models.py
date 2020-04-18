@@ -1,10 +1,20 @@
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+import pandas as pd
+from multiprocessing import cpu_count
+
 from app_source import app, login
 
 # Instantiate database
 db = SQLAlchemy(app)
+
+def init_db():
+    """Helper function to perform database (re)initialization."""
+    db.drop_all()
+    db.create_all()
+    db.session.commit()
+    print('Database initialized.')
 
 
 class User(UserMixin, db.Model):
@@ -89,16 +99,61 @@ class ProfilCompleted(db.Model):
 
 class JobOffers(db.Model):
     """Table to store job offers data."""
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(120))
-    description = db.Column(db.String(120))
+    id = db.Column(db.String(10), primary_key=True)
+    intitule = db.Column(db.Text())
+    description = db.Column(db.Text())
     # TODO: add all relevant fields
-    # TODO: set appropriate string lengths by looking at actual max lengths
 
 
-def init_db():
-    """Helper function to perform database (re)initialization."""
-    db.drop_all()
-    db.create_all()
+class OfferVectors(db.Model):
+    """Table to store job offers vector representations."""
+    id = db.Column(db.Integer, primary_key=True)
+    vector = db.Column(db.Text())
+    offer_id = db.Column(db.String(10), db.ForeignKey('job_offers.id'))
+
+
+def update_job_offers():
+    """Helper function to periodically update job offers data."""
+
+    # Import current job offers
+    df_offers = pd.read_csv('data/all_offers.csv', nrows=1000,
+                            usecols=['id', 'intitule', 'description'])
+    df_offers = df_offers.drop_duplicates('id')
+    df_offers['intitule'] = df_offers['intitule'].astype(str)
+    df_offers['description'] = df_offers['description'].astype(str)
+
+    # Remove outdated offers
+    ids_in_db = [x[0] for x in JobOffers.query.with_entities(JobOffers.id).all()]
+    ids_to_remove = [id for id in ids_in_db if id not in df_offers.id.values]
+    for id in ids_to_remove:
+        JobOffers.query.filter_by(id=id).delete()
+        OfferVectors.query.filter_by(offer_id=id).delete()
+    ids_in_db = [x[0] for x in JobOffers.query.with_entities(JobOffers.id).all()]
+
+    # Process new job offers
+    ids_to_add = [id for id in df_offers.id.values if id not in ids_in_db]
+
+    # Compute document vectors
+    print('Importing FastText model.')
+    from doc_embeddings import fasttext_embeddings
+    print('Computing vectors of new job offers.')
+    df_new_offers = df_offers[df_offers.id.isin(ids_to_add)]
+    new_vectors = fasttext_embeddings.fasttext_wv_avg_corpus(df_new_offers['description'],
+                                                             n_jobs=cpu_count()-1)
+
+    # Safety checks
+    assert new_vectors.shape[0] == df_new_offers.shape[0]
+    assert new_vectors.shape[1] == 300 # FastText word vectors dimension
+
+    # Update database
+    print('Adding new offers to database.')
+    entries = []
+    for i in range(df_new_offers.shape[0]):
+        row = df_new_offers.iloc[i]
+        entries.append(JobOffers(id=row.id, intitule=row.intitule,
+                                       description=row.description))
+        entries.append(OfferVectors(vector=str(list(new_vectors[i])),
+                                    offer_id=row.id))
+
+    db.session.add_all(entries)
     db.session.commit()
-    print('Database initialized.')
