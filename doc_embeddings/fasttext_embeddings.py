@@ -1,8 +1,7 @@
 
 import re
-from multiprocessing import Pool, cpu_count
+from multiprocessing import Pool
 from urllib import request
-import pandas as pd
 import numpy as np
 
 import unidecode
@@ -61,9 +60,13 @@ def fasttext_wv_avg(doc):
 
     return text_vec
 
-
-def fasttext_wv_avg_corpus(corpus, n_jobs=cpu_count()-1):
-    """Parallelize preprocessing and document vectors computation."""
-    with Pool(n_jobs) as p:
-        corpus_prepro = p.map(fasttext_wv_avg, list(corpus))
+def compute_vectors(corpus, n_jobs=1):
+    """Compute document vectors over the whole corpus."""
+    if n_jobs == 1:
+        corpus_prepro = []
+        for doc in corpus:
+            corpus_prepro.append(fasttext_wv_avg(doc))
+    elif n_jobs > 1:
+        with Pool(n_jobs) as p:
+            corpus_prepro = p.map(fasttext_wv_avg, list(corpus))
     return np.array(corpus_prepro)

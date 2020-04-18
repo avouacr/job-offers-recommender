@@ -116,7 +116,7 @@ def update_job_offers():
     """Helper function to periodically update job offers data."""
 
     # Import current job offers
-    df_offers = pd.read_csv('data/all_offers.csv', nrows=1000,
+    df_offers = pd.read_csv('data/all_offers.csv',
                             usecols=['id', 'intitule', 'description'])
     df_offers = df_offers.drop_duplicates('id')
     df_offers['intitule'] = df_offers['intitule'].astype(str)
@@ -128,6 +128,7 @@ def update_job_offers():
     for id in ids_to_remove:
         JobOffers.query.filter_by(id=id).delete()
         OfferVectors.query.filter_by(offer_id=id).delete()
+    db.session.commit()
     ids_in_db = [x[0] for x in JobOffers.query.with_entities(JobOffers.id).all()]
 
     # Process new job offers
@@ -136,24 +137,25 @@ def update_job_offers():
     # Compute document vectors
     print('Importing FastText model.')
     from doc_embeddings import fasttext_embeddings
-    print('Computing vectors of new job offers.')
     df_new_offers = df_offers[df_offers.id.isin(ids_to_add)]
-    new_vectors = fasttext_embeddings.fasttext_wv_avg_corpus(df_new_offers['description'],
-                                                             n_jobs=cpu_count()-1)
-
-    # Safety checks
-    assert new_vectors.shape[0] == df_new_offers.shape[0]
-    assert new_vectors.shape[1] == 300 # FastText word vectors dimension
+    print('Computing job offers vector representations.')
+    new_vectors = fasttext_embeddings.compute_vectors(df_new_offers['description'],
+                                                      n_jobs=cpu_count())
 
     # Update database
     print('Adding new offers to database.')
     entries = []
-    for i in range(df_new_offers.shape[0]):
+    for i, vec in enumerate(new_vectors):
         row = df_new_offers.iloc[i]
         entries.append(JobOffers(id=row.id, intitule=row.intitule,
                                        description=row.description))
-        entries.append(OfferVectors(vector=str(list(new_vectors[i])),
+        entries.append(OfferVectors(vector=str(list(vec)),
                                     offer_id=row.id))
+        if (i % 1000 == 0) & (i > 0):
+            # Add entries by bulk to prevent overload
+            db.session.add_all(entries)
+            db.session.commit()
+            entries = []
 
     db.session.add_all(entries)
     db.session.commit()
