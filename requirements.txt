@@ -9,3 +9,6 @@ PyYAML==5.3.1
 requests==2.23.0
 Unidecode==1.1.1
 fasttext==0.9.1
+scikit-learn==0.22.2.post1
+pandas==1.0.3
+numpy==1.18.2
