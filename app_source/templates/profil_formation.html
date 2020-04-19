@@ -27,16 +27,16 @@
 
                     <div class="row">
                         <div class="col-lg-6 col-12">
-                            {{ subform.date_start(size=32, class="form-control", placeholder="Date de début (format : JJ/MM/AAAA)")}}
+                            {{ subform.date_start(size=32, class="form-control", placeholder="Date de début (format : MM/AAAA)")}}
                             {% if subform.date_start.errors %}
-                            <span style="color: red;">La date doit être au format JJ/MM/AAAA.</span>
+                            <span style="color: red;">La date doit être au format MM/AAAA.</span>
                             {% endif %}
                         </div>
 
                         <div class="col-lg-6 col-12">
-                            {{ subform.date_end(size=32, class="form-control", placeholder="Date de fin (format : JJ/MM/AAAA)")}}
+                            {{ subform.date_end(size=32, class="form-control", placeholder="Date de fin (format : MM/AAAA)")}}
                             {% if subform.date_end.errors %}
-                            <span style="color: red;">La date doit être au format JJ/MM/AAAA.</span>
+                            <span style="color: red;">La date doit être au format MM/AAAA.</span>
                             {% endif %}
                         </div>
                     </div>
