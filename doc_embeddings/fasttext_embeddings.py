@@ -77,11 +77,11 @@ def compute_vectors(corpus, n_jobs=1):
 if __name__ == '__main__':
     # Load job offers in the current db
     print('Load job offers.')
-    df_offers = pd.read_csv('data/all_offers.csv', nrows=10000,
+    df_offers = pd.read_csv('data/all_offers_nodup.csv',
                             usecols=['id', 'description'])
     # TODO: handle duplicates and string conversion while generating the csv
-    df_offers = df_offers.drop_duplicates()
-    df_offers['description'] = df_offers['description'].astype(str)
+    # df_offers = df_offers.drop_duplicates()
+    # df_offers['description'] = df_offers['description'].astype(str)
 
     # Compute document representations using FastText model
     print('Compute FastText representations of job offers.')

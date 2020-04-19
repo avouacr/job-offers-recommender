@@ -1,9 +1,9 @@
 import os
 import logging
 from datetime import date
-from ast import literal_eval
 
 import numpy as np
+import pandas as pd
 from flask import render_template, flash, redirect, url_for, request, send_file
 from app_source import app, models
 from app_source.forms import LoginForm, RegistrationForm, GeneralInfoForm
@@ -11,8 +11,9 @@ from app_source.forms import CertificationsForm, FormationForm, ExperienceForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app_source.models import User, SpokenLanguages, DriverLicenses, OtherCertifications
 from app_source.models import Formation, Experience, ProfilCompleted
-from app_source.models import JobOffers, OfferVectors
+# from app_source.models import JobOffers, OfferVectors
 from werkzeug.urls import url_parse
+from sklearn.metrics.pairwise import cosine_similarity
 
 from cv_generator import cv_generator
 from cv_generator.cv_generator.themes.developer import ThemeDeveloper
@@ -353,7 +354,7 @@ def generation_cv():
 def offres_recommandees():
 
     # Print error message if the user has not completed his profile yet
-    user_id = 1
+    user_id = current_user.id
     has_completed = ProfilCompleted.query.filter_by(user_id=user_id).first()
     if has_completed is None:
         flash("Vous devez d'abord compléter votre profil.")
@@ -369,7 +370,14 @@ def offres_recommandees():
     relevant_vectors = fasttext_embeddings.compute_vectors(relevant_texts, n_jobs=1)
 
     # Compute similarities with job offers representations
+    df_offers = pd.read_csv('data/all_offers_nodup.csv')
+    offer_vectors = np.load('data/offers_fasttext.npy')
+    similarities = cosine_similarity(relevant_vectors, offer_vectors)
 
-
+    # Rank job offers by similarity with the user info
+    similarities_indices = list(zip(similarities.ravel(),
+                                    list(range(similarities.shape[1])) * similarities.shape[0]))
+    similarities_ranked = sorted(similarities_indices, key=lambda x: x[0], reverse=True)
+    indices_ranked = [x[1] for x in similarities_ranked]
 
     return render_template('recommended_offers.html', title="Offres recommandées")

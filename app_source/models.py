@@ -116,11 +116,7 @@ def update_job_offers():
     """Helper function to periodically update job offers data."""
 
     # Import current job offers
-    df_offers = pd.read_csv('data/all_offers.csv', nrows=10000,
-                            usecols=['id', 'intitule', 'description'])
-    df_offers = df_offers.drop_duplicates('id')
-    df_offers['intitule'] = df_offers['intitule'].astype(str)
-    df_offers['description'] = df_offers['description'].astype(str)
+    df_offers = pd.read_csv('data/all_offers_nodup.csv')
 
     # Remove outdated offers from db
     ids_in_db = [x[0] for x in JobOffers.query.with_entities(JobOffers.id).all()]
