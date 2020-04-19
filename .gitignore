@@ -2,13 +2,15 @@
 cv_tests/
 private/
 models/
-data/all_offers.csv
+data/
 __pycache__
 app.db
 generated_cv/
 doc_embeddings/representations/
 config.py
 
+!data/french_driver_licenses.txt
+!data/languages_list.txt
 
 
 
