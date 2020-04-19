@@ -1,7 +1,9 @@
 import os
 import logging
 from datetime import date
+from ast import literal_eval
 
+import numpy as np
 from flask import render_template, flash, redirect, url_for, request, send_file
 from app_source import app, models
 from app_source.forms import LoginForm, RegistrationForm, GeneralInfoForm
@@ -9,6 +11,7 @@ from app_source.forms import CertificationsForm, FormationForm, ExperienceForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app_source.models import User, SpokenLanguages, DriverLicenses, OtherCertifications
 from app_source.models import Formation, Experience, ProfilCompleted
+from app_source.models import JobOffers, OfferVectors
 from werkzeug.urls import url_parse
 
 from cv_generator import cv_generator
@@ -350,11 +353,22 @@ def generation_cv():
 def offres_recommandees():
 
     # Print error message if the user has not completed his profile yet
-    user_id = current_user.id
+    user_id = 1
     has_completed = ProfilCompleted.query.filter_by(user_id=user_id).first()
     if has_completed is None:
         flash("Vous devez d'abord compléter votre profil.")
         return redirect(url_for('main'))
+
+    # Compute representations of user description and relevant experiences
+    description = User.query.filter_by(id=user_id).first().description
+    exp_entries = Experience.query.filter_by(user_id=user_id).all()
+    experiences_description = [x.description for x in exp_entries
+                               if x.relevant_for_jobsearch]
+    relevant_texts = [description] + experiences_description
+    from doc_embeddings import fasttext_embeddings
+    new_vectors = fasttext_embeddings.compute_vectors(relevant_texts, n_jobs=1)
+
+    # Compute similarities with job offers representations
 
 
 

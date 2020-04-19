@@ -68,5 +68,6 @@ def compute_vectors(corpus, n_jobs=1):
             corpus_prepro.append(fasttext_wv_avg(doc))
     elif n_jobs > 1:
         with Pool(n_jobs) as p:
-            corpus_prepro = p.map(fasttext_wv_avg, list(corpus))
+            corpus_prepro = p.map(fasttext_wv_avg, corpus)
+
     return np.array(corpus_prepro)
