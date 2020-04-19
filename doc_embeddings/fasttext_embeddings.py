@@ -1,7 +1,6 @@
 
 import re
 from multiprocessing import Pool, cpu_count
-from urllib import request
 
 import numpy as np
 import pandas as pd
@@ -10,20 +9,22 @@ import fasttext.util
 
 
 def import_stopwords():
-    """Download and import French stopwords."""
-    URL = 'https://raw.githubusercontent.com/stopwords-iso/stopwords-fr/master/stopwords-fr.txt'
-    response = request.urlopen(URL)
-    stopwords = response.read().decode('utf-8').splitlines()
+    """Import list of French stopwords.
+
+    Source : https://github.com/stopwords-iso/stopwords-fr
+    """
+    with open('data/stopwords-fr.txt', 'r') as f:
+        stopwords = f.read().splitlines()
     stopwords = [unidecode.unidecode(x) for x in stopwords]
     return stopwords
 
+fr_stopwords = import_stopwords()
 
 def preprocess_and_tokenize(doc):
     """Preprocess document, tokenize and remove stop words."""
     doc = doc.lower()
     doc = unidecode.unidecode(doc)
     tokens = re.findall(r'\b\w\w+\b', doc)
-    fr_stopwords = import_stopwords()
     tokens = [x for x in tokens if x not in fr_stopwords]
     return tokens
 
@@ -79,9 +80,9 @@ if __name__ == '__main__':
     print('Load job offers.')
     df_offers = pd.read_csv('data/all_offers_nodup.csv',
                             usecols=['id', 'description'])
+    df_offers['description'] = df_offers['description'].astype(str)
     # TODO: handle duplicates and string conversion while generating the csv
     # df_offers = df_offers.drop_duplicates()
-    # df_offers['description'] = df_offers['description'].astype(str)
 
     # Compute document representations using FastText model
     print('Compute FastText representations of job offers.')
