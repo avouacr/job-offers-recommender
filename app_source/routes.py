@@ -366,7 +366,7 @@ def offres_recommandees():
                                if x.relevant_for_jobsearch]
     relevant_texts = [description] + experiences_description
     from doc_embeddings import fasttext_embeddings
-    new_vectors = fasttext_embeddings.compute_vectors(relevant_texts, n_jobs=1)
+    relevant_vectors = fasttext_embeddings.compute_vectors(relevant_texts, n_jobs=1)
 
     # Compute similarities with job offers representations
 

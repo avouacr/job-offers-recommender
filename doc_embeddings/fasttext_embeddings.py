@@ -1,9 +1,10 @@
 
 import re
-from multiprocessing import Pool
+from multiprocessing import Pool, cpu_count
 from urllib import request
-import numpy as np
 
+import numpy as np
+import pandas as pd
 import unidecode
 import fasttext.util
 
@@ -71,3 +72,27 @@ def compute_vectors(corpus, n_jobs=1):
             corpus_prepro = p.map(fasttext_wv_avg, corpus)
 
     return np.array(corpus_prepro)
+
+
+if __name__ == '__main__':
+    # Load job offers in the current db
+    print('Load job offers.')
+    df_offers = pd.read_csv('data/all_offers.csv', nrows=10000,
+                            usecols=['id', 'description'])
+    # TODO: handle duplicates and string conversion while generating the csv
+    df_offers = df_offers.drop_duplicates()
+    df_offers['description'] = df_offers['description'].astype(str)
+
+    # Compute document representations using FastText model
+    print('Compute FastText representations of job offers.')
+    doc_vectors = compute_vectors(df_offers['description'].values,
+                                  n_jobs=cpu_count())
+
+    # Safety checks
+    assert doc_vectors.shape[0] == df_offers.shape[0]
+    assert doc_vectors.shape[1] == fasttext_model.get_dimension()
+
+    # Store document vectors
+    print('Save results.')
+    np.save('data/offers_fasttext.npy',
+            doc_vectors)
