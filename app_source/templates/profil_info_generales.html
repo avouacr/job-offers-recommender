@@ -49,13 +49,19 @@
                         {% endif %}
                     </p>
                     <p>
+                        {{ form.postal_code(size=32, class="form-control", placeholder="Code postal") }}<br>
+                        {% if form.postal_code.errors %}
+                        <span style="color: red;">Veuillez entrer un code postal valide.</span>
+                        {% endif %}
+                    </p>
+                    <p>
                         {{ form.city(size=32, class="form-control", placeholder="Ville") }}<br>
                         {% if form.city.errors %}
                         <span style="color: red;">Ce champ doit être complété.</span>
                         {% endif %}
                     </p>
                     <p>
-                    <p><b><font color="#696969">je cherche du travail autour de ma {{ form.mobility }}</font></b>
+                    <p><b><font color="#696969">je cherche du travail au niveau de ma/mon {{ form.mobility }}</font></b>
                     </p>
                     </p>
                     <h1 class="mb-4">

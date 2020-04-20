@@ -25,6 +25,7 @@ class User(UserMixin, db.Model):
     first_name = db.Column(db.String(64))
     last_name = db.Column(db.String(64))
     phone_number = db.Column(db.String(64))
+    postal_code = db.Column(db.String(10))
     city = db.Column(db.String(64))
     mobility = db.Column(db.String(64))
     description = db.Column(db.Text())
@@ -102,7 +103,6 @@ class JobOffers(db.Model):
     id = db.Column(db.String(10), primary_key=True)
     intitule = db.Column(db.Text())
     description = db.Column(db.Text())
-    # TODO: add all relevant fields
 
 
 class OfferVectors(db.Model):

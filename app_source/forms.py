@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, IntegerField
 from wtforms import TextAreaField, SelectField, FieldList, FormField, DateField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
+from wtforms.validators import Length
 from app_source.models import User
 
 
@@ -47,6 +48,8 @@ class GeneralInfoForm(FlaskForm):
     first_name = StringField('Prénom', validators=[DataRequired()])
     last_name = StringField('Nom', validators=[DataRequired()])
     phone_number = StringField('Numéro de téléphone', validators=[DataRequired()])
+    postal_code = StringField('Code postal', validators=[DataRequired(),
+                                                         Length(min=5, max=5)])
     city = StringField('Ville de résidence', validators=[DataRequired()])
     mobility_choices = ['Ville', 'Département', 'Région', 'France entière']
     mobility = SelectField('Mobilité',

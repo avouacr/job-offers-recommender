@@ -101,6 +101,7 @@ def profil_info_generales():
                 user.first_name = form.first_name.data
                 user.last_name = form.last_name.data
                 user.phone_number = form.phone_number.data
+                user.postal_code = form.postal_code.data
                 user.city = form.city.data
                 user.mobility = form.mobility.data
                 if form.description.data:
@@ -379,5 +380,6 @@ def offres_recommandees():
                                     list(range(similarities.shape[1])) * similarities.shape[0]))
     similarities_ranked = sorted(similarities_indices, key=lambda x: x[0], reverse=True)
     indices_ranked = [x[1] for x in similarities_ranked]
+    # TODO: filter
 
     return render_template('recommended_offers.html', title="Offres recommandées")
