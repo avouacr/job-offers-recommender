@@ -86,37 +86,35 @@ def main():
 @login_required
 def profil_info_generales():
     form = GeneralInfoForm()
-    if form.is_submitted():
-        # Buttons to add/remove a language subform
-        if form.add_language.data:
-            form.languages.append_entry()
-        elif form.remove_language.data and form.languages.data:
-            form.languages.pop_entry()
-        elif form.submit.data:
-            if form.validate():
-                # Add general info to user table
-                user_id = current_user.id
-                user = User.query.filter_by(id=user_id).first()
-                user.first_name = form.first_name.data
-                user.last_name = form.last_name.data
-                user.phone_number = form.phone_number.data
-                user.postal_code = form.postal_code.data
-                user.city = form.city.data
-                user.mobility = form.mobility.data
-                if form.description.data:
-                    user.description = form.description.data
+    if form.validate_on_submit():
+# Buttons to add/remove a language subform
+# if form.add_language.data:
+#     form.languages.append_entry()
+# elif form.remove_language.data and form.languages.data:
+#     form.languages.pop_entry()
+        # Add general info to user table
+        user_id = current_user.id
+        user = User.query.filter_by(id=user_id).first()
+        user.first_name = form.first_name.data
+        user.last_name = form.last_name.data
+        user.phone_number = form.phone_number.data
+        user.postal_code = form.postal_code.data
+        user.city = form.city.data
+        user.mobility = form.mobility.data
+        # if form.description.data:
+        #     user.description = form.description.data
+        #
+        # # Populate SpokenLanguages table
+        # for subform in form.languages.data:
+        #     language = subform['language']
+        #     level = subform['level']
+        #     entry = SpokenLanguages(language=language,
+        #                             level=level,
+        #                             user_id=user_id)
+        #     models.db.session.add(entry)
 
-                # Populate SpokenLanguages table
-                for subform in form.languages.data:
-                    language = subform['language']
-                    level = subform['level']
-                    entry = SpokenLanguages(language=language,
-                                            level=level,
-                                            user_id=user_id)
-                    models.db.session.add(entry)
-
-                models.db.session.commit()
-                return redirect(url_for('profil_certifications'))
+        models.db.session.commit()
+        return redirect(url_for('profil_certifications'))
     return render_template('profil_info_generales.html',
                            title="Profil - Informations générales",
                            form=form)

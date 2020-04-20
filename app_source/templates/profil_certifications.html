@@ -13,12 +13,14 @@
 
                     <h1 class="mb-4">Création de votre profil</h1>
 
-
+                    <h1 class="mb-1">
+                        <hr><div style="text-align: center;"><strong>Certifications officielles</strong></div>
+                    </h1>
                     <hr>
 
 
                     <div id="wrapper_1">
-                        <h2 class="mb-1" data-aos="fade-up"><strong>permis de conduire</strong></h2>
+                        <h2 class="mb-1" data-aos="fade-up"><strong>Permis de conduire</strong></h2>
                         <br>
                         {% for subform in form.driver_licenses %}
                         <!--                {{ subform.driver_license.label }}-->
@@ -39,7 +41,7 @@
 
                     <div id="wrapper_2">
 
-                        <h2 class="mb-1" data-aos="fade-up"><strong>autres certifications</strong></h2>
+                        <h2 class="mb-1" data-aos="fade-up"><strong>Autres certifications</strong></h2>
                         <br>
                         {% for subform in form.other_certifications %}
                         {{ subform.other_certif }}

@@ -16,11 +16,12 @@
                 <!--<div class="col-lg-8 mx-auto col-md-10 col-12">-->
                 <form action="" method="post" class="contact-form" novalidate %data-aos="fade-up" data-aos-delay="300"
                       role="form">
+                    {{ form.hidden_tag() }}
+
                     <h1 class="mb-1">
                         <hr><div style="text-align: center;"><strong>Informations générales</strong></div>
                     </h1>
-
-                    {{ form.hidden_tag() }}
+                    <hr>
 
 
                     <div class="row">
