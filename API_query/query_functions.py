@@ -5,6 +5,7 @@ from datetime import datetime, time
 import numpy as np
 import pandas as pd
 import requests
+import re
 
 # Ideas taken from :
 # https://github.com/Cocorico84/employme/blob/855cfcda2c54f42b9c42dcbf4ac87cdf09248b7f/back/manager.py
@@ -210,3 +211,51 @@ def get_results_in_dates_list(dates_range, path):
             get_results_in_dates_list(new_range, path)
             # TO DO: something to avoid infinite loop (i.e. if more than 1200 at the same day, hour,second ?)
             # (allthough in practice this has never happened so far)
+
+
+liste_regions_et_France = ['France',
+                           "Auvergne-Rhône-Alpes",
+                           "Bourgogne-Franche-Comté",
+                           "Bretagne",
+                           "Centre-Val de Loire",
+                           "Corse",
+                           "Grand Est",
+                           "Hauts-de-France",
+                           "Île-de-France",
+                           "Normandie",
+                           "Nouvelle-Aquitaine",
+                           "Occitanie",
+                           "Pays de la Loire",
+                           "Provence-Alpes-Côte d'Azur",
+                           "Guadeloupe",
+                           "Martinique",
+                           "Guyane",
+                           "La Réunion",
+                           "Mayotte"]
+
+
+def extract_location(dictionnary):
+    if not isinstance(dictionnary, dict):
+        return None
+
+    if ('codePostal' in dictionnary):
+        if len(dictionnary['codePostal']) == 5:
+            try:
+                as_num = dictionnary['codePostal']
+                return as_num
+            except ValueError:
+                pass
+
+    if 'libelle' in dictionnary:
+        text = dictionnary['libelle']
+        nums = re.findall('\d+', text)
+        try:
+            dpt = nums[0]
+            if len(dpt) == 2:
+                return dpt
+        except IndexError:
+            pass
+        if text in liste_regions_et_France:
+            return text
+        else:
+            return None
