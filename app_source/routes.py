@@ -8,11 +8,11 @@ from flask import render_template, flash, redirect, url_for, request, send_file
 from app_source import app, models
 from app_source.forms import LoginForm, RegistrationForm, GeneralInfoForm
 from app_source.forms import CertificationsForm, FormationForm, ExperienceForm
-from app_source.forms import SkillsForm
+from app_source.forms import SkillsForm, PresentationForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app_source.models import User, SpokenLanguages, DriverLicenses, OtherCertifications
 from app_source.models import Formation, Experience, ComputerSkills, OtherSkills
-from app_source.models import ProfilCompleted
+from app_source.models import Presentation, ProfilCompleted
 # from app_source.models import JobOffers, OfferVectors
 from werkzeug.urls import url_parse
 from sklearn.metrics.pairwise import cosine_similarity
@@ -274,13 +274,27 @@ def profil_competences():
                     models.db.session.add(entry)
 
                 models.db.session.commit()
-                return redirect(url_for('profil_certifications'))
+                return redirect(url_for('profil_presentation'))
 
-        # if form.description.data:
-        #     user.description = form.description.data
-        #
     return render_template('profil_competences.html',
                            title="Profil - Informations générales",
+                           form=form)
+
+
+
+@app.route('/profil_presentation/', methods=['GET', 'POST'])
+@login_required
+def profil_presentation():
+    form = PresentationForm()
+    if form.validate_on_submit():
+        entry = Presentation(presentation=form.presentation.data,
+                            user_id=current_user.id)
+        models.db.session.add(entry)
+        models.db.session.commit()
+        return redirect(url_for('main'))
+
+    return render_template('profil_presentation.html',
+                           title="Profil - Présentation!",
                            form=form)
 
 

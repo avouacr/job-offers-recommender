@@ -124,7 +124,7 @@ class ExperienceForm(FlaskForm):
                                    min_entries=0, max_entries=10)
     add_experience = SubmitField('Ajouter une expérience')
     remove_experience = SubmitField('Retirer une expérience')
-    submit = SubmitField('Valider et terminer')
+    submit = SubmitField('Valider et continuer')
 
 
 class ComputerSkillsSubform(FlaskForm):
@@ -154,6 +154,9 @@ class SkillsForm(FlaskForm):
     add_other_skill = SubmitField('Ajouter une compétence')
     remove_other_skill = SubmitField('Retirer une compétence')
     submit = SubmitField('Valider et continuer')
-    # description = TextAreaField("""Présentez-vous en quelques phrases
-    # (qui êtes-vous? que recherchez-vous?)""",
-    #                             render_kw={"rows": 5, "cols": 50})
+
+
+class PresentationForm(FlaskForm):
+    """Form object to store the user self presentation."""
+    presentation = TextAreaField('Présentation', render_kw={"rows": 5, "cols": 50})
+    submit = SubmitField('Valider et terminer')

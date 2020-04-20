@@ -105,6 +105,13 @@ class OtherSkills(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
+class Presentation(db.Model):
+    """Table to store user self-description."""
+    id = db.Column(db.Integer, primary_key=True)
+    presentation = db.Column(db.Text())
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
 class ProfilCompleted(db.Model):
     """Table to test whether users have completed their profile."""
     id = db.Column(db.Integer, primary_key=True)

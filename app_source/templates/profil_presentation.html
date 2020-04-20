@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="contact section-padding">
+    <div class="container">
+        <div class="row">
+
+            <!--            <div class="col-lg-6 mx-auto col-md-7 col-12 py-5 mt-5 text-center" data-aos="fade-up">-->
+            <div class="col-lg-10 mx-auto col-md-7 col-12 py-5 mt-5 text-center" data-aos="fade-up">
+
+
+                <h1 class="mb-4">Dernière étape !</h1>
+
+
+                <!--<div class="col-lg-8 mx-auto col-md-10 col-12">-->
+                <form action="" method="post" class="contact-form" novalidate %data-aos="fade-up" data-aos-delay="300"
+                      role="form">
+                    {{ form.hidden_tag() }}
+                    <h1 class="mb-1">
+                        <hr>
+                        <div style="text-align: center;"><strong>Présentation</strong></div>
+                    </h1>
+                    <hr>
+
+                     <p>
+                        {{ form.presentation( class="form-control", placeholder="Présentez-vous en quelques phrases : qui êtes-vous ? que recherchez-vous ? Soyez le plus complet possible, la qualité des offres qui vous seront proposées en dépend !") }}<br>
+                        {% if form.presentation.errors %}
+                            <span style="color: red;">Ce champ doit être complété.</span>
+                        {% endif %}
+                     </p>
+
+                    <br>
+                    <p>{{ form.submit( class="form-control",id="submit-button") }}</p>
+                </form>
+                <br>
+                <a href="{{ url_for('profil_info_generales') }}">Revenir à la page précédente</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--For debugging-->
+<!--{% for field in form.errors %}-->
+<!--{% for error in form.errors[field] %}-->
+<!--    <div class="alert alert-error">-->
+<!--        <strong>Error!</strong> {{field}}, {{error}}-->
+<!--    </div>-->
+<!--{% endfor %}-->
+<!--{% endfor %}-->
+
+{% endblock %}
