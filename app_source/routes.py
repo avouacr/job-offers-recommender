@@ -449,3 +449,6 @@ def offres_recommandees():
     indices_ranked = [x[1] for x in similarities_ranked]
 
     return render_template('recommended_offers.html', title="Offres recommandées")
+
+
+
