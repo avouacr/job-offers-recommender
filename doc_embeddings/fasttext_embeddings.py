@@ -80,8 +80,7 @@ if __name__ == '__main__':
     print('Load job offers.')
     df_offers = pd.read_csv('data/all_offers_nodup.csv',
                             usecols=['id', 'description'])
-    df_offers['description'] = df_offers['description'].astype(str)
-    # df_offers = df_offers.drop_duplicates()
+    # df_offers['description'] = df_offers['description'].astype(str)
 
     # Compute document representations using FastText model
     print('Compute FastText representations of job offers.')

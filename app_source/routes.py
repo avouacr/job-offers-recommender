@@ -345,8 +345,6 @@ def generation_cv():
                      attachment_filename=file_name_full,
                      as_attachment=True)
 
-    # return render_template('generation_cv.html', title="Génération de CV")
-
 
 @app.route('/offres_recommandees/')
 @login_required
