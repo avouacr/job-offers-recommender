@@ -1,10 +1,61 @@
+import ast
 import glob
 import os
-import numpy as np
-import pandas as pd
+import re
 from datetime import datetime, timedelta
 
+import numpy as np
+import pandas as pd
 import query_functions
+
+liste_regions_et_France = ['France',
+                           "Auvergne-Rhône-Alpes",
+                           "Bourgogne-Franche-Comté",
+                           "Bretagne",
+                           "Centre-Val de Loire",
+                           "Corse",
+                           "Grand Est",
+                           "Hauts-de-France",
+                           "Île-de-France",
+                           "Normandie",
+                           "Nouvelle-Aquitaine",
+                           "Occitanie",
+                           "Pays de la Loire",
+                           "Provence-Alpes-Côte d'Azur",
+                           "Guadeloupe",
+                           "Martinique",
+                           "Guyane",
+                           "La Réunion",
+                           "Mayotte"]
+
+
+def extract_location(dictionnary):
+    if not isinstance(dictionnary, dict):
+        return None
+
+    if ('codePostal' in dictionnary):
+        if len(dictionnary['codePostal']) == 5:
+            try:
+                as_num = dictionnary['codePostal']
+                return as_num
+            except ValueError:
+                pass
+
+    if 'libelle' in dictionnary:
+        text = dictionnary['libelle']
+        nums = re.findall('\d+', text)
+        try:
+            dpt = nums[0]
+            if len(dpt) == 2:
+                return dpt
+        except IndexError:
+            pass
+        if text in liste_regions_et_France:
+            return text
+        else:
+            return None
+
+
 
 if __name__ == "__main__":
 
@@ -38,6 +89,13 @@ if __name__ == "__main__":
 
     # remove duplicates (actually not needed, but still good to be sure everything is ok)
     frame = frame.astype(str).drop_duplicates()
+
+    # TO DO: remove id duplicate
+
+    # Get zipcode, or at least the departement
+    frame["lieuTravail"] =  frame["lieuTravail"].apply(ast.literal_eval)
+    frame["localisation"] = frame["lieuTravail"].apply(extract_location)
+    frame = frame.dropna(subset=['localisation'])
 
     # save single file
     frame.to_csv(os.path.join(path, "all_offers.csv"), sep=",")
