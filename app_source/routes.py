@@ -41,7 +41,6 @@ def login():
         user = User.query.filter_by(username=login_form.username.data).first()
         if user is None or not user.check_password(login_form.password.data):
             flash('Utilisateur inconnu ou mot de passe invalide.')
-            # TODO: enable flashed messages to be rendered
             return redirect(url_for('login'))
         # Register the user as logged in and display main page of the app
         login_user(user)
@@ -317,7 +316,6 @@ def generation_cv():
     cv_dict['experience'] = experience_entries
 
     # Quick fix for missing sections
-    # TODO : make CV sections truly conditional
     cv_dict['informatique'] = [{"name": "Microsoft Office"}]
     cv_dict['autres'] = [{"name": "Danse"}]
 
@@ -380,6 +378,5 @@ def offres_recommandees():
                                     list(range(similarities.shape[1])) * similarities.shape[0]))
     similarities_ranked = sorted(similarities_indices, key=lambda x: x[0], reverse=True)
     indices_ranked = [x[1] for x in similarities_ranked]
-    # TODO: filter
 
     return render_template('recommended_offers.html', title="Offres recommandées")

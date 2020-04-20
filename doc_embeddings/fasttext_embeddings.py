@@ -81,7 +81,6 @@ if __name__ == '__main__':
     df_offers = pd.read_csv('data/all_offers_nodup.csv',
                             usecols=['id', 'description'])
     df_offers['description'] = df_offers['description'].astype(str)
-    # TODO: handle duplicates and string conversion while generating the csv
     # df_offers = df_offers.drop_duplicates()
 
     # Compute document representations using FastText model

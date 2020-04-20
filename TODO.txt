@@ -1,0 +1,10 @@
+Jaime
+- Drop duplicates in all_offers.csv before generating it
+- Enable flash messages to be rendered
+- Implement log out button
+- Proper html links for navigation menu buttons
+
+Romain
+- Make CV sections conditional
+- Filter out offers based on user's mobility radius
+
