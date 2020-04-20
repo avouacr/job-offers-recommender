@@ -1,5 +1,7 @@
 Jaime
+- Deal with rows without a postal code
 - Drop duplicates in all_offers.csv before generating it
+- Drop missing values for important variables
 - Enable flash messages to be rendered
 - Implement log out button
 - Proper html links for navigation menu buttons
@@ -7,4 +9,4 @@ Jaime
 Romain
 - Make CV sections conditional
 - Filter out offers based on user's mobility radius
-
+- Host app on a server
