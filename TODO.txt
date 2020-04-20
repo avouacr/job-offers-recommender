@@ -1,6 +1,4 @@
 Jaime
-- Deal with rows without a postal code
-- Drop duplicates in all_offers.csv before generating it
 - Drop missing values for important variables
 - Enable flash messages to be rendered (e.g. messages d'erreur)
 - Implement log out button

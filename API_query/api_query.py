@@ -27,7 +27,6 @@ if __name__ == "__main__":
 
     # get all files from folder
     all_files = glob.glob(path + "/*.csv")
-
     result_list = []
 
     # for each file, append them to list, and remove from directory
@@ -42,10 +41,17 @@ if __name__ == "__main__":
     # remove duplicates (actually not needed, but still good to be sure everything is ok)
     frame = frame.astype(str).drop_duplicates(subset='id', keep="last")
 
+    # Remove those who are lacking essential information
+    frame = frame[['id', 'lieuTravail', 'description']].replace('', np.nan)
+
+    frame = frame.dropna(subset=['id', 'lieuTravail', 'description'])
+
     # Get zipcode, or at least the departement
     frame["lieuTravail"] = frame["lieuTravail"].apply(ast.literal_eval)
     frame["localisation"] = frame["lieuTravail"].apply(query_functions.extract_location)
     frame = frame.dropna(subset=['localisation'])
+
+    # Remove when important field is empty
 
     # save single file
     frame.to_csv(os.path.join(path, "all_offers.csv"), sep=",")
