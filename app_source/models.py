@@ -28,7 +28,6 @@ class User(UserMixin, db.Model):
     postal_code = db.Column(db.String(10))
     city = db.Column(db.String(64))
     mobility = db.Column(db.String(64))
-    description = db.Column(db.Text())
 
     def __repr__(self):
         return "<Utilisateur {}>".format(self.username)

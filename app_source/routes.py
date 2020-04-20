@@ -323,8 +323,10 @@ def generation_cv():
         'surnames': user.last_name,
         'residence': user.city,
         'disponibilite_geographique': user.mobility,
-        'biography': user.description
     }
+    presentation = Presentation.query.filter_by(id=user_id).first()
+    if presentation is not None:
+        cv_dict['basic']['biography'] = presentation.presentation
     cv_dict['contact'] = {
         'email': user.username,
         'phone': user.phone_number
@@ -376,12 +378,18 @@ def generation_cv():
             'description': entry.description
         }
         experience_entries.append(dic_entry)
-    cv_dict['experience'] = experience_entries
 
-    # Quick fix for missing sections
-    cv_dict['informatique'] = [{"name": "Microsoft Office"}]
-    cv_dict['autres'] = [{"name": "Danse"}]
-
+    # Add skills section
+    it_skills_query = ComputerSkills.query.filter_by(user_id=user_id).all()
+    other_skills_query = OtherSkills.query.filter_by(user_id=user_id).all()
+    skills_entries = []
+    for entry in it_skills_query:
+        dic_entry = {'name': entry.skill}
+        skills_entries.append(dic_entry)
+    for entry in other_skills_query:
+        dic_entry = {'name': entry.skill}
+        skills_entries.append(dic_entry)
+    cv_dict['informatique'] = skills_entries
 
     # Create a logging.Logger object to be used in the CV generation
     logging.basicConfig(level=logging.INFO,
