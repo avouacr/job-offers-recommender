@@ -91,6 +91,27 @@ class Experience(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
+class ComputerSkills(db.Model):
+    """Table to store the IT skills of the user."""
+    id = db.Column(db.Integer, primary_key=True)
+    skill = db.Column(db.String(128))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
+class OtherSkills(db.Model):
+    """Table to store other skills of the user."""
+    id = db.Column(db.Integer, primary_key=True)
+    skill = db.Column(db.String(128))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
+class Presentation(db.Model):
+    """Table to store user self-description."""
+    id = db.Column(db.Integer, primary_key=True)
+    presentation = db.Column(db.Text())
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
 class ProfilCompleted(db.Model):
     """Table to test whether users have completed their profile."""
     id = db.Column(db.Integer, primary_key=True)
