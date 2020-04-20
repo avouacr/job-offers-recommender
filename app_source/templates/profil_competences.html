@@ -1,110 +1,68 @@
 {% extends "base.html" %}
 
 {% block content %}
-
 <section class="contact section-padding">
     <div class="container">
         <div class="row">
 
             <!--            <div class="col-lg-6 mx-auto col-md-7 col-12 py-5 mt-5 text-center" data-aos="fade-up">-->
             <div class="col-lg-10 mx-auto col-md-7 col-12 py-5 mt-5 text-center" data-aos="fade-up">
-
-
-                <h1 class="mb-4">Création de votre profil</h1>
-
-
-                <!--<div class="col-lg-8 mx-auto col-md-10 col-12">-->
                 <form action="" method="post" class="contact-form" novalidate %data-aos="fade-up" data-aos-delay="300"
                       role="form">
-                    <h1 class="mb-1">
-                        <hr><div style="text-align: center;"><strong>informations générales</strong></div>
-                    </h1>
-
                     {{ form.hidden_tag() }}
 
+                    <h1 class="mb-4">Création de votre profil</h1>
 
-                    <div class="row">
-                        <div class="col-lg-6 col-12">
-                            {{ form.last_name(size=32, class="form-control", placeholder="Nom") }}<br>
-                            {% if form.last_name.errors %}
-                            <span style="color: red;">Ce champ doit être complété.</span>
-                            {% endif %}
-
-                        </div>
-
-                        <div class="col-lg-6 col-12">
-                            {{ form.first_name(size=32, class="form-control", placeholder="Prénom") }}<br>
-                            {% if form.first_name.errors %}
-                            <span style="color: red;">Ce champ doit être complété.</span>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <p>
-                    </p>
-                    <p>
-                        {{ form.phone_number(size=32, class="form-control", placeholder="Numéro de téléphone")
-                        }}<br>
-                        {% if form.phone_number.errors %}
-                        <span style="color: red;">Ce champ doit être complété.</span>
-                        {% endif %}
-                    </p>
-                    <p>
-                        {{ form.postal_code(size=32, class="form-control", placeholder="Code postal") }}<br>
-                        {% if form.postal_code.errors %}
-                        <span style="color: red;">Veuillez entrer un code postal valide.</span>
-                        {% endif %}
-                    </p>
-                    <p>
-                        {{ form.city(size=32, class="form-control", placeholder="Ville") }}<br>
-                        {% if form.city.errors %}
-                        <span style="color: red;">Ce champ doit être complété.</span>
-                        {% endif %}
-                    </p>
-                    <p>
-                    <p><b><font color="#696969">je cherche du travail au niveau de ma/mon {{ form.mobility }}</font></b>
-                    </p>
-                    </p>
-                    <h1 class="mb-4">
-                        <hr><center><strong>langues parlées</strong></center>
+                    <h1 class="mb-1">
+                        <hr><div style="text-align: center;"><strong>Compétences</strong></div>
                     </h1>
-                    {% for subform in form.languages %}
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">
-                                {{ subform.language.label }}
-                                {{ subform.language() }}
-                            </div>
-                            <div class="col">
-                                {{ subform.level.label }}
-                                {{ subform.level()}}
-                            </div>
-                        </div>
+                    <hr>
+
+
+                    <div id="wrapper_1">
+                        <h2 class="mb-1" data-aos="fade-up"><strong>Compétences informatiques</strong></h2>
+                        <br>
+                        {% for subform in form.computer_skills %}
+                        {{ subform.computer_skill }}
+                        <br>
+                        {% endfor %}
+                        <br>
+                        <br>
+                        {{ form.add_computer_skill(class="btn btn-info btn-sm") }}
+                        {{ form.remove_computer_skill(class="btn btn-warning btn-sm") }}
+
 
                         <p>
-
-                                </div>
-                      {% endfor %}
-                             <div class="col" align="left">
-                                        {{ form.add_language(class="btn btn-info btn-sm") }}<br>
-                                    </div>
-                        <p>
-
-
+                            <br>
                         </p>
-                        <h1 class="mb-4">
-                             <hr><center><strong>présentation</strong></center>
 
-                        </h1>
+                    </div>
 
-                        <p>
-                            {{ form.description( class="form-control", placeholder="Présentez-vous en quelques phrases (qui êtes-vous? que recherchez-vous?)") }}<br>
-                            {% if form.description.errors %}
-                            <span style="color: red;">Ce champ doit être complété.</span>
-                            {% endif %}
+                    <div id="wrapper_2">
+
+                        <h2 class="mb-1" data-aos="fade-up"><strong>Autres compétences</strong></h2>
+                        <br>
+                        {% for subform in form.other_skills %}
+                        {{ subform.other_skill }}
+                        <br>
+                        {% endfor %}
+                        <br>
+                        <br>
+                        {{ form.add_other_skill(class="btn btn-info btn-sm")}}
+                        {{ form.remove_other_skill(class="btn btn-warning btn-sm")}}
                         </p>
-                        <p>{{ form.submit( class="form-control",id="submit-button") }}</p>
+
+                    </div>
+
+
+                    <!--<div class="col-lg-8 mx-auto col-md-10 col-12">-->
+
+
+                    <br>
+                    <p>{{ form.submit( class="form-control",id="submit-button") }}</p>
                 </form>
-
+                <br>
+                <a href="{{ url_for('profil_info_generales') }}">Revenir à la page précédente</a>
 
 
             </div>
@@ -112,9 +70,7 @@
     </div>
 </section>
 
-
 <!--For debugging-->
-
 <!--{% for field in form.errors %}-->
 <!--{% for error in form.errors[field] %}-->
 <!--    <div class="alert alert-error">-->
@@ -124,4 +80,3 @@
 <!--{% endfor %}-->
 
 {% endblock %}
-

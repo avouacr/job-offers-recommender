@@ -8,9 +8,11 @@ from flask import render_template, flash, redirect, url_for, request, send_file
 from app_source import app, models
 from app_source.forms import LoginForm, RegistrationForm, GeneralInfoForm
 from app_source.forms import CertificationsForm, FormationForm, ExperienceForm
+from app_source.forms import SkillsForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app_source.models import User, SpokenLanguages, DriverLicenses, OtherCertifications
-from app_source.models import Formation, Experience, ProfilCompleted
+from app_source.models import Formation, Experience, ComputerSkills, OtherSkills
+from app_source.models import ProfilCompleted
 # from app_source.models import JobOffers, OfferVectors
 from werkzeug.urls import url_parse
 from sklearn.metrics.pairwise import cosine_similarity
@@ -86,35 +88,37 @@ def main():
 @login_required
 def profil_info_generales():
     form = GeneralInfoForm()
-    if form.validate_on_submit():
-# Buttons to add/remove a language subform
-# if form.add_language.data:
-#     form.languages.append_entry()
-# elif form.remove_language.data and form.languages.data:
-#     form.languages.pop_entry()
-        # Add general info to user table
-        user_id = current_user.id
-        user = User.query.filter_by(id=user_id).first()
-        user.first_name = form.first_name.data
-        user.last_name = form.last_name.data
-        user.phone_number = form.phone_number.data
-        user.postal_code = form.postal_code.data
-        user.city = form.city.data
-        user.mobility = form.mobility.data
-        # if form.description.data:
-        #     user.description = form.description.data
-        #
-        # # Populate SpokenLanguages table
-        # for subform in form.languages.data:
-        #     language = subform['language']
-        #     level = subform['level']
-        #     entry = SpokenLanguages(language=language,
-        #                             level=level,
-        #                             user_id=user_id)
-        #     models.db.session.add(entry)
 
-        models.db.session.commit()
-        return redirect(url_for('profil_certifications'))
+    if form.is_submitted():
+        # Buttons to add/remove a language subform
+        if form.add_language.data:
+            form.languages.append_entry()
+        elif form.remove_language.data and form.languages.data:
+            form.languages.pop_entry()
+        elif form.validate():
+
+            # Add general info to user table
+            user_id = current_user.id
+            user = User.query.filter_by(id=user_id).first()
+            user.first_name = form.first_name.data
+            user.last_name = form.last_name.data
+            user.phone_number = form.phone_number.data
+            user.postal_code = form.postal_code.data
+            user.city = form.city.data
+            user.mobility = form.mobility.data
+
+            # Populate SpokenLanguages table
+            for subform in form.languages.data:
+                language = subform['language']
+                level = subform['level']
+                entry = SpokenLanguages(language=language,
+                                        level=level,
+                                        user_id=user_id)
+                models.db.session.add(entry)
+
+            models.db.session.commit()
+            return redirect(url_for('profil_certifications'))
+
     return render_template('profil_info_generales.html',
                            title="Profil - Informations générales",
                            form=form)
@@ -124,15 +128,18 @@ def profil_info_generales():
 @login_required
 def profil_certifications():
     form = CertificationsForm()
+
     if form.is_submitted():
         if form.add_license.data:
             form.driver_licenses.append_entry()
         elif form.remove_license.data and form.driver_licenses.data:
             form.driver_licenses.pop_entry()
+
         elif form.add_other_certif.data:
             form.other_certifications.append_entry()
         elif form.remove_other_certif.data and form.other_certifications.data:
             form.other_certifications.pop_entry()
+
         elif form.submit.data:
             if form.validate():
                 user_id = current_user.id
@@ -228,10 +235,54 @@ def profil_experience():
                 models.db.session.add(entry)
 
                 models.db.session.commit()
-                return redirect(url_for('main'))
+                return redirect(url_for('profil_competences'))
     return render_template('profil_experience.html',
                            title="Profil - Expérience",
                            form=form)
+
+
+@app.route('/profil_competences/', methods=['GET', 'POST'])
+@login_required
+def profil_competences():
+    form = SkillsForm()
+    if form.is_submitted():
+        # Buttons to add/remove a skill
+        if form.add_computer_skill.data:
+            form.computer_skills.append_entry()
+        elif form.remove_computer_skill.data and form.computer_skills.data:
+            form.computer_skills.pop_entry()
+        if form.add_other_skill.data:
+            form.other_skills.append_entry()
+        elif form.remove_other_skill.data and form.other_skills.data:
+            form.other_skills.pop_entry()
+        elif form.submit.data:
+            if form.validate():
+                user_id = current_user.id
+
+                # Populate ComputerSkills table
+                for subform in form.computer_skills.data:
+                    computer_skill = subform['computer_skill']
+                    entry = ComputerSkills(skill=computer_skill,
+                                           user_id=user_id)
+                    models.db.session.add(entry)
+
+                # Populate OtherSkills table
+                for subform in form.other_skills.data:
+                    other_skill = subform['other_skill']
+                    entry = OtherSkills(skill=other_skill,
+                                        user_id=user_id)
+                    models.db.session.add(entry)
+
+                models.db.session.commit()
+                return redirect(url_for('profil_certifications'))
+
+        # if form.description.data:
+        #     user.description = form.description.data
+        #
+    return render_template('profil_competences.html',
+                           title="Profil - Informations générales",
+                           form=form)
+
 
 
 @app.route('/generation_cv/')

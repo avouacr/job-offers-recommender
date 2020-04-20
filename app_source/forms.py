@@ -28,20 +28,6 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Cette adresse électronique a déjà été utilisée.')
 
 
-class GeneralInfoForm(FlaskForm):
-    """Form object to store general informations about the user."""
-    first_name = StringField('Prénom', validators=[DataRequired()])
-    last_name = StringField('Nom', validators=[DataRequired()])
-    phone_number = StringField('Numéro de téléphone', validators=[DataRequired()])
-    postal_code = StringField('Code postal', validators=[DataRequired(),
-                                                         Length(min=5, max=5)])
-    city = StringField('Ville de résidence', validators=[DataRequired()])
-    mobility_choices = ['Ville', 'Département', 'Région', 'France entière']
-    mobility = SelectField('Mobilité',
-    	choices=list(zip(mobility_choices, mobility_choices)))
-    submit = SubmitField('Valider et continuer')
-
-
 class SpokenLanguagesSubform(FlaskForm):
 
     class Meta:
@@ -57,24 +43,21 @@ class SpokenLanguagesSubform(FlaskForm):
     level = SelectField('Niveau', choices=level_choices)
 
 
-class ComputerSkillsSubform(FlaskForm):
-
-    class Meta:
-        csrf = False
-
-    computer_skill = StringField('Outil informatique')
-
-
-class AdditionalInfoForm(FlaskForm):
+class GeneralInfoForm(FlaskForm):
     """Form object to store general informations about the user."""
+    first_name = StringField('Prénom', validators=[DataRequired()])
+    last_name = StringField('Nom', validators=[DataRequired()])
+    phone_number = StringField('Numéro de téléphone', validators=[DataRequired()])
+    postal_code = StringField('Code postal', validators=[DataRequired(),
+                                                         Length(min=5, max=5)])
+    city = StringField('Ville de résidence', validators=[DataRequired()])
+    mobility_choices = ['Ville', 'Département', 'Région', 'France entière']
+    mobility = SelectField('Mobilité',
+    	choices=list(zip(mobility_choices, mobility_choices)))
     languages = FieldList(FormField(SpokenLanguagesSubform),
                           min_entries=1, max_entries=5)
     add_language = SubmitField('Ajouter une langue')
     remove_language = SubmitField('Retirer une langue')
-
-    description = TextAreaField("""Présentez-vous en quelques phrases 
-    (qui êtes-vous? que recherchez-vous?)""",
-                                render_kw={"rows": 5, "cols": 50})
     submit = SubmitField('Valider et continuer')
 
 
@@ -142,3 +125,35 @@ class ExperienceForm(FlaskForm):
     add_experience = SubmitField('Ajouter une expérience')
     remove_experience = SubmitField('Retirer une expérience')
     submit = SubmitField('Valider et terminer')
+
+
+class ComputerSkillsSubform(FlaskForm):
+
+    class Meta:
+        csrf = False
+
+    computer_skill = StringField('Outil informatique')
+
+
+class OtherSkillsSubform(FlaskForm):
+
+    class Meta:
+        csrf = False
+
+    other_skill = StringField('Outil informatique')
+
+
+class SkillsForm(FlaskForm):
+    """Form object to store skills of the user."""
+    computer_skills = FieldList(FormField(ComputerSkillsSubform),
+                                min_entries=0, max_entries=10)
+    add_computer_skill = SubmitField('Ajouter une compétence')
+    remove_computer_skill = SubmitField('Retirer une compétence')
+    other_skills = FieldList(FormField(OtherSkillsSubform),
+                             min_entries=0, max_entries=10)
+    add_other_skill = SubmitField('Ajouter une compétence')
+    remove_other_skill = SubmitField('Retirer une compétence')
+    submit = SubmitField('Valider et continuer')
+    # description = TextAreaField("""Présentez-vous en quelques phrases
+    # (qui êtes-vous? que recherchez-vous?)""",
+    #                             render_kw={"rows": 5, "cols": 50})
