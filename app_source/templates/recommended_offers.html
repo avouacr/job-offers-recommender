@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% block content %}
 
 <section class="contact section-padding">
@@ -12,40 +11,38 @@
 
                 <h1 class="mb-4"><strong>Résultats</strong></h1>
 
-<table class="table table-striped w-auto">
+                <table id="data">
+                    <thead>
+                    <tr>
+                        <th><h3 class="mb-4"><strong>Lien Pôle Emploi</strong></h3></th>
+                        <th><h3 class="mb-4"><strong>Description</strong></h3></th>
+                    </tr>
+                    </thead>
+                    <!--Table head-->
 
-  <!--Table head-->
-  <thead>
-    <tr>
-      <th><h3 class="mb-4"><strong>Lien Pôle Emploi</strong></h3></th>
-      <th><h3 class="mb-4"><strong>Description</strong></h3></th>
-    </tr>
-  </thead>
-  <!--Table head-->
+                    <!--Table body-->
+                    <tbody>
+                    {% for key,value in df.iterrows() %}
+                    <tr>
+                        <td>
+                            <a href="https://candidat.pole-emploi.fr/offres/recherche/detail/{{ value['id'] }}"><strong>
+                                infos ici </strong></a>
 
-  <!--Table body-->
-  <tbody>
-  	{% for key,value in df.iterrows() %}
-  	    <tr>
-      <td>
-      	     <a href="https://candidat.pole-emploi.fr/offres/recherche/detail/{{ value['id'] }}"><strong> infos ici </strong></a>
+                        <td>{{ value['description'][:350] }}
 
-      <td>{{ value['description'][:350] }}
+                        </td>
 
-      </td>
-
-    </tr>
-
-
-{% endfor %}
+                    </tr>
 
 
-
-  </tbody>
-  <!--Table body-->
+                    {% endfor %}
 
 
-</table>
+                    </tbody>
+                    <!--Table body-->
+
+
+                </table>
             </div>
         </div>
     </div>

@@ -2,149 +2,188 @@
 <html lang="en">
 <head>
 
-        {% if title %}
-        <title>APP NAME - {{ title }}</title>
-        {% else %}
-        <title>APP NAME</title>
-        {% endif %}
-<!--
+    {% if title %}
+    <title>APP NAME - {{ title }}</title>
+    {% else %}
+    <title>APP NAME</title>
+    {% endif %}
+    <!--
 
-DIGITAL TREND
+    DIGITAL TREND
 
-https://templatemo.com/tm-538-digital-trend
+    https://templatemo.com/tm-538-digital-trend
 
--->
-     <meta charset="UTF-8">
-     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-     <meta name="description" content="">
-     <meta name="keywords" content="">
-     <meta name="author" content="">
-     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/jaime_css.css') }}">
-     <link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
-     <link rel="stylesheet" href="{{ url_for('static',filename='css/font-awesome.min.css') }}">
-     <link rel="stylesheet" href="{{ url_for('static',filename='css/aos.css') }}">
-     <link rel="stylesheet" href="{{ url_for('static',filename='css/owl.carousel.min.css') }}">
-     <link rel="stylesheet" href="{{ url_for('static',filename='css/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/aos.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/owl.theme.default.min.css') }}">
 
-     <!-- MAIN CSS -->
-     <link rel="stylesheet" href="{{ url_for('static',filename='css/templatemo-digital-trend.css') }}">
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/templatemo-digital-trend.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <style>
+        .a2 .url {
+            visibility: hidden;
+            display: none;
+        }
+
+        body {
+            background-color: linen;
+        }
+
+        #data tr {
+            display: none;
+        }
+    </style>
 
 </head>
 <body>
 
-     <!-- MENU BAR -->
-    <nav class="navbar navbar-expand-lg position-absolute">
-        <div class="container">
-          <a class="navbar-brand" href="{{ url_for('root') }}">
-              <i class="fa fa-line-chart"></i>
-              MonJob
-            </a>
+<!-- MENU BAR -->
+<nav class="navbar navbar-expand-lg position-absolute">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('root') }}">
+            <i class="fa fa-line-chart"></i>
+            MonJob
+        </a>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false"
                 aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a href="index.html#about" class="nav-link">Equipe</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="index.html#project" class="nav-link">Comment ça marche</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="blog.html" class="nav-link">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ url_for('logout') }}" class="nav-link active contact">Logout</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="index.html#about" class="nav-link">Equipe</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#project" class="nav-link">Comment ça marche</a>
+                </li>
+                <li class="nav-item">
+                    <a href="blog.html" class="nav-link">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('logout') }}" class="nav-link active contact">Logout</a>
+                </li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
-     <div class="error">
-     {% with messages = get_flashed_messages() %}
-         {% if messages %}
-            {% for message in messages %}
-                {{ message }}
-            {% endfor %}
-         {% endif %}
-     {% endwith %}
-     </div>
+<div class="error">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>
 
-     <!-- CONTENT -->
+<!-- CONTENT -->
 
-    {% block content %}
-    {% endblock %}
-
-
+{% block content %}
+{% endblock %}
 
 
-    <footer class="site-footer">
-      <div class="container">
+<footer class="site-footer">
+    <div class="container">
         <div class="row">
 
-          <div class="col-lg-5 mx-lg-auto col-md-8 col-10">
-            <h1 class="text-white" data-aos="fade-up" data-aos-delay="100">Trouvez votre <strong>job</strong> revé.</h1>
-          </div>
+            <div class="col-lg-5 mx-lg-auto col-md-8 col-10">
+                <h1 class="text-white" data-aos="fade-up" data-aos-delay="100">Trouvez votre <strong>job</strong> revé.
+                </h1>
+            </div>
 
-          <div class="col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="200">
-            <h4 class="my-4">Contact</h4>
+            <div class="col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="200">
+                <h4 class="my-4">Contact</h4>
 
-            <p class="mb-1">
-              <i class="fa fa-phone mr-2 footer-icon"></i>
-              +33 080 070 4224
-            </p>
+                <p class="mb-1">
+                    <i class="fa fa-phone mr-2 footer-icon"></i>
+                    +33 080 070 4224
+                </p>
 
-            <p>
-              <a href="#">
-                <i class="fa fa-envelope mr-2 footer-icon"></i>
-                hello@company.com
-              </a>
-            </p>
-          </div>
+                <p>
+                    <a href="#">
+                        <i class="fa fa-envelope mr-2 footer-icon"></i>
+                        hello@company.com
+                    </a>
+                </p>
+            </div>
 
-          <div class="col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="300">
-            <h4 class="my-4">Addresse</h4>
+            <div class="col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="300">
+                <h4 class="my-4">Addresse</h4>
 
-            <p class="mb-1">
-              <i class="fa fa-home mr-2 footer-icon"></i>
-              Av. Lúcio Costa - Barra da Tijuca, Rio de Janeiro - RJ, Brazil
-            </p>
-          </div>
+                <p class="mb-1">
+                    <i class="fa fa-home mr-2 footer-icon"></i>
+                    Av. Lúcio Costa - Barra da Tijuca, Rio de Janeiro - RJ, Brazil
+                </p>
+            </div>
 
-       <!--   <div class="col-lg-4 mx-lg-auto col-md-6 col-12" data-aos="fade-up" data-aos-delay="500">-->
+            <!--   <div class="col-lg-4 mx-lg-auto col-md-6 col-12" data-aos="fade-up" data-aos-delay="500">-->
 
             <ul class="footer-link">
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">Travailler pour nous</a></li>
-              <li><a href="#">GDPR</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Travailler pour nous</a></li>
+                <li><a href="#">GDPR</a></li>
             </ul>
-          </div>
-
-          <div class="col-lg-3 mx-lg-auto col-md-6 col-12" data-aos="fade-up" data-aos-delay="600">
-            <ul class="social-icon">
-              <li><a href="#" class="fa fa-instagram"></a></li>
-              <li><a href="#" class="fa fa-twitter"></a></li>
-              <li><a href="#" class="fa fa-dribbble"></a></li>
-              <li><a href="#" class="fa fa-behance"></a></li>
-            </ul>
-          </div>
-
         </div>
-    </footer>
+
+        <div class="col-lg-3 mx-lg-auto col-md-6 col-12" data-aos="fade-up" data-aos-delay="600">
+            <ul class="social-icon">
+                <li><a href="#" class="fa fa-instagram"></a></li>
+                <li><a href="#" class="fa fa-twitter"></a></li>
+                <li><a href="#" class="fa fa-dribbble"></a></li>
+                <li><a href="#" class="fa fa-behance"></a></li>
+            </ul>
+        </div>
+
+    </div>
+</footer>
 
 
-     <!-- SCRIPTS -->
-     <script type="text/javascript" src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
-     <script type="text/javascript" src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
-     <script type="text/javascript" src="{{ url_for('static',filename='js/aos.js') }}"></script>
-     <script type="text/javascript" src="{{ url_for('static',filename='js/owl.carousel.min.js') }}"></script>
-     <script type="text/javascript" src="{{ url_for('static',filename='js/custom.js') }}"></script>
+<!-- SCRIPTS -->
+<script type="text/javascript" src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/aos.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/owl.carousel.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/custom.js') }}"></script>
 
+<script>
+    $(document).ready(function () {
+        $('#data').after('<div id="nav"></div>');
+        var rowsShown = 4;
+        var rowsTotal = $('#data tbody tr').length;
+        var numPages = rowsTotal / rowsShown;
+        for (i = 0; i < numPages; i++) {
+            var pageNum = i + 1;
+            $('#nav').append('<a href="#" rel="' + i + '">' + pageNum + '</a> ');
+        }
+        $('#data tbody tr').hide();
+        $('#data tbody tr').slice(0, rowsShown).show();
+        $('#nav a:first').addClass('active');
+        $('#nav a').bind('click', function () {
+
+            $('#nav a').removeClass('active');
+            $(this).addClass('active');
+            var currPage = $(this).attr('rel');
+            var startItem = currPage * rowsShown;
+            var endItem = startItem + rowsShown;
+            $('#data tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).css('display', 'table-row').animate({opacity: 1}, 300);
+        });
+    });
+</script>
 
 
 

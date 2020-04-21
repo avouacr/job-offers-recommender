@@ -1,12 +1,172 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
-            <div class="col-lg-10 mx-auto col-md-7 col-12 py-5 mt-5 text-center" data-aos="fade-up">
+<head>
+    <meta charset="utf-8">
+    <!-- Custom Stylesheet -->
+    <link href="/plugins/tables/css/datatable/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/loading.css" rel="stylesheet">
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="/plugins/common/common.min.js"></script>
+    <script src="/js/custom.min.js"></script>
+    <script src="/js/settings.js"></script>
+    <script src="/js/gleek.js"></script>
+    <script src="/js/styleSwitcher.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script src="/plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
+    <script src="/plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+
+    <script src="/js/main.js"></script>
 
 
-                <h1 class="mb-4">  </h1>
-<p style="margin-bottom:2cm;"></p>
-                <h1><strong>Oh !</strong> Cette page n'a pas été trouvée</h1>
-    <p><a href="{{ url_for('root') }}">Retour</a></p>
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		if ( $.fn.dataTable.isDataTable( '#customerTable' ) ) {
+		    table = $('#customerTable').DataTable();
+		    table.destroy();
+		    table = $('#customerTable').dataTable({
+			  	"bPaginate": true,
+			  	"iDisplayStart":0,
+			  	"bProcessing" : true,
+			 	"bServerSide" : true,
+			 	 "pagingType": "full_numbers",
+			 	"sAjaxSource" : cabaseurl+'/listCustomers',
+			 	"dom": '<"top"flp<"clear">>rt<"bottom"ifp<"clear">>'
+
+		      });
+		}
+		else {
+			table = $('#customerTable').dataTable({
+			  	"bPaginate": true,
+			  	"iDisplayStart":0,
+			  	"bProcessing" : true,
+			 	"bServerSide" : true,
+			 	 "pagingType": "full_numbers",
+			 	"sAjaxSource" : cabaseurl+'/listAllCustomers'
+
+		      });
+		}
+        // $('#').fadeIn();
+		/* $.ajax({
+	        type : 'GET',
+	        url : cabaseurl+'/listAllCustomers',
+	        contentType:"application/json; charset=utf-8",
+	        success : function(response)
+	        {
+	        	$.each(response, function(i,rec){
+
+		       		$('#consultantTable').dataTable().fnAddData( [
+		       											rec.id+"",
+		       											rec.name+"",
+		       											rec.companyname+"",
+		       											rec.address+"",
+		       											rec.phno+"",
+		       											rec.phno2+""
+														] );
+
+                });
+                // $('#').fadeOut();
+	        },
+	        error : function()
+	        {
+                // $('#').fadeOut();
+	            alert('Error. . .');
+	        }
+	    }) */
+	});
+</script>
+
+</head>
+
+<body>
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="">
+
+            <div style="padding:10px;">
+
+            </div>
+            <!-- row -->
+
+            <div class="container-fluid">
+
+                <!-- Trigger the modal with a button -->
+                <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+
+                <!-- Modal -->
+                <div class="modal fade" id="loading" role="dialog">
+                    <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <img src=""></img>
+                        <!-- <div><i class="fas fa-sync fa-spin"></i></div> -->
+                        <!-- <div class="loader"></div> -->
+                        <!-- <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                        </div>
+                        <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div> -->
                     </div>
-{% endblock %}
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Consultants</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered zero-configuration" id="customerTable">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Client Name</th>
+                                                <th>Company Name</th>
+                                                <th>Address</th>
+                                                <th>Mobile1</th>
+                                                <th>Mobile2</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Client Name</th>
+                                                <th>Company Name</th>
+                                                <th>Address</th>
+                                                <th>Mobile1</th>
+                                                <th>Mobile2</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #/ container -->
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+</body>
+
+</html>

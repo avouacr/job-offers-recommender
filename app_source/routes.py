@@ -450,7 +450,7 @@ def offres_recommandees():
     indices_ranked = [x[1] for x in similarities_ranked]
 
 
-    final_df = df_offers.reindex(indices_ranked)[:4]
+    final_df = df_offers.reindex(indices_ranked)[:40]
 
     # return render_template('recommended_offers.html', title="Offres recommandées",
     #                        results=final_df.id)
