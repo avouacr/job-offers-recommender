@@ -360,8 +360,8 @@ def generation_cv():
         dic_entry = {
             'institution': entry.institution,
             'degree': entry.title,
-            'date_start': entry.start_date,
-            'date_end': entry.end_date,
+            'date_start': entry.start_date[:-3],
+            'date_end': entry.end_date[:-3],
             'description': entry.description
         }
         education_entries.append(dic_entry)
@@ -374,11 +374,12 @@ def generation_cv():
         dic_entry = {
             'institution': entry.institution,
             'position': entry.title,
-            'date_start': entry.start_date,
-            'date_end': entry.end_date,
+            'date_start': entry.start_date[:-3],
+            'date_end': entry.end_date[:-3],
             'description': entry.description
         }
         experience_entries.append(dic_entry)
+    cv_dict['experience'] = experience_entries
 
     # Add skills section
     it_skills_query = ComputerSkills.query.filter_by(user_id=user_id).all()
