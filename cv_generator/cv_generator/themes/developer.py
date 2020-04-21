@@ -50,6 +50,7 @@ class ThemeDeveloper(cv_generator.cv_generator.BaseTheme):
             self.doc.append(pylatex.NewLine())
             self.doc.append(Command('cvsect', ('Présentation')))
             self.doc.append(self.cv.basic.biography)
+            self.doc.append(pylatex.NewLine())
 
     def format_experience(self):
         if self.cv.experience and len(self.cv.experience) > 0:
