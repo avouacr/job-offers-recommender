@@ -5,7 +5,6 @@ Jaime
 - make html page for suggested offers
 - encore un truc tu peux modif le format des dates sur le CV j'ai mis MM/YYYY finalement
 - ajouter erreur si description vide (sinon erreur sql quand c'est le cas et on clique sur completer mon profil)
--     NotADirectoryError: [Errno 20] Not a directory: './generated_cv'
 - Attention si cv homnymes 
 
 Romain
