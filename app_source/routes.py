@@ -441,7 +441,7 @@ def offres_recommandees():
     relevant_vectors = fasttext_embeddings.compute_vectors(relevant_texts, n_jobs=1)
 
     # Compute similarities with job offers representations
-    df_offers = pd.read_csv('data/all_offers_nodup.csv')
+    df_offers = pd.read_csv('data/all_offers.csv')
     offer_vectors = np.load('data/offers_fasttext.npy')
     similarities = cosine_similarity(relevant_vectors, offer_vectors)
 
