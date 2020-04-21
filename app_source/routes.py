@@ -1,6 +1,7 @@
 import os
 import logging
 from datetime import date
+import tempfile
 
 import numpy as np
 import pandas as pd
@@ -405,16 +406,18 @@ def generation_cv():
         'developer': ThemeDeveloper,
     }
     theme = themes_dict['developer'](cv, logger)
+
+    # Store generated CV in a temp directory
     file_name = user.last_name.lower() + '_' + user.first_name.lower()
     file_name_full = file_name + '.pdf'
-    file_path = 'generated_cv' + os.sep + '{}'.format(file_name)
-    file_path_full = file_path + '.pdf'
-    theme.save(file_path, keep_tex=False)
-
-    return send_file('../' + file_path_full,
-                     mimetype='application/pdf',
-                     attachment_filename=file_name_full,
-                     as_attachment=True)
+    with tempfile.TemporaryDirectory() as tmpdir:
+        file_path = tmpdir + os.sep + '{}'.format(file_name)
+        file_path_full = file_path + '.pdf'
+        theme.save(file_path, keep_tex=False)
+        return send_file(file_path_full,
+                         mimetype='application/pdf',
+                         attachment_filename=file_name_full,
+                         as_attachment=True)
 
 
 @app.route('/offres_recommandees/')
