@@ -338,9 +338,12 @@ def generation_cv():
     for entry in languages_query:
         dic_entry = {'name': entry.language + ' : ' + entry.level}
         languages_entries.append(dic_entry)
-    cv_dict['languages'] = languages_entries
+    if languages_entries:
+        cv_dict['languages'] = languages_entries
+    else:
+        cv_dict['languages'] = []
 
-    # Add certifications
+        # Add certifications
     licenses_query = DriverLicenses.query.filter_by(user_id=user_id).all()
     other_certif_query = OtherCertifications.query.filter_by(user_id=user_id).all()
     certifications_entries = []
@@ -350,9 +353,12 @@ def generation_cv():
     for entry in other_certif_query:
         dic_entry = {'name': entry.other_certif}
         certifications_entries.append(dic_entry)
-    cv_dict['certifications'] = certifications_entries
+    if certifications_entries:
+        cv_dict['certifications'] = certifications_entries
+    else:
+        cv_dict['certifications'] = []
 
-    # Add education
+        # Add education
     education_query = Formation.query.filter_by(user_id=user_id).all()
     education_entries = []
     for entry in education_query:
@@ -364,9 +370,12 @@ def generation_cv():
             'description': entry.description
         }
         education_entries.append(dic_entry)
-    cv_dict['education'] = education_entries
+    if education_entries:
+        cv_dict['education'] = education_entries
+    else:
+        cv_dict['education'] = []
 
-    # Add experience
+        # Add experience
     experience_query = Experience.query.filter_by(user_id=user_id).all()
     experience_entries = []
     for entry in experience_query:
@@ -378,7 +387,10 @@ def generation_cv():
             'description': entry.description
         }
         experience_entries.append(dic_entry)
-    cv_dict['experience'] = experience_entries
+    if experience_entries:
+        cv_dict['experience'] = experience_entries
+    else:
+        cv_dict['experience'] = []
 
     # Add skills section
     it_skills_query = ComputerSkills.query.filter_by(user_id=user_id).all()
@@ -390,9 +402,12 @@ def generation_cv():
     for entry in other_skills_query:
         dic_entry = {'name': entry.skill}
         skills_entries.append(dic_entry)
-    cv_dict['informatique'] = skills_entries
+    if skills_entries:
+        cv_dict['informatique'] = skills_entries
+    else:
+        cv_dict['informatique'] = []
 
-    # Create a logging.Logger object to be used in the CV generation
+        # Create a logging.Logger object to be used in the CV generation
     logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s - [%(levelname)s] %(message)s',
                         datefmt='%Y-%m-%d %H:%M:%S')
