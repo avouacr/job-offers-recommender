@@ -1,23 +1,25 @@
-import os
 import logging
-from datetime import date
+import os
 import tempfile
+from datetime import date
 
 import numpy as np
 import pandas as pd
+from pretty_html_table import build_table
+
 from flask import render_template, flash, redirect, url_for, request, send_file
-from app_source import app, models
-from app_source.forms import LoginForm, RegistrationForm, GeneralInfoForm
-from app_source.forms import CertificationsForm, FormationForm, ExperienceForm
-from app_source.forms import SkillsForm, PresentationForm
 from flask_login import current_user, login_user, logout_user, login_required
-from app_source.models import User, SpokenLanguages, DriverLicenses, OtherCertifications
-from app_source.models import Formation, Experience, ComputerSkills, OtherSkills
-from app_source.models import Presentation, ProfilCompleted
+from sklearn.metrics.pairwise import cosine_similarity
 # from app_source.models import JobOffers, OfferVectors
 from werkzeug.urls import url_parse
-from sklearn.metrics.pairwise import cosine_similarity
 
+from app_source import app, models
+from app_source.forms import CertificationsForm, FormationForm, ExperienceForm
+from app_source.forms import LoginForm, RegistrationForm, GeneralInfoForm
+from app_source.forms import SkillsForm, PresentationForm
+from app_source.models import Formation, Experience, ComputerSkills, OtherSkills
+from app_source.models import Presentation, ProfilCompleted
+from app_source.models import User, SpokenLanguages, DriverLicenses, OtherCertifications
 from cv_generator import cv_generator
 from cv_generator.cv_generator.themes.developer import ThemeDeveloper
 
@@ -33,7 +35,6 @@ def root():
 
 @app.route('/login/', methods=['GET', 'POST'])
 def login():
-
     if current_user.is_authenticated:
         # Don't allow already logged in users to access login page again
         return redirect(url_for('main'))
@@ -282,14 +283,13 @@ def profil_competences():
                            form=form)
 
 
-
 @app.route('/profil_presentation/', methods=['GET', 'POST'])
 @login_required
 def profil_presentation():
     form = PresentationForm()
     if form.validate_on_submit():
         entry = Presentation(presentation=form.presentation.data,
-                            user_id=current_user.id)
+                             user_id=current_user.id)
         models.db.session.add(entry)
         models.db.session.commit()
         return redirect(url_for('main'))
@@ -299,11 +299,9 @@ def profil_presentation():
                            form=form)
 
 
-
 @app.route('/generation_cv/')
 @login_required
 def generation_cv():
-
     # Print error message if the user has not completed his profile yet
     user_id = current_user.id
     has_completed = ProfilCompleted.query.filter_by(user_id=user_id).first()
@@ -424,7 +422,6 @@ def generation_cv():
 @app.route('/offres_recommandees/')
 @login_required
 def offres_recommandees():
-
     # Print error message if the user has not completed his profile yet
     user_id = current_user.id
     has_completed = ProfilCompleted.query.filter_by(user_id=user_id).first()
@@ -452,7 +449,8 @@ def offres_recommandees():
     similarities_ranked = sorted(similarities_indices, key=lambda x: x[0], reverse=True)
     indices_ranked = [x[1] for x in similarities_ranked]
 
-    return render_template('recommended_offers.html', title="Offres recommandées")
 
+    final_df = df_offers.reindex(indices_ranked)[:50]
 
-
+    return render_template('recommended_offers.html', title="Offres recommandées",
+                           tables=[build_table(final_df, 'blue_light')], titles=final_df.columns.values)
