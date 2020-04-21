@@ -34,14 +34,14 @@ class ThemeDeveloper(cv_generator.cv_generator.BaseTheme):
         with self.doc.create(pylatex.MiniPage(width='0.3\\textwidth', pos='c')):
             # self.doc.append(Command('mobi', self.cv.basic.disponibilite_geographique))
             # self.doc.append(pylatex.NewLine())
-            if len(self.cv.basic.residence) > 0:
-                self.doc.append(Command('icon', ['MapMarker', 12, str(self.cv.basic.residence)]))
+            if len(self.cv.contact.email) > 0:
+                self.doc.append(Command('icon', ['At', 12, self.cv.contact.email]))
             if len(self.cv.contact.phone) > 0:
                 self.doc.append(pylatex.NewLine())
                 self.doc.append(Command('icon', ['Phone', 12, self.cv.contact.phone]))
-            if len(self.cv.contact.email) > 0:
+            if len(self.cv.basic.residence) > 0:
                 self.doc.append(pylatex.NewLine())
-                self.doc.append(Command('icon', ['At', 12, self.cv.contact.email]))
+                self.doc.append(Command('icon', ['MapMarker', 12, str(self.cv.basic.residence)]))
             if len(self.cv.basic.disponibilite_geographique) > 0:
                 self.doc.append(pylatex.NewLine())
                 self.doc.append(Command('mobi', ["Mobilité", self.cv.basic.disponibilite_geographique]))
