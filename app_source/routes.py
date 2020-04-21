@@ -429,11 +429,11 @@ def offres_recommandees():
         return redirect(url_for('main'))
 
     # Compute representations of user description and relevant experiences
-    description = User.query.filter_by(id=user_id).first().description
+    presentation = Presentation.query.filter_by(id=user_id).first().presentation
     exp_entries = Experience.query.filter_by(user_id=user_id).all()
     experiences_description = [x.description for x in exp_entries
                                if x.relevant_for_jobsearch]
-    relevant_texts = [description] + experiences_description
+    relevant_texts = [presentation] + experiences_description
     from doc_embeddings import fasttext_embeddings
     relevant_vectors = fasttext_embeddings.compute_vectors(relevant_texts, n_jobs=1)
 
