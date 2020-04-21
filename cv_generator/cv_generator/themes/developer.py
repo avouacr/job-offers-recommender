@@ -121,7 +121,7 @@ class ThemeDeveloper(cv_generator.cv_generator.BaseTheme):
 
             with self.doc.create(
                     pylatex.MiniPage(width='{}\\textwidth'.format(self.vertical_division_coefficient), pos='t')):
-                self.doc.append(Command('cvsect', ('Informatique')))  # en realité PO et MO inutiles ??
+                self.doc.append(Command('cvsect', ('Compétences')))  # en realité PO et MO inutiles ??
                 self.doc.append(pylatex.NewLine())
                 for certification_item in self.cv.informatique:
                     self.doc.append(
