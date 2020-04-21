@@ -6,6 +6,5 @@ Jaime
 - make html page for suggested offers
 
 Romain
-- Make CV sections conditional
 - Filter out offers based on user's mobility radius
 - Host app on a server
