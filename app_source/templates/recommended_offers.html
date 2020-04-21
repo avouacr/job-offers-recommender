@@ -2,11 +2,55 @@
 
 {% block content %}
 
-    <h1>Resultats</h1>
-    <h1>Resultats</h1>
+<section class="contact section-padding">
+    <div class="container">
+        <div class="row">
 
-{% for table in tables %}
-            {{titles[loop.index]}}
-            {{ table|safe }}
+            <!--            <div class="col-lg-6 mx-auto col-md-7 col-12 py-5 mt-5 text-center" data-aos="fade-up">-->
+            <div class="col-lg-10 mx-auto col-md-7 col-12 py-5 mt-5 text-center" data-aos="fade-up">
+
+
+                <h1 class="mb-4"><strong>Résultats</strong></h1>
+
+<table class="table table-striped w-auto">
+
+  <!--Table head-->
+  <thead>
+    <tr>
+      <th><h3 class="mb-4"><strong>Lien Pôle Emploi</strong></h3></th>
+      <th><h3 class="mb-4"><strong>Description</strong></h3></th>
+    </tr>
+  </thead>
+  <!--Table head-->
+
+  <!--Table body-->
+  <tbody>
+  	{% for key,value in df.iterrows() %}
+  	    <tr>
+      <td>
+      	     <a href="https://candidat.pole-emploi.fr/offres/recherche/detail/{{ value['id'] }}"><strong> infos ici </strong></a>
+
+      <td>{{ value['description'][:350] }}
+
+      </td>
+
+    </tr>
+
+
 {% endfor %}
+
+
+
+  </tbody>
+  <!--Table body-->
+
+
+</table>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--Table-->
 {% endblock %}

@@ -450,7 +450,11 @@ def offres_recommandees():
     indices_ranked = [x[1] for x in similarities_ranked]
 
 
-    final_df = df_offers.reindex(indices_ranked)[:50]
+    final_df = df_offers.reindex(indices_ranked)[:4]
 
+    # return render_template('recommended_offers.html', title="Offres recommandées",
+    #                        results=final_df.id)
     return render_template('recommended_offers.html', title="Offres recommandées",
-                           tables=[build_table(final_df, 'blue_light')], titles=final_df.columns.values)
+                           df=final_df)
+
+
