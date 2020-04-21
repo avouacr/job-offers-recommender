@@ -2,6 +2,7 @@ import os
 import logging
 from datetime import date
 import tempfile
+import json
 
 import numpy as np
 import pandas as pd
@@ -456,8 +457,34 @@ def offres_recommandees():
     relevant_vectors = fasttext_embeddings.compute_vectors(relevant_texts, n_jobs=1)
 
     # Compute similarities with job offers representations
-    df_offers = pd.read_csv('data/all_offers.csv')
+    df_offers = pd.read_csv('data/all_offers_nodup_test.csv')
     offer_vectors = np.load('data/offers_fasttext.npy')
+
+    # Filter offers according to the user's mobility radius
+    user = User.query.filter_by(id=user_id).first()
+    cp_user = user.postal_code
+    mobility_user = user.mobility
+
+    if mobility_user == 'Ville':
+        idx = df_offers.index[df_offers['localisation'] == cp_user].tolist()
+    elif mobility_user == 'Département':
+        idx = df_offers.index[df_offers['localisation'].str[:2] == cp_user[:2]].tolist()
+    elif mobility_user == 'Région':
+        with open('data/dict_dpt_region.json', 'r') as fp:
+            dict_dpt_region = json.load(fp)
+        region_user = dict_dpt_region[cp_user[:2]]
+        dpt_list = [d for d in dict_dpt_region.keys()
+                    if dict_dpt_region[d] == region_user]
+        idx = df_offers.index[((df_offers['localisation'].str[:2].isin(dpt_list))
+                               | (df_offers['localisation'] == region_user))].tolist()
+    elif mobility_user == 'France entière':
+        idx = df_offers.index.tolist()
+
+    df_offers = df_offers[df_offers.index.isin(idx)]
+    offer_vectors = offer_vectors[idx]
+    assert df_offers.shape[0] == offer_vectors.shape[0]
+
+    # Compute all pairwise similarities
     similarities = cosine_similarity(relevant_vectors, offer_vectors)
 
     # Rank job offers by similarity with the user info
@@ -465,8 +492,11 @@ def offres_recommandees():
                                     list(range(similarities.shape[1])) * similarities.shape[0]))
     similarities_ranked = sorted(similarities_indices, key=lambda x: x[0], reverse=True)
     indices_ranked = [x[1] for x in similarities_ranked]
+    # Keep unique ranks (i.e. sort offers by decreasing cosine similarity with user info)
+    unique_ranks = []
+    for n in indices_ranked:
+        if n not in unique_ranks:
+            unique_ranks.append(n)
+
 
     return render_template('recommended_offers.html', title="Offres recommandées")
-
-
-
