@@ -14,7 +14,6 @@ from flask_login import current_user, login_user, logout_user, login_required
 from app_source.models import User, SpokenLanguages, DriverLicenses, OtherCertifications
 from app_source.models import Formation, Experience, ComputerSkills, OtherSkills
 from app_source.models import Presentation, ProfilCompleted
-# from app_source.models import JobOffers, OfferVectors
 from werkzeug.urls import url_parse
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -360,8 +359,8 @@ def generation_cv():
         dic_entry = {
             'institution': entry.institution,
             'degree': entry.title,
-            'date_start': entry.start_date[:-3],
-            'date_end': entry.end_date[:-3],
+            'date_start': entry.start_date,
+            'date_end': entry.end_date,
             'description': entry.description
         }
         education_entries.append(dic_entry)
@@ -374,8 +373,8 @@ def generation_cv():
         dic_entry = {
             'institution': entry.institution,
             'position': entry.title,
-            'date_start': entry.start_date[:-3],
-            'date_end': entry.end_date[:-3],
+            'date_start': entry.start_date,
+            'date_end': entry.end_date,
             'description': entry.description
         }
         experience_entries.append(dic_entry)

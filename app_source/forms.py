@@ -158,5 +158,6 @@ class SkillsForm(FlaskForm):
 
 class PresentationForm(FlaskForm):
     """Form object to store the user self presentation."""
-    presentation = TextAreaField('Présentation', render_kw={"rows": 5, "cols": 50})
+    presentation = TextAreaField('Présentation', render_kw={"rows": 5, "cols": 50},
+                                 validators=[DataRequired()])
     submit = SubmitField('Valider et terminer')
