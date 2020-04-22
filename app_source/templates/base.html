@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='css/aos.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/owl.theme.default.min.css') }}">
-
+    <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>-->
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="{{ url_for('static',filename='css/templatemo-digital-trend.css') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -44,11 +44,13 @@
             display: none;
         }
 
-        .table-responsive {height:450px;}
-
+        .table-responsive {
+            height: 450px;
+        }
 
 
     </style>
+
 
 </head>
 <body>
@@ -163,21 +165,21 @@
 <script type="text/javascript" src="{{ url_for('static',filename='js/custom.js') }}"></script>
 
 <script>
-    $(function() {
+    $(function () {
 // setTimeout() function will be fired after page is loaded
 // it will wait for 5 sec. and then will fire
 // $(".message_flash").hide() function
-  setTimeout(function() {
-      $(".message_flash").hide('blind', {}, 500)
-  }, 5000);
-})
+        setTimeout(function () {
+            $(".message_flash").hide('blind', {}, 500)
+        }, 5000);
+    })
 
     $(document).ready(function () {
-  $('#dtBasicExample').DataTable({
-          "pagingType": "simple" // "simple" option for 'Previous' and 'Next' buttons only
-  });
-  $('.dataTables_length').addClass('bs-select');
-});
+        $('#dtBasicExample').DataTable({
+            "pagingType": "simple" // "simple" option for 'Previous' and 'Next' buttons only
+        });
+        $('.dataTables_length').addClass('bs-select');
+    });
 
 
     $(document).ready(function () {
@@ -204,114 +206,121 @@
     });
 </script>
 
+<script type="text/javascript">// <![CDATA[
+function loading() {
+    $("#loading").show();
+    $("#content").hide();
+}
+
+// ]]></script>
 <script>
-$.fn.pageMe = function(opts){
-    var $this = this,
-        defaults = {
-            perPage: 5,
-            // showPrevNext: true,
-            // hidePageNumbers: false
-        },
-        settings = $.extend(defaults, opts);
 
-    var listElement = $this;
-    var perPage = settings.perPage;
-    var children = listElement.children();
-    var pager = $('.pager');
 
-    if (typeof settings.childSelector!="undefined") {
-        children = listElement.find(settings.childSelector);
-    }
+    $.fn.pageMe = function (opts) {
+        var $this = this,
+            defaults = {
+                perPage: 5,
+                // showPrevNext: true,
+                // hidePageNumbers: false
+            },
+            settings = $.extend(defaults, opts);
 
-    if (typeof settings.pagerSelector!="undefined") {
-        pager = $(settings.pagerSelector);
-    }
+        var listElement = $this;
+        var perPage = settings.perPage;
+        var children = listElement.children();
+        var pager = $('.pager');
 
-    var numItems = children.size();
-    var numPages = Math.ceil(numItems/perPage);
-
-    pager.data("curr",0);
-
-    if (settings.showPrevNext){
-        $('<li><a href="#" class="prev_link">«</a></li>').appendTo(pager);
-    }
-
-    var curr = 0;
-    while(numPages > curr && (settings.hidePageNumbers==false)){
-        $('<li><a href="#" class="page_link">'+(curr+1)+'</a></li>').appendTo(pager);
-        curr++;
-    }
-
-    if (settings.showPrevNext){
-        $('<li><a href="#" class="next_link">»</a></li>').appendTo(pager);
-    }
-
-    pager.find('.page_link:first').addClass('active');
-    pager.find('.prev_link').hide();
-    if (numPages<=1) {
-        pager.find('.next_link').hide();
-    }
-  	pager.children().eq(1).addClass("active");
-
-    children.hide();
-    children.slice(0, perPage).show();
-
-    pager.find('li .page_link').click(function(){
-        var clickedPage = $(this).html().valueOf()-1;
-        goTo(clickedPage,perPage);
-        return false;
-    });
-    pager.find('li .prev_link').click(function(){
-        previous();
-        return false;
-    });
-    pager.find('li .next_link').click(function(){
-        next();
-        return false;
-    });
-
-    function previous(){
-        var goToPage = parseInt(pager.data("curr")) - 1;
-        goTo(goToPage);
-    }
-
-    function next(){
-        goToPage = parseInt(pager.data("curr")) + 1;
-        goTo(goToPage);
-    }
-
-    function goTo(page){
-        var startAt = page * perPage,
-            endOn = startAt + perPage;
-
-        children.css('display','none').slice(startAt, endOn).show();
-
-        if (page>=1) {
-            pager.find('.prev_link').show();
-        }
-        else {
-            pager.find('.prev_link').hide();
+        if (typeof settings.childSelector != "undefined") {
+            children = listElement.find(settings.childSelector);
         }
 
-        if (page<(numPages-1)) {
-            pager.find('.next_link').show();
+        if (typeof settings.pagerSelector != "undefined") {
+            pager = $(settings.pagerSelector);
         }
-        else {
+
+        var numItems = children.size();
+        var numPages = Math.ceil(numItems / perPage);
+
+        pager.data("curr", 0);
+
+        if (settings.showPrevNext) {
+            $('<li><a href="#" class="prev_link">«</a></li>').appendTo(pager);
+        }
+
+        var curr = 0;
+        while (numPages > curr && (settings.hidePageNumbers == false)) {
+            $('<li><a href="#" class="page_link">' + (curr + 1) + '</a></li>').appendTo(pager);
+            curr++;
+        }
+
+        if (settings.showPrevNext) {
+            $('<li><a href="#" class="next_link">»</a></li>').appendTo(pager);
+        }
+
+        pager.find('.page_link:first').addClass('active');
+        pager.find('.prev_link').hide();
+        if (numPages <= 1) {
             pager.find('.next_link').hide();
         }
+        pager.children().eq(1).addClass("active");
 
-        pager.data("curr",page);
-      	pager.children().removeClass("active");
-        pager.children().eq(page+1).addClass("active");
+        children.hide();
+        children.slice(0, perPage).show();
 
-    }
-};
+        pager.find('li .page_link').click(function () {
+            var clickedPage = $(this).html().valueOf() - 1;
+            goTo(clickedPage, perPage);
+            return false;
+        });
+        pager.find('li .prev_link').click(function () {
+            previous();
+            return false;
+        });
+        pager.find('li .next_link').click(function () {
+            next();
+            return false;
+        });
 
-$(document).ready(function(){
+        function previous() {
+            var goToPage = parseInt(pager.data("curr")) - 1;
+            goTo(goToPage);
+        }
 
-  $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:4});
+        function next() {
+            goToPage = parseInt(pager.data("curr")) + 1;
+            goTo(goToPage);
+        }
 
-});
+        function goTo(page) {
+            var startAt = page * perPage,
+                endOn = startAt + perPage;
+
+            children.css('display', 'none').slice(startAt, endOn).show();
+
+            if (page >= 1) {
+                pager.find('.prev_link').show();
+            } else {
+                pager.find('.prev_link').hide();
+            }
+
+            if (page < (numPages - 1)) {
+                pager.find('.next_link').show();
+            } else {
+                pager.find('.next_link').hide();
+            }
+
+            pager.data("curr", page);
+            pager.children().removeClass("active");
+            pager.children().eq(page + 1).addClass("active");
+
+        }
+    };
+
+    $(document).ready(function () {
+
+        $('#myTable').pageMe({pagerSelector: '#myPager', showPrevNext: true, hidePageNumbers: false, perPage: 4});
+
+    });
 </script>
 </body>
 </html>
