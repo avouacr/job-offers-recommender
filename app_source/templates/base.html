@@ -70,13 +70,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="index.html#about" class="nav-link">Equipe</a>
+                    <a href="{{ url_for('equipe') }}" class="nav-link">Equipe</a>
                 </li>
                 <li class="nav-item">
-                    <a href="index.html#project" class="nav-link">Comment ça marche</a>
-                </li>
-                <li class="nav-item">
-                    <a href="blog.html" class="nav-link">Blog</a>
+                    <a href="{{ url_for('comment_ca_marche') }}" class="nav-link">Comment ça marche</a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ url_for('logout') }}" class="nav-link active contact">Logout</a>

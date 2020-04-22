@@ -94,6 +94,11 @@ def main():
 def equipe():
     return render_template('equipe.html', title="Equipe")
 
+@app.route('/comment_ca_marche/')
+@login_required
+def comment_ca_marche():
+    return render_template('comment_ca_marche.html', title="Equipe")
+
 @app.route('/profil_info_generales/', methods=['GET', 'POST'])
 @login_required
 def profil_info_generales():
