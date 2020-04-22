@@ -24,18 +24,20 @@
                     {{ form.hidden_tag() }}
 
                     <p>
-                         {% for subform in form.experience_entries %}
+                        {% for subform in form.experience_entries %}
 
                     <div class="row">
                         <div class="col-lg-6 col-12">
-                            {{ subform.date_start(size=32, class="form-control", placeholder="Date de début (format : MM/AAAA)")}}
+                            {{ subform.date_start(size=32, class="form-control", placeholder="Date de début (format :
+                            MM/AAAA)")}}
                             {% if subform.date_start.errors %}
                             <span style="color: red;">La date doit être au format MM/AAAA.</span>
                             {% endif %}
                         </div>
 
                         <div class="col-lg-6 col-12">
-                            {{ subform.date_end(size=32, class="form-control", placeholder="Date de fin (format : MM/AAAA)")}}
+                            {{ subform.date_end(size=32, class="form-control", placeholder="Date de fin (format :
+                            MM/AAAA)")}}
                             {% if subform.date_end.errors %}
                             <span style="color: red;">La date doit être au format MM/AAAA.</span>
                             {% endif %}
@@ -56,24 +58,24 @@
                             {% if subform.title.errors %}
                             <span style="color: red;">Ce champ doit être complété.</span>
                             {% endif %}
-                            </div>
+                        </div>
                     </div>
 
-                        {{ subform.desc( class="form-control", placeholder="Description") }}
+                    {{ subform.desc( class="form-control", placeholder="Description") }}
 
-                                        <div class="row">
+                    <div class="row">
                         <div class="col-lg-10 col-12">
-                        {{ subform.is_relevant.label( class="form-control", placeholder="Description") }}
+                            {{ subform.is_relevant.label( class="form-control", placeholder="Description") }}
                         </div>
 
                         <div class="col-lg-2 col-12">
-                        {{ subform.is_relevant( class="form-control",size=32,) }}
+                            {{ subform.is_relevant( class="form-control",size=32,) }}
                         </div>
                     </div>
-                        <br>
-                        {% endfor %}
-                        {{ form.add_experience(class="btn btn-info btn-sm")}}
-                        {{ form.remove_experience(class="btn btn-warning btn-sm")}}
+                    <br>
+                    {% endfor %}
+                    {{ form.add_experience(class="btn btn-info btn-sm")}}
+                    {{ form.remove_experience(class="btn btn-warning btn-sm")}}
                     </p>
 
                     <br>

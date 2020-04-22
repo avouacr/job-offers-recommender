@@ -87,6 +87,15 @@ def register():
 def main():
     return render_template('main.html', title="Page d'accueil")
 
+@app.route('/equipe/')
+@login_required
+def equipe():
+    return render_template('equipe.html', title="Equipe")
+
+@app.route('/comment_ca_marche/')
+@login_required
+def comment_ca_marche():
+    return render_template('comment_ca_marche.html', title="Equipe")
 
 @app.route('/profil_info_generales/', methods=['GET', 'POST'])
 @login_required
