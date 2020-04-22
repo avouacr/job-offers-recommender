@@ -78,9 +78,9 @@ def compute_vectors(corpus, n_jobs=1):
 if __name__ == '__main__':
     # Load job offers in the current db
     print('Load job offers.')
-    df_offers = pd.read_csv('data/all_offers_nodup.csv',
-                            usecols=['id', 'description'])
-    # df_offers['description'] = df_offers['description'].astype(str)
+    df_offers = pd.read_csv('data/all_offers.csv',
+                            usecols=['description'])
+    df_offers = df_offers.dropna(subset=['description'])
 
     # Compute document representations using FastText model
     print('Compute FastText representations of job offers.')
@@ -93,5 +93,4 @@ if __name__ == '__main__':
 
     # Store document vectors
     print('Save results.')
-    np.save('data/offers_fasttext.npy',
-            doc_vectors)
+    np.save('data/offers_fasttext.npy', doc_vectors)

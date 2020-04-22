@@ -458,7 +458,9 @@ def offres_recommandees():
     relevant_vectors = fasttext_embeddings.compute_vectors(relevant_texts, n_jobs=1)
 
     # Compute similarities with job offers representations
-    df_offers = pd.read_csv('data/all_offers_nodup_test.csv')
+    df_offers = pd.read_csv('data/all_offers.csv',
+                            usecols=['id', 'localisation', 'description'])
+    df_offers = df_offers.dropna(subset=['description']).reset_index(drop=True)
     offer_vectors = np.load('data/offers_fasttext.npy')
 
     # Filter offers according to the user's mobility radius
@@ -481,7 +483,7 @@ def offres_recommandees():
     elif mobility_user == 'France entière':
         idx = df_offers.index.tolist()
 
-    df_offers = df_offers[df_offers.index.isin(idx)]
+    df_offers = df_offers.iloc[idx]
     offer_vectors = offer_vectors[idx]
     assert df_offers.shape[0] == offer_vectors.shape[0]
 
@@ -501,7 +503,7 @@ def offres_recommandees():
             unique_ranks.append(n)
 
 
-    final_df = df_offers.reindex(unique_ranks)[:40]
+    final_df = df_offers.iloc[unique_ranks][:40]
 
     # return render_template('recommended_offers.html', title="Offres recommandées",
     #                        results=final_df.id)
