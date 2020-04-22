@@ -12,7 +12,7 @@ config.py
 !data/french_driver_licenses.txt
 !data/languages_list.txt
 !data/stopwords-fr.txt
-
+!data/dict_dpt_region.json
 
 
 # Byte-compiled / optimized / DLL files

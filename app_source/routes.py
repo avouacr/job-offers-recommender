@@ -1,7 +1,12 @@
 import logging
 import os
 import tempfile
+<<<<<<< HEAD
 from datetime import date
+||||||| merged common ancestors
+=======
+import json
+>>>>>>> 809c78c236ead3631678b25e6f38504390d7650f
 
 import numpy as np
 import pandas as pd
@@ -19,7 +24,18 @@ from app_source.forms import LoginForm, RegistrationForm, GeneralInfoForm
 from app_source.forms import SkillsForm, PresentationForm
 from app_source.models import Formation, Experience, ComputerSkills, OtherSkills
 from app_source.models import Presentation, ProfilCompleted
+<<<<<<< HEAD
 from app_source.models import User, SpokenLanguages, DriverLicenses, OtherCertifications
+||||||| merged common ancestors
+# from app_source.models import JobOffers, OfferVectors
+from werkzeug.urls import url_parse
+from sklearn.metrics.pairwise import cosine_similarity
+
+=======
+from werkzeug.urls import url_parse
+from sklearn.metrics.pairwise import cosine_similarity
+
+>>>>>>> 809c78c236ead3631678b25e6f38504390d7650f
 from cv_generator import cv_generator
 from cv_generator.cv_generator.themes.developer import ThemeDeveloper
 
@@ -337,9 +353,12 @@ def generation_cv():
     for entry in languages_query:
         dic_entry = {'name': entry.language + ' : ' + entry.level}
         languages_entries.append(dic_entry)
-    cv_dict['languages'] = languages_entries
+    if languages_entries:
+        cv_dict['languages'] = languages_entries
+    else:
+        cv_dict['languages'] = []
 
-    # Add certifications
+        # Add certifications
     licenses_query = DriverLicenses.query.filter_by(user_id=user_id).all()
     other_certif_query = OtherCertifications.query.filter_by(user_id=user_id).all()
     certifications_entries = []
@@ -349,35 +368,44 @@ def generation_cv():
     for entry in other_certif_query:
         dic_entry = {'name': entry.other_certif}
         certifications_entries.append(dic_entry)
-    cv_dict['certifications'] = certifications_entries
+    if certifications_entries:
+        cv_dict['certifications'] = certifications_entries
+    else:
+        cv_dict['certifications'] = []
 
-    # Add education
+        # Add education
     education_query = Formation.query.filter_by(user_id=user_id).all()
     education_entries = []
     for entry in education_query:
         dic_entry = {
             'institution': entry.institution,
             'degree': entry.title,
-            'date_start': entry.start_date[:-3],
-            'date_end': entry.end_date[:-3],
+            'date_start': entry.start_date,
+            'date_end': entry.end_date,
             'description': entry.description
         }
         education_entries.append(dic_entry)
-    cv_dict['education'] = education_entries
+    if education_entries:
+        cv_dict['education'] = education_entries
+    else:
+        cv_dict['education'] = []
 
-    # Add experience
+        # Add experience
     experience_query = Experience.query.filter_by(user_id=user_id).all()
     experience_entries = []
     for entry in experience_query:
         dic_entry = {
             'institution': entry.institution,
             'position': entry.title,
-            'date_start': entry.start_date[:-3],
-            'date_end': entry.end_date[:-3],
+            'date_start': entry.start_date,
+            'date_end': entry.end_date,
             'description': entry.description
         }
         experience_entries.append(dic_entry)
-    cv_dict['experience'] = experience_entries
+    if experience_entries:
+        cv_dict['experience'] = experience_entries
+    else:
+        cv_dict['experience'] = []
 
     # Add skills section
     it_skills_query = ComputerSkills.query.filter_by(user_id=user_id).all()
@@ -389,9 +417,12 @@ def generation_cv():
     for entry in other_skills_query:
         dic_entry = {'name': entry.skill}
         skills_entries.append(dic_entry)
-    cv_dict['informatique'] = skills_entries
+    if skills_entries:
+        cv_dict['informatique'] = skills_entries
+    else:
+        cv_dict['informatique'] = []
 
-    # Create a logging.Logger object to be used in the CV generation
+        # Create a logging.Logger object to be used in the CV generation
     logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s - [%(levelname)s] %(message)s',
                         datefmt='%Y-%m-%d %H:%M:%S')
@@ -439,8 +470,34 @@ def offres_recommandees():
     relevant_vectors = fasttext_embeddings.compute_vectors(relevant_texts, n_jobs=1)
 
     # Compute similarities with job offers representations
-    df_offers = pd.read_csv('data/all_offers_nodup.csv')
+    df_offers = pd.read_csv('data/all_offers_nodup_test.csv')
     offer_vectors = np.load('data/offers_fasttext.npy')
+
+    # Filter offers according to the user's mobility radius
+    user = User.query.filter_by(id=user_id).first()
+    cp_user = user.postal_code
+    mobility_user = user.mobility
+
+    if mobility_user == 'Ville':
+        idx = df_offers.index[df_offers['localisation'] == cp_user].tolist()
+    elif mobility_user == 'Département':
+        idx = df_offers.index[df_offers['localisation'].str[:2] == cp_user[:2]].tolist()
+    elif mobility_user == 'Région':
+        with open('data/dict_dpt_region.json', 'r') as fp:
+            dict_dpt_region = json.load(fp)
+        region_user = dict_dpt_region[cp_user[:2]]
+        dpt_list = [d for d in dict_dpt_region.keys()
+                    if dict_dpt_region[d] == region_user]
+        idx = df_offers.index[((df_offers['localisation'].str[:2].isin(dpt_list))
+                               | (df_offers['localisation'] == region_user))].tolist()
+    elif mobility_user == 'France entière':
+        idx = df_offers.index.tolist()
+
+    df_offers = df_offers[df_offers.index.isin(idx)]
+    offer_vectors = offer_vectors[idx]
+    assert df_offers.shape[0] == offer_vectors.shape[0]
+
+    # Compute all pairwise similarities
     similarities = cosine_similarity(relevant_vectors, offer_vectors)
 
     # Rank job offers by similarity with the user info
@@ -448,6 +505,7 @@ def offres_recommandees():
                                     list(range(similarities.shape[1])) * similarities.shape[0]))
     similarities_ranked = sorted(similarities_indices, key=lambda x: x[0], reverse=True)
     indices_ranked = [x[1] for x in similarities_ranked]
+<<<<<<< HEAD
 
 
     final_df = df_offers.reindex(indices_ranked)[:40]
@@ -456,5 +514,17 @@ def offres_recommandees():
     #                        results=final_df.id)
     return render_template('recommended_offers.html', title="Offres recommandées",
                            df=final_df)
+||||||| merged common ancestors
+
+    return render_template('recommended_offers.html', title="Offres recommandées")
+
+=======
+    # Keep unique ranks (i.e. sort offers by decreasing cosine similarity with user info)
+    unique_ranks = []
+    for n in indices_ranked:
+        if n not in unique_ranks:
+            unique_ranks.append(n)
+>>>>>>> 809c78c236ead3631678b25e6f38504390d7650f
 
 
+    return render_template('recommended_offers.html', title="Offres recommandées")
