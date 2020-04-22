@@ -2,8 +2,7 @@ Jaime
 - Register page display issue
 - Enable flash messages to be rendered (e.g. messages d'erreur)
 - Proper html links for navigation menu buttons
-- small style changes in cv (separate sectsion, etc)
-- make html page for suggested offers
+- Waiting page or widget while recommended offers are computed
 
 Romain
-- Host app on a server
+- Dockerise app
