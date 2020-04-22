@@ -5,4 +5,4 @@ Jaime
 - Waiting page or widget while recommended offers are computed
 
 Romain
-- Dockerise app
+- Dockerize app
