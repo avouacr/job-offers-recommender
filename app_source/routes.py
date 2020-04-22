@@ -1,16 +1,11 @@
 import logging
 import os
 import tempfile
-<<<<<<< HEAD
 from datetime import date
-||||||| merged common ancestors
-=======
 import json
->>>>>>> 809c78c236ead3631678b25e6f38504390d7650f
 
 import numpy as np
 import pandas as pd
-from pretty_html_table import build_table
 
 from flask import render_template, flash, redirect, url_for, request, send_file
 from flask_login import current_user, login_user, logout_user, login_required
@@ -24,18 +19,11 @@ from app_source.forms import LoginForm, RegistrationForm, GeneralInfoForm
 from app_source.forms import SkillsForm, PresentationForm
 from app_source.models import Formation, Experience, ComputerSkills, OtherSkills
 from app_source.models import Presentation, ProfilCompleted
-<<<<<<< HEAD
 from app_source.models import User, SpokenLanguages, DriverLicenses, OtherCertifications
-||||||| merged common ancestors
 # from app_source.models import JobOffers, OfferVectors
 from werkzeug.urls import url_parse
 from sklearn.metrics.pairwise import cosine_similarity
 
-=======
-from werkzeug.urls import url_parse
-from sklearn.metrics.pairwise import cosine_similarity
-
->>>>>>> 809c78c236ead3631678b25e6f38504390d7650f
 from cv_generator import cv_generator
 from cv_generator.cv_generator.themes.developer import ThemeDeveloper
 
@@ -505,26 +493,18 @@ def offres_recommandees():
                                     list(range(similarities.shape[1])) * similarities.shape[0]))
     similarities_ranked = sorted(similarities_indices, key=lambda x: x[0], reverse=True)
     indices_ranked = [x[1] for x in similarities_ranked]
-<<<<<<< HEAD
 
-
-    final_df = df_offers.reindex(indices_ranked)[:40]
-
-    # return render_template('recommended_offers.html', title="Offres recommandées",
-    #                        results=final_df.id)
-    return render_template('recommended_offers.html', title="Offres recommandées",
-                           df=final_df)
-||||||| merged common ancestors
-
-    return render_template('recommended_offers.html', title="Offres recommandées")
-
-=======
     # Keep unique ranks (i.e. sort offers by decreasing cosine similarity with user info)
     unique_ranks = []
     for n in indices_ranked:
         if n not in unique_ranks:
             unique_ranks.append(n)
->>>>>>> 809c78c236ead3631678b25e6f38504390d7650f
 
 
-    return render_template('recommended_offers.html', title="Offres recommandées")
+    final_df = df_offers.reindex(unique_ranks)[:40]
+
+    # return render_template('recommended_offers.html', title="Offres recommandées",
+    #                        results=final_df.id)
+    return render_template('recommended_offers.html', title="Offres recommandées",
+                           df=final_df)
+
