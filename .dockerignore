@@ -2,6 +2,8 @@ API_query
 cv_tests
 data_cleaning
 models
+old
 venv
-data/all_offers.csv
-data/offers_fasttext.npy
+__pycache__
+README.md
+TODO.txt
