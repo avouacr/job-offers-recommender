@@ -186,7 +186,7 @@ def populate_db_test():
         password_hash='pbkdf2:sha256:150000$C63gRD2m$c498dba396ce36403c8be70951a4e2a1a15026e61644ffa4aefbdc874938e6d7',
         first_name='Romain',
         last_name='Avouac',
-        phone_number='0669120021',
+        phone_number='0660066006',
         postal_code='75013',
         city='Paris',
         mobility='Département'
@@ -263,7 +263,7 @@ géographique des évènements..""",
     ))
 
     entries.append(OtherSkills(
-        skill='PIMP',
+        skill='Diagonalisation de matrices complexes',
         user_id=1
     ))
 
