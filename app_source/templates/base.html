@@ -26,6 +26,14 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='css/aos.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/owl.theme.default.min.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
     <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>-->
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="{{ url_for('static',filename='css/templatemo-digital-trend.css') }}">
@@ -47,7 +55,25 @@
         .table-responsive {
             height: 450px;
         }
+ /* unvisited link */
+a.result_offer:link {
+    color: royalblue;
+}
 
+/* visited link */
+a.result_offer:visited {
+  color: mediumpurple;
+}
+
+/* mouse over link */
+a.result_offer:hover {
+  color: slateblue;
+}
+
+/* selected link */
+a.result_offer:active {
+    color: slateblue;
+}
 
     </style>
 
@@ -184,16 +210,22 @@
 
     $(document).ready(function () {
         $('#data').after('<div id="nav"></div>');
+
         var rowsShown = 7;
         var rowsTotal = $('#data tbody tr').length;
         var numPages = rowsTotal / rowsShown;
+        $('#nav').append('Page : ');
         for (i = 0; i < numPages; i++) {
             var pageNum = i + 1;
             $('#nav').append('<a href="#" rel="' + i + '">' + pageNum + '</a> ');
         }
+
+
         $('#data tbody tr').hide();
         $('#data tbody tr').slice(0, rowsShown).show();
+
         $('#nav a:first').addClass('active');
+
         $('#nav a').bind('click', function () {
 
             $('#nav a').removeClass('active');
@@ -213,114 +245,5 @@ function loading() {
 }
 
 // ]]></script>
-<script>
-
-
-    $.fn.pageMe = function (opts) {
-        var $this = this,
-            defaults = {
-                perPage: 5,
-                // showPrevNext: true,
-                // hidePageNumbers: false
-            },
-            settings = $.extend(defaults, opts);
-
-        var listElement = $this;
-        var perPage = settings.perPage;
-        var children = listElement.children();
-        var pager = $('.pager');
-
-        if (typeof settings.childSelector != "undefined") {
-            children = listElement.find(settings.childSelector);
-        }
-
-        if (typeof settings.pagerSelector != "undefined") {
-            pager = $(settings.pagerSelector);
-        }
-
-        var numItems = children.size();
-        var numPages = Math.ceil(numItems / perPage);
-
-        pager.data("curr", 0);
-
-        if (settings.showPrevNext) {
-            $('<li><a href="#" class="prev_link">«</a></li>').appendTo(pager);
-        }
-
-        var curr = 0;
-        while (numPages > curr && (settings.hidePageNumbers == false)) {
-            $('<li><a href="#" class="page_link">' + (curr + 1) + '</a></li>').appendTo(pager);
-            curr++;
-        }
-
-        if (settings.showPrevNext) {
-            $('<li><a href="#" class="next_link">»</a></li>').appendTo(pager);
-        }
-
-        pager.find('.page_link:first').addClass('active');
-        pager.find('.prev_link').hide();
-        if (numPages <= 1) {
-            pager.find('.next_link').hide();
-        }
-        pager.children().eq(1).addClass("active");
-
-        children.hide();
-        children.slice(0, perPage).show();
-
-        pager.find('li .page_link').click(function () {
-            var clickedPage = $(this).html().valueOf() - 1;
-            goTo(clickedPage, perPage);
-            return false;
-        });
-        pager.find('li .prev_link').click(function () {
-            previous();
-            return false;
-        });
-        pager.find('li .next_link').click(function () {
-            next();
-            return false;
-        });
-
-        function previous() {
-            var goToPage = parseInt(pager.data("curr")) - 1;
-            goTo(goToPage);
-        }
-
-        function next() {
-            goToPage = parseInt(pager.data("curr")) + 1;
-            goTo(goToPage);
-        }
-
-        function goTo(page) {
-            var startAt = page * perPage,
-                endOn = startAt + perPage;
-
-            children.css('display', 'none').slice(startAt, endOn).show();
-
-            if (page >= 1) {
-                pager.find('.prev_link').show();
-            } else {
-                pager.find('.prev_link').hide();
-            }
-
-            if (page < (numPages - 1)) {
-                pager.find('.next_link').show();
-            } else {
-                pager.find('.next_link').hide();
-            }
-
-            pager.data("curr", page);
-            pager.children().removeClass("active");
-            pager.children().eq(page + 1).addClass("active");
-
-        }
-    };
-
-    $(document).ready(function () {
-
-        $('#myTable').pageMe({pagerSelector: '#myPager', showPrevNext: true, hidePageNumbers: false, perPage: 4});
-
-    });
-</script>
 </body>
 </html>

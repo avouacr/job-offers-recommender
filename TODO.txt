@@ -1,8 +1,5 @@
 Jaime
-- Register page display issue
-- Enable flash messages to be rendered (e.g. messages d'erreur)
-- Proper html links for navigation menu buttons
-- Waiting page or widget while recommended offers are computed
+- dans offres recommandées; colonne avec les liens à droite des descriptions, et avec "plus d'infos ici" comme label
 
 Romain
 - Dockerize app

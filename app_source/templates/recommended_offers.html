@@ -11,14 +11,12 @@
 
                 <h1 class="mb-4"><strong>Résultats</strong></h1>
 
-                <p> Page :
-                <ul class="pagination" id="myPager"></ul>
-                </p>
 
                 <div class="container">
                     <div class="row">
-                        <div class="table-responsive">
-                            <table class="table table-hover" id="data">
+                            <table class="table table-hover table-responsive" id="data">
+<!--                                        <div class="table-responsive">-->
+
                                 <thead>
                                 <tr>
                                     <!--                                    <th>#</th>-->
@@ -30,10 +28,10 @@
                                 {% for key,value in df.iterrows() %}
                                 <tr>
                                     <td>
-                                        <a href="https://candidat.pole-emploi.fr/offres/recherche/detail/{{ value['id'] }}"><strong>
-                                            infos ici </strong></a>
+                                     {{ value['description'][:350] }}
 
-                                    <td>{{ value['description'][:350] }}
+                                    <td>   <a href="https://candidat.pole-emploi.fr/offres/recherche/detail/{{ value['id'] }}" class="result_offer" target="_blank"  >
+                                            informations/postuler </a>
 
                                     </td>
 
@@ -47,7 +45,7 @@
 
                             </table>
 
-                        </div>
+<!--                        </div>-->
                     </div>
                 </div>
             </div>
