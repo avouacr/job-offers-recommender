@@ -20,7 +20,7 @@ from app_source.models import Formation, Experience, ComputerSkills, OtherSkills
 from app_source.models import Presentation, ProfilCompleted
 from app_source.models import User, SpokenLanguages, DriverLicenses, OtherCertifications
 from werkzeug.urls import url_parse
-from sklearn.metrics.pairwise import cosine_similarity
+from scipy.spatial.distance import cdist
 
 from cv_generator import cv_generator
 from cv_generator.cv_generator.themes.developer import ThemeDeveloper
@@ -495,7 +495,7 @@ def offres_recommandees():
     assert df_offers.shape[0] == offer_vectors.shape[0]
 
     # Compute all pairwise similarities
-    similarities = cosine_similarity(relevant_vectors, offer_vectors)
+    similarities = 1 - cdist(relevant_vectors, offer_vectors, metric='cosine')
 
     # Rank job offers by similarity with the user info
     similarities_indices = list(zip(similarities.ravel(),
