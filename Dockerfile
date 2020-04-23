@@ -4,7 +4,6 @@ RUN adduser --disabled-login app_user
 
 WORKDIR /home/app_user
 
-
 RUN python -m venv venv
 RUN apt-get update && apt-get install -y \
     build-essential \
