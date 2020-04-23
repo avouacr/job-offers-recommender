@@ -6,10 +6,9 @@ import json
 
 import numpy as np
 import pandas as pd
-
 from flask import render_template, flash, redirect, url_for, request, send_file
 from flask_login import current_user, login_user, logout_user, login_required
-from sklearn.metrics.pairwise import cosine_similarity
+from scipy.spatial.distance import cdist
 from werkzeug.urls import url_parse
 
 from app_source import app, models
@@ -19,9 +18,6 @@ from app_source.forms import SkillsForm, PresentationForm
 from app_source.models import Formation, Experience, ComputerSkills, OtherSkills
 from app_source.models import Presentation, ProfilCompleted
 from app_source.models import User, SpokenLanguages, DriverLicenses, OtherCertifications
-from werkzeug.urls import url_parse
-from scipy.spatial.distance import cdist
-
 from cv_generator import cv_generator
 from cv_generator.cv_generator.themes.developer import ThemeDeveloper
 
