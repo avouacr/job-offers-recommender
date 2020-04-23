@@ -28,10 +28,10 @@
                                 {% for key,value in df.iterrows() %}
                                 <tr>
                                     <td>
-                                        <a href="https://candidat.pole-emploi.fr/offres/recherche/detail/{{ value['id'] }}"><strong>
-                                            infos ici </strong></a>
+                                     {{ value['description'][:350] }}
 
-                                    <td>{{ value['description'][:350] }}
+                                    <td>   <a href="https://candidat.pole-emploi.fr/offres/recherche/detail/{{ value['id'] }}" class="result_offer" target="_blank"  >
+                                            informations/postuler </a>
 
                                     </td>
 
