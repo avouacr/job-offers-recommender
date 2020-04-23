@@ -1,5 +1,5 @@
 Jaime
-- dans offres recommandées; colonne avec les liens à droite des descriptions, et avec "plus d'infos ici" comme label
+- Clean and comment code
 
 Romain
 - Dockerize app
