@@ -8,6 +8,9 @@ COPY . .
 RUN python -m venv venv
 RUN apt-get update && apt-get install -y \
     build-essential \
+    locales locales-all \
+    texlive \
+    texlive-fonts-extra \
  && rm -rf /var/lib/apt/lists/*
 RUN venv/bin/pip install -r requirements.txt
 RUN venv/bin/pip install gunicorn
