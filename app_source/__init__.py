@@ -19,11 +19,13 @@ app.static_folder = 'static'
 def init_db():
     """Enable database (re)initialization."""
     models.init_db()
+    print('Database initialized.')
 
 @app.cli.command('populate_db_test')
 def populate_db_test():
     """Populate db with test data."""
     models.populate_db_test()
+    print('Database populated with toy data.')
 
 # @app.cli.command('update_job_offers')
 # def update_job_offers():

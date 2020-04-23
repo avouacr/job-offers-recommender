@@ -14,7 +14,6 @@ def init_db():
     db.drop_all()
     db.create_all()
     db.session.commit()
-    print('Database initialized.')
 
 
 class User(UserMixin, db.Model):
