@@ -35,7 +35,7 @@ This project is our final submission for the 3rd year Computer Science Project c
 
 The main objective of the project was to improve the matching procedure between job seekers and job offers, using data from the French governmental agency Pôle Emploi. A few tests done on Pôle Emploi job search service showed that there could be limitations with the current procedure. For instance, language mistales, homonymy, etc. were not taken into account. Besides, since the current search procedure is based on keywords, its quality is stongly dependent on the indexation of the offers. Against that background, we wanted to implement a more flexible search procedure, based on word embeddings, on the model of most modern recommender systems.
 
-In order to make this procedure easily accessible by end users, we chose to develop a minimilatistic, user-friendly application. The app has two purposes :
+In order to make this procedure easily accessible to end users, we chose to develop a minimilatistic, user-friendly web application. The app has two purposes :
 - generate a professional looking and normalized resume, based on the information provided by the user. This feature is especially useful to job seekers with limited IT familiarity ;
 - recommend to users the most relevant job offers based on their profile (experience, skills, etc.)
 
