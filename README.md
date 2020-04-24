@@ -30,11 +30,16 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## About the Project
+This project is our submission for the Computer Science Project class at ENSAE Paris. Our personal goal with this project was to get familliar with a broad range of development frameworks and tools unbeknownst to us and yet very useful in the professional life.
 
+The main objective of the project was to improve the matching procedure between job seekers and job offers, using data from the French governmental agency Pôle Emploi. A few tests done on Pôle Emploi job search service showed that there could be limitations with the current procedure. For instance, language mistales, homonymy, etc. were not taken into account. Besides, since the current search procedure is based on keywords, its quality is stongly dependent on the indexation of the offers. Against that background, we wanted to implement a more flexible search procedure, based on word embeddings, similarly to most modern recommender systems.
 
+In order to make this procedure easily accessible by end users, we chose to develop a minimilatistic, user-friendly application. The app has two purposes :
+- generate a professional looking and normalized resume, based on the information provided by the user. This feature is especially useful to job seekers with limited IT familiarity ;
+- recommend to users the most relevant job offers based on their profile (experience, skills, etc.)
 
-### Built With
+### Built with
 
 * [Python](https://python.org)
 * [Flask](https://flask.palletsprojects.com/en/1.1.x/)
@@ -146,5 +151,5 @@ Jaime Costa Centena - [JCCen](https://github.com/JCCen) - jaime.costa.centena@en
 ## Acknowledgements
 * [Miguel Grinberg's "Flask Mega-Tutorial"](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
 * [Best README template](https://github.com/othneildrew/Best-README-Template)
-* [Template mo](https://templatemo.com)
+* [Template mo](templatemo.com/)
 
