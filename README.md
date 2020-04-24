@@ -90,10 +90,7 @@ export POLE_EMPLOI_API_ID="YOUR POLE EMPLOI API DI"
 export POLE_EMPLOI_API_KEY="YOUR POLE EMPLOI API KEY"
 ```
 
-The above procdure does not store the variables. If you wish to conserve these variables persistently, you might find the following links helpful :
-- [Linux](https://unix.stackexchange.com/questions/117467/how-to-permanently-set-environmental-variables)
-- [Windows](https://www.computerhope.com/issues/ch000549.htm)
-- [Mac](https://medium.com/@youngstone89/setting-up-environment-variables-in-mac-os-28e5941c771c)
+The above procedure does not store the variables. If you wish to conserve these variables persistently, you might find ressources in the following links for [Linux](https://unix.stackexchange.com/questions/117467/how-to-permanently-set-environmental-variables), [Windows](https://www.computerhope.com/issues/ch000549.htm) and [Mac](https://medium.com/@youngstone89/setting-up-environment-variables-in-mac-os-28e5941c771c).
 
 3. Query Pole Emploi API
 ```sh
