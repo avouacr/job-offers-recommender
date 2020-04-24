@@ -1,7 +1,7 @@
 Jaime
+- CHanger le paragraphe dans la page "comment ça marche?"
 - Clean and comment code
 
 Romain
-- script to download data
 - remove mock data
 - Git descriptif
