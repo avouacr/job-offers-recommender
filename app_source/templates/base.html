@@ -128,7 +128,7 @@
 
                 <p class="mb-1">
                     <i class="fa fa-phone mr-2 footer-icon"></i>
-                    +33 080 070 4224
+                    +33 1 70 26 67 00
                 </p>
 
                 <p>
@@ -144,16 +144,18 @@
 
                 <p class="mb-1">
                     <i class="fa fa-home mr-2 footer-icon"></i>
-                    Av. Lúcio Costa - Barra da Tijuca, Rio de Janeiro - RJ, Brazil
+                    5 Avenue Le Chatelier, 91120 Palaiseau, France
                 </p>
             </div>
 
             <!--   <div class="col-lg-4 mx-lg-auto col-md-6 col-12" data-aos="fade-up" data-aos-delay="500">-->
 
             <ul class="footer-link">
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Travailler pour nous</a></li>
-                <li><a href="#">GDPR</a></li>
+                <li><a href="{{ url_for('equipe') }}">Equipe</a></li>
+                <li><a href="{{ url_for('comment_ca_marche') }}">Comment ça marche</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+
+
             </ul>
         </div>
 
