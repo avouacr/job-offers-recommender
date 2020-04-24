@@ -81,7 +81,7 @@ python3 ./app.py
 
 If you want to update the job offers database, follow these steps :
 
-1. Get  [Pole Emploi API identifier and key](https://www.emploi-store-dev.fr/portail-developpeur-cms/home/catalogue-des-api/documentation-des-api/utiliser-les-api.html)
+1. Get  the [Pole Emploi API developper identifier and key](https://www.emploi-store-dev.fr/portail-developpeur-cms/home/catalogue-des-api/documentation-des-api/souscrire-api.html;JSESSIONID_JAHIA=C8EFB919489B2A8430C18600687F35E6)
 
 2. Set them as environment variables (POLE_EMPLOI_API_ID and POLE_EMPLOI_API_KEY).
 
