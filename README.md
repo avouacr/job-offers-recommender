@@ -37,13 +37,13 @@ Our personal goal was to get familliar and improve our knowledge of a broad rang
 
 Our web application improves the matching procedure between job seekers and job offers, using data from the French governmental agency [Pôle Emploi](https://en.wikipedia.org/wiki/P%C3%B4le_emploi). This agency is used by more than 403 000 businesses to recruit, and its website has more than 46 millions monthly visitors. Despite this numbers, a few tests done on Pôle Emploi job search service show that the current procedure has important shortcomings, e.g. language mistales, homonymy, etc. are currently not taken into account. Besides, since the current search procedure is based on keywords, its quality is strongly dependent on the indexation of the offers.
 
-Against that background, we wanted to implement a more flexible search procedure, based on word embeddings, as it of often done on most modern recommender systems.
+Against that background, we wanted to implement a more flexible search procedure, based on embeddings, as it is often seen in modern recommender systems.
 
 In order to make this procedure easily accessible to end users, we chose to develop a minimalistic, user-friendly web application. The app has two purposes :
 - generate a professional looking and normalized resume, based on the information provided by the user. This feature is especially useful to job seekers with limited IT familiarity ;
 - recommend to users the most relevant job offers based on their profile (experience, skills, etc.)
 
-Do not hesitate to reach out to us for any comment or suggstion regarding this project.
+Do not hesitate to reach out to us for any comment or suggestion regarding this project.
 
 ### Built with
 
