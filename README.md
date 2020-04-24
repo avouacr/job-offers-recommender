@@ -79,7 +79,7 @@ python3 ./app.py
 
 ### Updating the job offers database
 
-If you want to update the job offers database, follow these steps :
+By default, the app runs with the job offers data from the current (04/24/2020) Pole Emploi database. If you want to update the data with the new job offers, follow these steps :
 
 1. Get  the [Pole Emploi API developper identifier and key](https://www.emploi-store-dev.fr/portail-developpeur-cms/home/catalogue-des-api/documentation-des-api/souscrire-api.html;JSESSIONID_JAHIA=C8EFB919489B2A8430C18600687F35E6)
 
