@@ -31,7 +31,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About the Project
-This project is our final submission for the Computer Science Project class at ENSAE Paris (3rd year). Our personal goal with this project was to get familliar with a broad range of development frameworks and tools unbeknownst to us and yet very useful in the professional life.
+This project is our final submission for the 3rd year Computer Science Project class at ENSAE Paris. Our personal goal with this project was to get familliar with a broad range of development frameworks and tools unbeknownst to us and yet very useful in the professional life.
 
 The main objective of the project was to improve the matching procedure between job seekers and job offers, using data from the French governmental agency Pôle Emploi. A few tests done on Pôle Emploi job search service showed that there could be limitations with the current procedure. For instance, language mistales, homonymy, etc. were not taken into account. Besides, since the current search procedure is based on keywords, its quality is stongly dependent on the indexation of the offers. Against that background, we wanted to implement a more flexible search procedure, based on word embeddings, similarly to most modern recommender systems.
 
