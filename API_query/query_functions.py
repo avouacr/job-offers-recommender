@@ -7,11 +7,9 @@ import pandas as pd
 import requests
 import re
 
-# Ideas taken from :
+# Some ideas taken from :
 # https://github.com/Cocorico84/employme/blob/855cfcda2c54f42b9c42dcbf4ac87cdf09248b7f/back/manager.py
 # https://stackoverflow.com/questions/42213427/change-variable-after-a-specific-amount-of-time-python
-
-# TO DO: use environment variables
 
 access = pd.read_csv("/home/jaime/projet_info_3A/private/access.csv", header=0)
 id_api = access["Identifiant"][0]
