@@ -94,7 +94,7 @@ The above procedure does not store the variables. If you wish to conserve these 
 
 3. Query Pole Emploi API
 ```sh
-python3 A COMPLETER
+python3 API_query/api_query.py
 ```
 
 4. Compute the new FastText representations of the offers 
