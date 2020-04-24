@@ -41,7 +41,7 @@ def import_fasttext(path_bin=None):
 
     return model
 
-fasttext_model = import_fasttext('models/cc.fr.300.bin')
+fasttext_model = import_fasttext('cc.fr.300.bin')
 
 def fasttext_wv_avg(doc):
     """Compute average of FastText's word vectors over a document tokens.."""

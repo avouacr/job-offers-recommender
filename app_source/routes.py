@@ -508,8 +508,6 @@ def offres_recommandees():
 
     final_df = df_offers.iloc[unique_ranks][:40]
 
-    # return render_template('recommended_offers.html', title="Offres recommandées",
-    #                        results=final_df.id)
     return render_template('recommended_offers.html', title="Offres recommandées",
                            df=final_df)
 

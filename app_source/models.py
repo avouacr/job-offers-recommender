@@ -263,7 +263,7 @@ géographique des évènements..""",
     ))
 
     entries.append(OtherSkills(
-        skill='Diagonalisation de matrices complexes',
+        skill='Management de process disruptifs',
         user_id=1
     ))
 

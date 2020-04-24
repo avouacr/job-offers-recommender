@@ -2,4 +2,6 @@ Jaime
 - Clean and comment code
 
 Romain
-- Dockerize app
+- script to download data
+- remove mock data
+- Git descriptif
