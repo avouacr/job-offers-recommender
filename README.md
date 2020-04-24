@@ -83,14 +83,14 @@ pip install -r requirements.txt
 python3 ./download_data.py
 ```
 
-### Launch the app
+### Launching the app
 
 Once the installation is complete, you can start the application
 ```sh
 python3 ./app.py
 ```
 
-### Query the Pole Emploi API
+### Updating job offers
 
 If you want to update the job offers database, follow these steps.
 
@@ -102,6 +102,11 @@ python3 ./app.py
 ```
 
 3. Run... (A COMPLETER)
+
+4. Compute the new FastText representations of the offers 
+```sh
+python3 doc_embeddings/fasttext_embeddings.py
+```
 
 
 <!-- USAGE -->
