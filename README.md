@@ -90,7 +90,7 @@ Once the installation is complete, you can start the application
 python3 ./app.py
 ```
 
-### Updating job offers
+### Updating the job offers database
 
 If you want to update the job offers database, follow these steps.
 
