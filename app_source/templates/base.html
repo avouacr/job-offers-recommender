@@ -7,13 +7,7 @@
     {% else %}
     <title>APP NAME</title>
     {% endif %}
-    <!--
 
-    DIGITAL TREND
-
-    https://templatemo.com/tm-538-digital-trend
-
-    -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="description" content="">
@@ -26,15 +20,7 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='css/aos.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/owl.theme.default.min.css') }}">
-    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
-    <!--    <link rel="stylesheet" type="text/css"-->
-    <!--          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">-->
-    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>-->
 
-    <!--    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>-->
-
-    <!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>-->
-    <!--    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>-->
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="{{ url_for('static',filename='css/templatemo-digital-trend.css') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -148,7 +134,7 @@
                 <p>
                     <a href="#">
                         <i class="fa fa-envelope mr-2 footer-icon"></i>
-                        hello@company.com
+                        test@myjob.com
                     </a>
                 </p>
             </div>
@@ -191,53 +177,6 @@
 <script type="text/javascript" src="{{ url_for('static',filename='js/owl.carousel.min.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static',filename='js/custom.js') }}"></script>
 
-<script>
-    $(function () {
-// setTimeout() function will be fired after page is loaded
-// it will wait for 5 sec. and then will fire
-// $(".message_flash").hide() function
-        setTimeout(function () {
-            $(".message_flash").hide('blind', {}, 500)
-        }, 5000);
-    })
-
-    $(document).ready(function () {
-        $('#dtBasicExample').DataTable({
-            "pagingType": "simple" // "simple" option for 'Previous' and 'Next' buttons only
-        });
-        $('.dataTables_length').addClass('bs-select');
-    });
-
-
-    $(document).ready(function () {
-        $('#data').after('<div id="nav"></div>');
-
-        var rowsShown = 7;
-        var rowsTotal = $('#data tbody tr').length;
-        var numPages = rowsTotal / rowsShown;
-        $('#nav').append('Page : ');
-        for (i = 0; i < numPages; i++) {
-            var pageNum = i + 1;
-            $('#nav').append('<a href="#" rel="' + i + '">' + pageNum + '</a> ');
-        }
-
-
-        $('#data tbody tr').hide();
-        $('#data tbody tr').slice(0, rowsShown).show();
-
-        $('#nav a:first').addClass('active');
-
-        $('#nav a').bind('click', function () {
-
-            $('#nav a').removeClass('active');
-            $(this).addClass('active');
-            var currPage = $(this).attr('rel');
-            var startItem = currPage * rowsShown;
-            var endItem = startItem + rowsShown;
-            $('#data tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).css('display', 'table-row').animate({opacity: 1}, 300);
-        });
-    });
-</script>
 
 <script type="text/javascript">// <![CDATA[
 function loading() {
