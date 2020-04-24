@@ -97,6 +97,7 @@ The above procedure does not store the variables. If you wish to conserve these 
 ```sh
  python3 API_query/api_query.py
 ```
+By default this queries for offers published during the last two years (365x2 days), you can change this through the ```num_days_lookback``` variable in the API_query/api_query.py script.
 
 4. Compute the new FastText representations of the offers 
 ```sh
