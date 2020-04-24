@@ -2,7 +2,7 @@
 <br />
 <p align="center">
 
-  <h3 align="center">An application to improve job offers recommendation</h3>
+  <h3 align="center">An application to improve job offer recommendations</h3>
 
   <p align="center">
     by Romain Avouac and Jaime Costa Centena
@@ -31,13 +31,19 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About the Project
-This project is our final submission for the 3rd year Computer Science Project class at ENSAE Paris. Our personal goal with this project was to get familliar with a broad range of development frameworks and tools unbeknownst to us and yet very useful in the professional life.
+This project is our final submission for the 3rd year Computer Science Project class at ENSAE ParisTech. 
 
-The main objective of the project was to improve the matching procedure between job seekers and job offers, using data from the French governmental agency Pôle Emploi. A few tests done on Pôle Emploi job search service showed that there could be limitations with the current procedure. For instance, language mistales, homonymy, etc. were not taken into account. Besides, since the current search procedure is based on keywords, its quality is strongly dependent on the indexation of the offers. Against that background, we wanted to implement a more flexible search procedure, based on word embeddings, on the model of most modern recommender systems.
+Our personal goal was to get familliar with a broad range of development frameworks and tools unbeknownst to us and yet very useful in the professional life. Moreover, the projet could provide a first version of a usefull tool, especially in the current economic situation.
+
+This tool improves the matching procedure between job seekers and job offers, using data from the French governmental agency [Pôle Emploi](https://en.wikipedia.org/wiki/P%C3%B4le_emploi). This agency is used by more than 403 000 businesses to recruit, and its website has more than 46 millions monthly visitors. Despite this numbers, a few tests done on Pôle Emploi job search service show that the current procedure had important shortcomings, e.g. language mistales, homonymy, etc. were not taken into account. Besides, since the current search procedure is based on keywords, its quality is strongly dependent on the indexation of the offers.
+
+Against that background, we wanted to implement a more flexible search procedure, based on word embeddings, as it of often done on most modern recommender systems.
 
 In order to make this procedure easily accessible to end users, we chose to develop a minimalistic, user-friendly web application. The app has two purposes :
 - generate a professional looking and normalized resume, based on the information provided by the user. This feature is especially useful to job seekers with limited IT familiarity ;
 - recommend to users the most relevant job offers based on their profile (experience, skills, etc.)
+
+Do not hesitate to reach out to us for any comment or suggstion regarding this project.
 
 ### Built with
 
