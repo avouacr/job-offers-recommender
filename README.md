@@ -1,3 +1,3 @@
 # 3A-ENSAE-projet-info
 
--  Get Pole Emploi API identifiers and save them as csv and change path_to_API_codes_csv in API_query/query_functions.py
+-  Get Pole Emploi API identifiers and set them as environment variables (POLE_EMPLOI_API_ID and POLE_EMPLOI_API_KEY).
