@@ -83,6 +83,11 @@ If you want to update the job offers database, follow these steps :
 1. Get  [Pole Emploi API identifier and key](https://www.emploi-store-dev.fr/portail-developpeur-cms/home/catalogue-des-api/documentation-des-api/utiliser-les-api.html)
 
 2. Set them as environment variables (POLE_EMPLOI_API_ID and POLE_EMPLOI_API_KEY)
+
+This depends on your operating system, and whether you wish to conserve these variables permanently. 
+Below are some usefull links:
+- Item
+- Item
 ```sh
 A COMPLETER
 ```
@@ -137,4 +142,5 @@ Jaime Costa Centena - [JCCen](https://github.com/JCCen) - jaime.costa.centena@en
 ## Acknowledgements
 * [Miguel Grinberg's "Flask Mega-Tutorial"](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
 * [Best README template](https://github.com/othneildrew/Best-README-Template)
+* [Template mo](templatemo.com/)
 
