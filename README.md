@@ -83,18 +83,18 @@ If you want to update the job offers database, follow these steps :
 
 1. Get  [Pole Emploi API identifier and key](https://www.emploi-store-dev.fr/portail-developpeur-cms/home/catalogue-des-api/documentation-des-api/utiliser-les-api.html)
 
-2. Set them as environment variables (POLE_EMPLOI_API_ID and POLE_EMPLOI_API_KEY). 
+2. Set them as environment variables (POLE_EMPLOI_API_ID and POLE_EMPLOI_API_KEY). The procedure depends on your operating system, and whether you wish to conserve these variables persistently. Below are some usefull links:
+- [Linux](https://unix.stackexchange.com/questions/117467/how-to-permanently-set-environmental-variables)
+- [Windows](https://www.computerhope.com/issues/ch000549.htm)
+- [Mac](https://medium.com/@youngstone89/setting-up-environment-variables-in-mac-os-28e5941c771c)
 
 ```sh
-export POLE_EMPLOI_API_ID="YOUR POLE EMPLOI API DI"
-export POLE_EMPLOI_API_KEY="YOUR POLE EMPLOI API KEY"
+A COMPLETER
 ```
-
-The above procedure does not store the variables. If you wish to conserve these variables persistently, you might find ressources in the following links for [Linux](https://unix.stackexchange.com/questions/117467/how-to-permanently-set-environmental-variables), [Windows](https://www.computerhope.com/issues/ch000549.htm) and [Mac](https://medium.com/@youngstone89/setting-up-environment-variables-in-mac-os-28e5941c771c).
 
 3. Query Pole Emploi API
 ```sh
-python3 API_query/api_query.py
+python3 A COMPLETER
 ```
 
 4. Compute the new FastText representations of the offers 
@@ -106,7 +106,9 @@ python3 doc_embeddings/fasttext_embeddings.py
 <!-- USAGE -->
 ## Usage
 
-
+The interface of the application is voluntarily minimalistic. The first and mandatory step for users is to complete their profile (general information, official certification, education, experiences and self-presentation). Then, they can can either :
+- download a professional looking resume filled with all the information they provided ;
+- check the job offers that best match their profile.
 
 
 <!-- CONTRIBUTING -->
