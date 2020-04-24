@@ -16,7 +16,7 @@
                     <a href="{{ url_for('profil_info_generales') }}" class="custom-btn btn-bg btn mt-3"
                        data-aos="fade-up" data-aos-delay="100">Compléter mon profil</a>
                     <a href="{{ url_for('generation_cv') }}" class="custom-btn btn-bg btn mt-3" data-aos="fade-up"
-                       data-aos-delay="100">Générer un CV!</a>
+                       data-aos-delay="100">Générer un CV</a>
                     <p class="mb-0" data-aos="fade-up">
                         {% with messages = get_flashed_messages() %}
                         {% if messages %}
@@ -30,7 +30,7 @@
                     </p>
                     <a href="{{ url_for('offres_recommandees') }}" class="custom-btn btn-bg btn mt-3" data-aos="fade-up"
                        data-aos-delay="100" onclick="$('#loading').show();">Parcourir les offres d'emploi
-                        recommandées!</a>
+                        recommandées</a>
                     <div id="loading" style="display:none;color:white;"><img
                             src="{{url_for('static', filename='ajax-loader.gif')}}" alt=""/>Calcul des offres en cours ! Veuillez patienter.
                     </div>
