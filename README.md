@@ -2,7 +2,7 @@
 <br />
 <p align="center">
 
-  <h3 align="center">A job-matching application based on Pôle Emploi</h3>
+  <h3 align="center">A matching application for Pôle Emploi job offers</h3>
 
   <p align="center">
     by Romain Avouac and Jaime Costa Centena
