@@ -57,7 +57,7 @@ A list of commonly used resources that I find helpful are listed in the acknowle
 * [Bootstrap](https://getbootstrap.com)
 * [JQuery](https://jquery.com)
 * [fastText](https://github.com/facebookresearch/fastText/tree/master/python)
-* [cv_generator (allthough with significant alterations)](https://github.com/davidalvarezdlt/)
+* [cv_generator](https://github.com/davidalvarezdlt/) (allthough with significant modifications)
 
 
 
