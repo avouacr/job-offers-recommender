@@ -7,15 +7,8 @@ import pandas as pd
 import requests
 import re
 
-# Some ideas taken from :
-# https://github.com/Cocorico84/employme/blob/855cfcda2c54f42b9c42dcbf4ac87cdf09248b7f/back/manager.py
-# https://stackoverflow.com/questions/42213427/change-variable-after-a-specific-amount-of-time-python
-
-path_to_API_codes_csv = "/private/access.csv"
-
-access = pd.read_csv(path_to_API_codes_csv, header=0)
-id_api = access["Identifiant"][0]
-key_api = access["Clé secrète"][0]
+id_api = os.environ['POLE_EMPLOI_API_ID']
+key_api = os.environ['POLE_EMPLOI_API_KEY']
 
 client_id = id_api
 client_secret = key_api
@@ -23,6 +16,10 @@ access_tokens = {}
 cached_packages = None
 scope = 'api_offresdemploiv2'
 url = "https://api.emploi-store.fr/partenaire"
+
+# Note some ideas taken from :
+# https://stackoverflow.com/questions/42213427/change-variable-after-a-specific-amount-of-time-python
+# https://github.com/Cocorico84/employme/blob/855cfcda2c54f42b9c42dcbf4ac87cdf09248b7f/back/manager.py
 
 
 class TimedValue:
