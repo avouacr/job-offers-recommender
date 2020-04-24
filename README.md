@@ -1,18 +1,11 @@
-# 3A-ENSAE-projet-info
-
-
-
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">A job-matching application based on Pôle Emploi</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    by Romain Avouac and Jaime Costa Centena
     <br />
     <br />
     <br />
