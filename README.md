@@ -31,7 +31,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-
+![Application interface](https://raw.githubusercontent.com/avouacr/3A-ENSAE-projet-info/master/images_readme/main.png "Application interface")
 
 ### Built With
 
@@ -83,11 +83,6 @@ If you want to update the job offers database, follow these steps :
 1. Get  [Pole Emploi API identifier and key](https://www.emploi-store-dev.fr/portail-developpeur-cms/home/catalogue-des-api/documentation-des-api/utiliser-les-api.html)
 
 2. Set them as environment variables (POLE_EMPLOI_API_ID and POLE_EMPLOI_API_KEY)
-
-This depends on your operating system, and whether you wish to conserve these variables permanently. 
-Below are some usefull links:
-- Item
-- Item
 ```sh
 A COMPLETER
 ```
