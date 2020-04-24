@@ -6,10 +6,6 @@
 
   <p align="center">
     by Romain Avouac and Jaime Costa Centena
-    <br />
-    <br />
-    <br />
-    <a href="https://github.com/avouacr/3A-ENSAE-projet-info/issues">Report Bug</a>
   </p>
 </p>
 
@@ -59,7 +55,7 @@
 ```sh
 git clone https://github.com/avouacr/3A-ENSAE-projet-info.git
 ```
-2. Create a virtual environment inside the project directory
+2. Create a virtual environment inside the cloned directory
 ```sh
 python -m venv ./venv
 ```
@@ -81,7 +77,7 @@ python3 ./app.py
 
 ### Updating the job offers database
 
-If you want to update the job offers database, follow these steps.
+If you want to update the job offers database, follow these steps :
 
 1. Get  [Pole Emploi API identifier and key](https://www.emploi-store-dev.fr/portail-developpeur-cms/home/catalogue-des-api/documentation-des-api/utiliser-les-api.html)
 
@@ -108,7 +104,8 @@ python3 doc_embeddings/fasttext_embeddings.py
 <!-- CONTRIBUTING -->
 ## Contributing
 
-All contributions are welcome.
+All contributions are welcome. You can either [report a bug](https://github.com/avouacr/3A-ENSAE-projet-info/issues) or contribute directly using the following typical workflow :
+
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
