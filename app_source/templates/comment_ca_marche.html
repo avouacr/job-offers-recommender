@@ -20,7 +20,14 @@
                 </div>
             </div>
 <p>
-    Où que nous mène l'inertie contextuelle, il serait intéressant de prendre en considération la majorité des stratégies de bon sens, pour longtemps. Quelle que soit l'inconstance induite, il est préférable de prendre en considération toutes les issues que nous connaissons, à l'avenir. Dans le but de pallier à l'ambiance actuelle, il faut de toute urgence remodeler la majorité des ouvertures draconiennes, parce que les mêmes causes produisent les mêmes effets.
+    
+    Suite à quelques expérimentations, nous avons remarqué que procédure de matching utilisée par Pôle Emploi pour proposer des offres d'emploi aux utilisateurs souffrait de plusieurs lacunes : pas de prise en compte des fautes d'orthographes, de l’homonymie, etc. Par ailleurs, la qualité de la recherche dépend fortement de celle de l'indexation qui a été faite au préalable à partir des offres. La recherche par mots-clefs proposée est ainsi "dure" et peut limiter la pertinence des résultats. 
+    Nous proposons ici une procédure de matching plus "souple", à l'aide d'un système de recommandation basé sur des word embeddings. Il s'agit d'une avancée majeure du NLP au cours des années récentes.
+    
+    Les embeddings des offres sont calculés après que celles-ci soit récupérées via l'API, puis stockées. Lorsqu'un utilisateur entre ces informations dans l'application, le modèle FastText est utilisé pour obtenir leur représentation "à la volée". Selon la mobilité de l'utilisateur (ville, département, région..), un pré-filtrage des offres est effectué. Puis on calcule ensuite toutes les similarités cosine entre les utilisateurs et les offres pris deux-à-deux, que l'on classe par ordre décroissant de pertinence. On affiche enfin, à l'aide de Flask, les offres à l'utilisateur (par similarité décroissante), en incluant les liens des offres sur le site de Pôle Emploi, où l'utilisateur peut trouver des informations additionnelles sur les offres qu'il juge pertinentes.
+
+    
+    
 </p>
         </div>
     </section>
