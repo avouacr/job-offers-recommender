@@ -107,7 +107,7 @@ python3 ./app.py
 <!-- CONTRIBUTING -->
 ## Contributing
 
-Contributions are **greatly appreciated**.
+All contributions are welcome.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
@@ -130,9 +130,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Romain Avouac - [avouacr](https://github.com/avouacr) - romain.avouac@ensae.fr
 
 Jaime Costa Centena - [JCCen](https://github.com/JCCen) - jaime.costa.centena@ensae.fr 
-
-Project Link: [https://github.com/avouacr/3A-ENSAE-projet-info](https://github.com/avouacr/3A-ENSAE-projet-info)
-
 
 
 <!-- ACKNOWLEDGEMENTS -->
