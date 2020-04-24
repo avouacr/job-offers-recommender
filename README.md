@@ -9,7 +9,7 @@
   </p>
 </p>
 
-
+![Application interface](https://raw.githubusercontent.com/avouacr/3A-ENSAE-projet-info/master/images_readme/main.png "Application interface")
 
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
@@ -31,7 +31,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Application interface](https://raw.githubusercontent.com/avouacr/3A-ENSAE-projet-info/master/images_readme/main.png "Application interface")
+
 
 ### Built With
 
