@@ -6,10 +6,11 @@
 
   <p align="center">
     by Romain Avouac and Jaime Costa Centena
+  <br /><br />
   </p>
 </p>
 
-
+![Application interface](https://raw.githubusercontent.com/avouacr/3A-ENSAE-projet-info/master/images_readme/main.png "Application interface")
 
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
@@ -82,12 +83,11 @@ If you want to update the job offers database, follow these steps :
 
 1. Get  [Pole Emploi API identifier and key](https://www.emploi-store-dev.fr/portail-developpeur-cms/home/catalogue-des-api/documentation-des-api/utiliser-les-api.html)
 
-2. Set them as environment variables (POLE_EMPLOI_API_ID and POLE_EMPLOI_API_KEY)
+2. Set them as environment variables (POLE_EMPLOI_API_ID and POLE_EMPLOI_API_KEY). The procedure depends on your operating system, and whether you wish to conserve these variables persistently. Below are some usefull links:
+- [Linux](https://unix.stackexchange.com/questions/117467/how-to-permanently-set-environmental-variables)
+- [Windows](https://www.computerhope.com/issues/ch000549.htm)
+- [Mac](https://medium.com/@youngstone89/setting-up-environment-variables-in-mac-os-28e5941c771c)
 
-This depends on your operating system, and whether you wish to conserve these variables permanently. 
-Below are some usefull links:
-- Item
-- Item
 ```sh
 A COMPLETER
 ```
