@@ -24,6 +24,7 @@
   * [Installation](#installation)
   * [Start the app](#start-app)
   * [Query the Pole Emploi API](#query-api)
+* [Usage](#usage)
 * [Contributing](#contributing)
 * [License](#license)
 * [Contact](#contact)
@@ -82,9 +83,9 @@ pip install -r requirements.txt
 python3 ./download_data.py
 ```
 
-### Start the app
+### Launch the app
 
-Once the installation is completed, you can simply start the application
+Once the installation is complete, you can start the application
 ```sh
 python3 ./app.py
 ```
@@ -102,6 +103,9 @@ python3 ./app.py
 
 3. Run... (A COMPLETER)
 
+
+<!-- USAGE -->
+## Usage
 
 
 <!-- CONTRIBUTING -->
