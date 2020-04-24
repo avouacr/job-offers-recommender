@@ -23,10 +23,9 @@
 * [About the Project](#about-the-project)
   * [Built With](#built-with)
 * [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
   * [Installation](#installation)
-* [Usage](#usage)
-* [Roadmap](#roadmap)
+  * [Start the app](#start-app)
+  * [Query the Pole Emploi API](#query-api)
 * [Contributing](#contributing)
 * [License](#license)
 * [Contact](#contact)
@@ -85,7 +84,7 @@ pip install -r requirements.txt
 python3 ./download_data.py
 ```
 
-### Start the application
+### Start the app
 
 Once the installation is completed, you can simply start the application
 ```sh
