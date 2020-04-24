@@ -10,8 +10,8 @@ if __name__ == '__main__':
     gdown.download(offers_url, 'data/all_offers.csv', quiet=False)
 
     print('Download FastText representations of job offers')
-    vectors_url = 'https://drive.google.com/uc?export=download&confirm=1Rhc&id=1uK1wLdzR7dS-kqZti-4jLYXos5pLKyed'
-    gdown.download(offers_url, 'data/offers_fasttext.npy', quiet=False)
+    vectors_url = 'https://drive.google.com/uc?export=download&confirm=-GH4&id=1m_ckxOk4Ga884ai9mopnSj7gmvb1t5tG'
+    gdown.download(vectors_url, 'data/offers_fasttext.npy', quiet=False)
 
     print('Download FastText French model')
     download_model('fr', if_exists='ignore')
