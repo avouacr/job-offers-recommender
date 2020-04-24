@@ -11,7 +11,7 @@ import re
 # https://github.com/Cocorico84/employme/blob/855cfcda2c54f42b9c42dcbf4ac87cdf09248b7f/back/manager.py
 # https://stackoverflow.com/questions/42213427/change-variable-after-a-specific-amount-of-time-python
 
-access = pd.read_csv("/home/jaime/projet_info_3A/private/access.csv", header=0)
+access = pd.read_csv("/private/access.csv", header=0)
 id_api = access["Identifiant"][0]
 key_api = access["Clé secrète"][0]
 
