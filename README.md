@@ -6,6 +6,7 @@
 
   <p align="center">
     by Romain Avouac and Jaime Costa Centena
+  <br /><br />
   </p>
 </p>
 
