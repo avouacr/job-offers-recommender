@@ -85,14 +85,14 @@ pip install -r requirements.txt
 python3 ./download_data.py
 ```
 
-### Application
+### Start the application
 
 Once the installation is completed, you can simply start the application
 ```sh
 python3 ./app.py
 ```
 
-### Querying the Pole Emploi API
+### Query the Pole Emploi API
 
 If you want to update the job offers database, follow these steps.
 
@@ -104,22 +104,6 @@ python3 ./app.py
 ```
 
 3. Run... (A COMPLETER)
-
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
 
 
 
