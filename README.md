@@ -43,6 +43,7 @@ In order to make this procedure easily accessible to end users, we chose to deve
 
 * [Python](https://python.org)
 * [Flask](https://flask.palletsprojects.com/en/1.1.x/)
+* [SQLite](https://www.sqlite.org/index.html)
 * [SQLAlchemy](https://www.sqlalchemy.org/)
 * [Bootstrap](https://getbootstrap.com)
 * [JQuery](https://jquery.com)
