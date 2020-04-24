@@ -40,7 +40,7 @@ Our web application improves the matching procedure between job seekers and job 
 Against that background, we wanted to implement a more flexible search procedure, based on embeddings, as it is often seen in modern recommender systems.
 
 In order to make this procedure easily accessible to end users, we chose to develop a minimalistic, user-friendly web application. The app has two purposes :
-- generate a professional looking and normalized resume, based on the information provided by the user. This feature is especially useful to job seekers with limited IT familiarity ;
+- generate a professional looking and normalized resume, based on the information provided by the user. This feature is especially useful for job seekers with limited IT familiarity ;
 - recommend to users the most relevant job offers based on their profile (experience, skills, etc.)
 
 Do not hesitate to reach out to us for any comment or suggestion regarding this project.
