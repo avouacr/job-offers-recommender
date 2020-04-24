@@ -55,9 +55,10 @@
 ```sh
 git clone https://github.com/avouacr/3A-ENSAE-projet-info.git
 ```
-2. Create a virtual environment inside the cloned directory
+2. Create a virtual environment inside the cloned directory and activate it
 ```sh
 python -m venv ./venv
+source venv/bin/activate
 ```
 3. Install required libraries
 ```sh
