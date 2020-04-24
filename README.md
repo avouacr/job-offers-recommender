@@ -83,14 +83,17 @@ If you want to update the job offers database, follow these steps :
 
 1. Get  [Pole Emploi API identifier and key](https://www.emploi-store-dev.fr/portail-developpeur-cms/home/catalogue-des-api/documentation-des-api/utiliser-les-api.html)
 
-2. Set them as environment variables (POLE_EMPLOI_API_ID and POLE_EMPLOI_API_KEY). The procedure depends on your operating system, and whether you wish to conserve these variables persistently. Below are some usefull links:
+2. Set them as environment variables (POLE_EMPLOI_API_ID and POLE_EMPLOI_API_KEY). 
+
+```sh
+export POLE_EMPLOI_API_ID="YOUR POLE EMPLOI API DI"
+export POLE_EMPLOI_API_KEY="YOUR POLE EMPLOI API KEY"
+```
+
+The above procdure does not store the variables. If you wish to conserve these variables persistently, you might find the following links helpful :
 - [Linux](https://unix.stackexchange.com/questions/117467/how-to-permanently-set-environmental-variables)
 - [Windows](https://www.computerhope.com/issues/ch000549.htm)
 - [Mac](https://medium.com/@youngstone89/setting-up-environment-variables-in-mac-os-28e5941c771c)
-
-```sh
-A COMPLETER
-```
 
 3. Query Pole Emploi API
 ```sh
