@@ -10,8 +10,6 @@
     <br />
     <br />
     <a href="https://github.com/avouacr/3A-ENSAE-projet-info/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/avouacr/3A-ENSAE-projet-info/issues">Request Feature</a>
   </p>
 </p>
 
