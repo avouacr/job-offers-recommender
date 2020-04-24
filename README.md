@@ -98,7 +98,7 @@ If you want to update the job offers database, follow these steps.
 
 2. Set them as environment variables (POLE_EMPLOI_API_ID and POLE_EMPLOI_API_KEY)
 ```sh
-python3 ./app.py
+A COMPLETER
 ```
 
 3. Query Pole Emploi API
