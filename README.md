@@ -101,7 +101,10 @@ If you want to update the job offers database, follow these steps.
 python3 ./app.py
 ```
 
-3. Run... (A COMPLETER)
+3. Query Pole Emploi API
+```sh
+python3 A COMPLETER
+```
 
 4. Compute the new FastText representations of the offers 
 ```sh
