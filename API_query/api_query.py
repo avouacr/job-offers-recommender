@@ -11,12 +11,12 @@ import query_functions
 
 if __name__ == "__main__":
 
-    # create directory where offers are stored
-    path = 'test'
+    # create directory where offers are temporarly stored
+    path = 'data/temp_results'
     os.makedirs(path)
 
     # query from a # of days back until today
-    num_days_lookback = 3
+    num_days_lookback = 2*365
 
     # create the day range
     dates_range = [(datetime.utcnow() - timedelta(days=i)) for i in
@@ -34,6 +34,8 @@ if __name__ == "__main__":
         df = pd.read_csv(filename, index_col=0, header=0)
         result_list.append(df)
         os.remove(filename)
+
+    os.removedirs(path) 
 
     # concatenate
     frame = pd.concat(result_list, axis=0, ignore_index=True, sort=True)
@@ -54,4 +56,5 @@ if __name__ == "__main__":
     # Remove when important field is empty
 
     # save single file
-    frame.to_csv(os.path.join(path, "all_offers.csv"), sep=",")
+    frame.to_csv("data/all_offers.csv", sep=",")
+
