@@ -146,9 +146,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Romain Avouac - [avouacr][https://github.com/avouacr] - romain.avouac@ensae.fr
+Romain Avouac - [avouacr](https://github.com/avouacr) - romain.avouac@ensae.fr
 
-Jaime Costa Centena - [JCCen][https://github.com/JCCen] - jaime.costa.centena@ensae.fr 
+Jaime Costa Centena - [JCCen](https://github.com/JCCen) - jaime.costa.centena@ensae.fr 
 
 Project Link: [https://github.com/avouacr/3A-ENSAE-projet-info](https://github.com/avouacr/3A-ENSAE-projet-info)
 
