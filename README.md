@@ -68,7 +68,7 @@ Do not hesitate to reach out to us for any comment or suggestion regarding this 
 ```sh
 git clone https://github.com/avouacr/3A-ENSAE-projet-info.git
 ```
-2. Create a virtual environment inside the cloned directory
+2. (optional) Create a virtual environment inside the cloned directory
 ```sh
 python3 -m venv ./venv
 source venv/bin/activate
