@@ -54,7 +54,7 @@ Do not hesitate to reach out to us for any comment or suggestion regarding this 
 * [Bootstrap](https://getbootstrap.com)
 * [JQuery](https://jquery.com)
 * [fastText](https://github.com/facebookresearch/fastText/tree/master/python)
-* [cv_generator](https://github.com/davidalvarezdlt/) (allthough with significant modifications)
+* [cv_generator](https://github.com/davidalvarezdlt/cv_generator) (allthough with significant modifications)
 
 
 
