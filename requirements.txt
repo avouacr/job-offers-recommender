@@ -10,7 +10,7 @@ PyYAML==5.4
 requests==2.31.0
 Unidecode==1.1.1
 git+https://github.com/facebookresearch/fastText.git
-scipy==1.4.1
+scipy==1.10.0
 pandas==1.0.3
 numpy==1.22.0
 gdown==3.10.3
